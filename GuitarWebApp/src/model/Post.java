@@ -29,7 +29,7 @@ import utils.PostType;
 @Entity
 @Access(AccessType.FIELD)
 public class Post {
-	@Id @GeneratedValue(strategy=GenerationType.TABLE)
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long ID;
 	@Version
 	private Integer version;
@@ -38,18 +38,21 @@ public class Post {
 	private String content;
 	@ElementCollection
 	private Set<String> mediaLocation;
+	@Transient
 	private PostType type;
 	@Temporal(TemporalType.DATE)
 	private Date publishDate;
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.MERGE,
 			orphanRemoval=true)
 	private Set<Comment> comments;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="OWNER_ID")
 	private User owner;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="LIKER_ID")
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="POST_LIKERS",
+		joinColumns=@JoinColumn(name="POST_ID"),
+		inverseJoinColumns=@JoinColumn(name="LIKER_ID"))
 	private Set<User> likers;
 	
 	@Transient
@@ -90,14 +93,15 @@ public class Post {
 	}
 	@Access(AccessType.PROPERTY)
 	@Enumerated(EnumType.STRING)
-	public String getType(){
-		return type.toString();
+	public PostType getType(){
+		return type;
 	}
 	
 	public void setType(PostType type){
 		this.type = type;
-		if(this.type.equals(PostType.ACTIVITY))
+		if(type.equals(PostType.ACTIVITY.toString())){
 			this.joinable = new JoinableImp();
+		}
 	}
 	
 	public String getPusblishDate(){
@@ -155,7 +159,7 @@ public class Post {
 	
 	@Access(AccessType.PROPERTY)
 	@Temporal(TemporalType.TIMESTAMP)
-	public String getStartDate(){
+	public Date getStartDate(){
 		return joinable.getStartDate();
 	}
 	

@@ -18,8 +18,8 @@ public abstract class Joinable {
 	
 	protected abstract boolean isTime(Date date);
 	
-	public String getStartDate(){
-		return startDate.toString();
+	public Date getStartDate(){
+		return startDate;
 	}
 	
 	public void setStartDate(Date date){

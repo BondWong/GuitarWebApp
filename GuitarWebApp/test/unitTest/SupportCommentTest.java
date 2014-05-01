@@ -1,4 +1,4 @@
-package test;
+package unitTest;
 
 import model.Comment;
 import model.User;

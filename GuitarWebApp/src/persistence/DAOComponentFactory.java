@@ -20,12 +20,12 @@ public abstract class DAOComponentFactory {
 		
 	}
 	
-	public abstract Creatable createCreatable(EntityManager em);
+	public abstract Creatable createCreatable();
 	
-	public abstract SingleResultReadable createSingleResultReadable(EntityManager em);
+	public abstract SingleResultReadable createSingleResultReadable();
 	
-	public abstract CollectionReadable createCollectionReadable(EntityManager em);
+	public abstract CollectionReadable createCollectionReadable();
 	
-	public abstract Deletable createDeletable(EntityManager em);
+	public abstract Deletable createDeletable();
 	
 }

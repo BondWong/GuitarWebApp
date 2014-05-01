@@ -3,32 +3,31 @@ package persistence;
 import javax.persistence.EntityManager;
 
 public class PostDAOComponentFactory extends DAOComponentFactory{
-	@SuppressWarnings("unused")
 	private EntityManager em;
 	public PostDAOComponentFactory(EntityManager em){
 		this.em = em;
 	}
 	
 	@Override
-	public Creatable createCreatable(EntityManager em) {
+	public Creatable createCreatable() {
 		// TODO Auto-generated method stub
 		return new NonCreatable();
 	}
 
 	@Override
-	public SingleResultReadable createSingleResultReadable(EntityManager em) {
+	public SingleResultReadable createSingleResultReadable() {
 		// TODO Auto-generated method stub
 		return new SingleResultReadableImp(em);
 	}
 
 	@Override
-	public CollectionReadable createCollectionReadable(EntityManager em) {
+	public CollectionReadable createCollectionReadable() {
 		// TODO Auto-generated method stub
 		return new CollectionReadableImp(em);
 	}
 
 	@Override
-	public Deletable createDeletable(EntityManager em) {
+	public Deletable createDeletable() {
 		// TODO Auto-generated method stub
 		return new NonDeletable();
 	}

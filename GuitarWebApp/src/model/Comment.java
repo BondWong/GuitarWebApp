@@ -22,7 +22,7 @@ import utils.CommentType;
 @Entity
 @Access(AccessType.FIELD)
 public class Comment {
-	@Id @GeneratedValue(strategy=GenerationType.TABLE)
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long ID;
 	@Version
 	private Integer version;

@@ -17,15 +17,16 @@ public class DAO<E> {
 	public DAO(){}
 	
 	public DAO(Class<E> type) throws Exception{
-		//emf
-		//em
+		
+		emf = EntityManagerFactoryCreator.getInstance().getEntityManagerFactory();
+		em = emf.createEntityManager();
 		
 		DAOComponentFactory daocf = DAOComponentFactory.createInstance(em,type);
 		
-		creatable = daocf.createCreatable(em);
-		srReadable = daocf.createSingleResultReadable(em);
-		cReadable = daocf.createCollectionReadable(em);
-		deletable = daocf.createDeletable(em);
+		creatable = daocf.createCreatable();
+		srReadable = daocf.createSingleResultReadable();
+		cReadable = daocf.createCollectionReadable();
+		deletable = daocf.createDeletable();
 		
 	}
 	

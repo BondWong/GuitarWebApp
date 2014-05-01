@@ -1,4 +1,4 @@
-package test;
+package unitTest;
 
 import junit.framework.TestCase;
 import model.Post;
