@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -28,7 +30,7 @@ public class Comment {
 	private Integer version;
 	
 	private String content;
-	@Enumerated(EnumType.STRING)
+	@Transient
 	private CommentType type;
 	
 	@Transient
@@ -37,7 +39,9 @@ public class Comment {
 	@OneToOne
 	private User owner;
 	
-	public Comment(){}
+	public Comment(){
+		supportable = new Unsupportable();
+	}
 	
 	public Comment(String content,CommentType commentTypes){
 		this.content = content;
@@ -52,11 +56,15 @@ public class Comment {
 		return content;
 	}
 	
-	public String getType(){
-		return type.toString();
+	@Access(AccessType.PROPERTY)
+	@Enumerated(EnumType.STRING)
+	public CommentType getType(){
+		return type;
 	}
 	
 	public void setType(CommentType type){
+		if(type.equals(CommentType.ANSWER))
+			supportable = new SupportableImp();
 		this.type = type;
 	}
 	
@@ -90,6 +98,9 @@ public class Comment {
 	
 	@Access(AccessType.PROPERTY)
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
+	@JoinTable(name="COMMENT_SUPPORTORS",
+	joinColumns=@JoinColumn(name="COMMENT_ID"),
+	inverseJoinColumns=@JoinColumn(name="SUPPORTOR_ID"))
 	public Set<User> getSupportors(){
 		return supportable.getSupportors();
 	}

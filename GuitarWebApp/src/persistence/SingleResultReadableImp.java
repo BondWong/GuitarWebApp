@@ -15,4 +15,10 @@ public class SingleResultReadableImp implements SingleResultReadable{
 		return em.find(type, ID);
 	}
 
+	@Override
+	public <T> T read(Long ID, Class<T> type) {
+		// TODO Auto-generated method stub
+		return em.find(type, ID);
+	}
+
 }

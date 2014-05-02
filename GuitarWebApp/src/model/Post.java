@@ -18,6 +18,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,6 +30,10 @@ import utils.PostType;
 
 @Entity
 @Access(AccessType.FIELD)
+@NamedQueries({@NamedQuery(name="Post.fetchByUserID",query="SELECT p FROM Post p "
+		+ "WHERE p.owner.ID = ?1 ORDER BY p.publishDate DESC"),
+	@NamedQuery(name="Post.fetchByType",query="SELECT p FROM Post p "
+			+ "WHERE p.type = ?1 ORDER BY p.publishDate DESC")})
 public class Post {
 	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long ID;

@@ -1,13 +1,12 @@
 package model;
 
-import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Unjoinable extends Joinable{
-	@SuppressWarnings({ "unchecked" })
 	public Unjoinable(){
-		participants = Collections.EMPTY_SET;
+		participants = new LinkedHashSet<User>();
 		startDate = new Date();
 	}
 	

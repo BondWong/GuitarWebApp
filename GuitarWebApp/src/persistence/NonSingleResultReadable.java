@@ -8,4 +8,10 @@ public class NonSingleResultReadable implements SingleResultReadable{
 		return null;
 	}
 
+	@Override
+	public <T> T read(Long ID, Class<T> type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

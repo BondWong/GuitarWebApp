@@ -4,11 +4,9 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class SupportableImp implements Supportable{
-	private Set<User> supportors;
+	private Set<User> supportors = new LinkedHashSet<User>();
 	
-	public SupportableImp(){
-		supportors = new LinkedHashSet<User>();
-	}
+	public SupportableImp(){}
 	
 	@Override
 	public void clickSupport(User user) {

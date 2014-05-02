@@ -1,15 +1,12 @@
 package model;
 
-import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Unsupportable implements Supportable{
-	private Set<User> supportors;
+	private Set<User> supportors = new LinkedHashSet<User>();
 	
-	@SuppressWarnings("unchecked")
-	public Unsupportable(){
-		supportors = Collections.EMPTY_SET;
-	}
+	public Unsupportable(){}
 	@Override
 	public void clickSupport(User user) {
 		// TODO Auto-generated method stub
@@ -27,9 +24,7 @@ public class Unsupportable implements Supportable{
 	}
 	
 	@Override
-	public void setSupportors(Set<User> supportors) {
-		this.supportors = supportors;
-	}
+	public void setSupportors(Set<User> supportors) {}
 	
 	@Override
 	public Set<User> getSupportors() {
