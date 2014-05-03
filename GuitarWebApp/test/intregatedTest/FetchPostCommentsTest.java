@@ -16,10 +16,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import persistence.DAO;
-import persistence.EntityManagerFactoryCreator;
 import services.CommentFactory;
 import services.PostFactory;
 import utils.CommentType;
+import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;
 import utils.PostType;
 

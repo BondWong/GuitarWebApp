@@ -105,7 +105,7 @@ public class Post {
 	
 	public void setType(PostType type){
 		this.type = type;
-		if(type.equals(PostType.ACTIVITY.toString())){
+		if(type.equals(PostType.ACTIVITY)){
 			this.joinable = new JoinableImp();
 		}
 	}
@@ -124,6 +124,10 @@ public class Post {
 	
 	public int getLikeNum(){
 		return likers.size();
+	}
+	
+	public Set<User> getLikers(){
+		return likers;
 	}
 	
 	public User getOwner() {
@@ -188,6 +192,10 @@ public class Post {
 	
 	public void setParticipants(Set<User> participants){
 		this.joinable.setParticipants(participants);
+	}
+	
+	public int getParticipantsNum(){
+		return getParticipants().size();
 	}
 	
 	@Override

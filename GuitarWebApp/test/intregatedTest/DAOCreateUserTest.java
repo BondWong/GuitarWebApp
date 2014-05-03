@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import persistence.DAO;
-import persistence.EntityManagerFactoryCreator;
+import utils.EntityManagerFactoryCreator;
 
 public class DAOCreateUserTest {
 	private DAO<User> dao;

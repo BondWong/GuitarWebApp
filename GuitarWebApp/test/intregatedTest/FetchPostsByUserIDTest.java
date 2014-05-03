@@ -14,8 +14,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import persistence.DAO;
-import persistence.EntityManagerFactoryCreator;
 import services.PostFactory;
+import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;
 import utils.PostType;
 
