@@ -33,7 +33,10 @@ import utils.PostType;
 @NamedQueries({@NamedQuery(name="Post.fetchByUserID",query="SELECT p FROM Post p "
 		+ "WHERE p.owner.ID = ?1 ORDER BY p.publishDate DESC"),
 	@NamedQuery(name="Post.fetchByType",query="SELECT p FROM Post p "
-			+ "WHERE p.type = ?1 ORDER BY p.publishDate DESC")})
+			+ "WHERE p.type = ?1 ORDER BY p.publishDate DESC"),
+	@NamedQuery(name="Post.fetchByFollowee",query="SELECT p FROM Post p "
+			+ "WHERE p.owner IN(SELECT uf FROM User u JOIN u.followees uf WHERE "
+			+ "u.ID = ?1 ) ORDER BY p.publishDate DESC")})
 public class Post {
 	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long ID;
@@ -46,7 +49,7 @@ public class Post {
 	private Set<String> mediaLocation;
 	@Transient
 	private PostType type;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date publishDate;
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.MERGE,
 			orphanRemoval=true)

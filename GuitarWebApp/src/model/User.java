@@ -30,6 +30,8 @@ public class User {
 	private Integer version;
 	
 	private String password;
+	private String avatarLink;
+	private String profileImageLink;
 	private String gender;
 	private String nickName;
 	private String lookingFor;
@@ -92,6 +94,22 @@ public class User {
 	
 	public void setPassword(String password){
 		this.password = password;
+	}
+	
+	public void setAvatarLink(String avatarLink){
+		this.avatarLink = avatarLink;
+	}
+	
+	public String getAvatarLink(){
+		return avatarLink;
+	}
+	
+	public void setProfileImageLink(String profileImageLink){
+		this.profileImageLink = profileImageLink;
+	}
+	
+	public String getProfileImageLink(){
+		return profileImageLink;
 	}
 	
 	public String getNickName(){
