@@ -20,29 +20,44 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.Version;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Access(AccessType.FIELD)
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.NONE)
 public class User {
 	@Id
+	@XmlElement
 	private String ID;
 	@Version
 	private Integer version;
 	
 	private String password;
+	@XmlElement
 	private String avatarLink;
+	@XmlElement
 	private String profileImageLink;
+	@XmlElement
 	private String gender;
+	@XmlElement
 	private String nickName;
+	@XmlElement
 	private String lookingFor;
+	@XmlElement
 	private String relationship;
 	@Temporal(TemporalType.DATE)
+	@XmlElement
 	private Date birthday;
 	
 	@Transient
 	private Authority auth;
 	
 	@ElementCollection
+	@XmlElement
 	private Set<String> imageLinks;
 	
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.MERGE

@@ -18,25 +18,37 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.persistence.Version;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import utils.CommentType;
 
 @Entity
 @Access(AccessType.FIELD)
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.NONE)
 public class Comment {
 	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@XmlElement
 	private Long ID;
 	@Version
 	private Integer version;
 	
+	@XmlElement
 	private String content;
 	@Transient
+	@XmlElement
 	private CommentType type;
 	
 	@Transient
+	@XmlTransient
 	private Supportable supportable;
 	
 	@OneToOne
+	@XmlElement
 	private User owner;
 	
 	public Comment(){
@@ -102,6 +114,7 @@ public class Comment {
 	@JoinTable(name="COMMENT_SUPPORTORS",
 	joinColumns=@JoinColumn(name="COMMENT_ID"),
 	inverseJoinColumns=@JoinColumn(name="SUPPORTOR_ID"))
+	@XmlElement
 	public Set<User> getSupportors(){
 		return supportable.getSupportors();
 	}

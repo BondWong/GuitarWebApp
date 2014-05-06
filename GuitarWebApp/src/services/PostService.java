@@ -19,7 +19,7 @@ public class PostService {
 	
 	@POST
 	@Consumes({MediaType.TEXT_PLAIN,MediaType.APPLICATION_JSON})
-	public void addPost(String userID, PostRep postRep){
+	public Response addPost(String userID, PostRep postRep){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postRep", postRep);
@@ -29,9 +29,10 @@ public class PostService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return Response.ok().build();
 	}
 	
 	@PUT
@@ -45,11 +46,10 @@ public class PostService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return null;
+		return Response.ok().build();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -65,7 +65,6 @@ public class PostService {
 		try {
 			return (List<Post>) transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -84,7 +83,6 @@ public class PostService {
 		try {
 			return (List<Post>) transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -103,7 +101,6 @@ public class PostService {
 		try {
 			return (List<Post>) transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -121,7 +118,6 @@ public class PostService {
 		try {
 			return (Post) transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -130,7 +126,7 @@ public class PostService {
 	
 	@PUT
 	@Consumes({MediaType.TEXT_PLAIN})
-	public void likePost(String userID, Long postID){
+	public Response likePost(String userID, Long postID){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
@@ -139,14 +135,15 @@ public class PostService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return Response.ok().build();
 	}
 	
 	@PUT
 	@Consumes({MediaType.TEXT_PLAIN})
-	public void cancelLike(String userID, Long postID){
+	public Response cancelLike(String userID, Long postID){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
@@ -155,14 +152,15 @@ public class PostService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return Response.ok().build();
 	}
 	
 	@PUT
 	@Consumes({MediaType.TEXT_PLAIN})
-	public void collectPost(String userID, Long postID){
+	public Response collectPost(String userID, Long postID){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
@@ -171,14 +169,15 @@ public class PostService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return Response.ok().build();
 	}
 	
 	@PUT
 	@Consumes({MediaType.TEXT_PLAIN})
-	public void cancelCollect(String userID, Long postID){
+	public Response cancelCollect(String userID, Long postID){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
@@ -187,14 +186,15 @@ public class PostService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return Response.ok().build();
 	}
 	
 	@PUT
 	@Consumes({MediaType.TEXT_PLAIN})
-	public void joinActivity(String userID, Long postID){
+	public Response joinActivity(String userID, Long postID){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
@@ -203,9 +203,10 @@ public class PostService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return Response.ok().build();
 	}
 	
 }

@@ -3,8 +3,14 @@ package services;
 import java.util.Date;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import utils.PostType;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PostRep {
 	private String topic;
 	private String content;

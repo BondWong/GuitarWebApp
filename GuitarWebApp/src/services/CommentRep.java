@@ -1,7 +1,13 @@
 package services;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import utils.CommentType;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CommentRep {
 	private String content;
 	private CommentType type;

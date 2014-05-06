@@ -15,7 +15,7 @@ public class CommentService {
 	
 	@POST
 	@Consumes({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-	public void addComment(String userID, Long postID, CommentRep commentRep){
+	public Response addComment(String userID, Long postID, CommentRep commentRep){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
@@ -25,9 +25,10 @@ public class CommentService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return Response.ok().build();
 	}
 	
 	@DELETE
@@ -42,15 +43,14 @@ public class CommentService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return Response.ok().build();
 	}
 	
 	@PUT
 	@Consumes(MediaType.TEXT_PLAIN)
-	public void supportAnswer(String userID, Long commentID){
+	public Response supportAnswer(String userID, Long commentID){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("commentID", commentID);
@@ -59,14 +59,15 @@ public class CommentService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return Response.ok().build();
 	}
 	
 	@PUT
 	@Consumes(MediaType.TEXT_PLAIN)
-	public void cancelSupport(String userID, Long commentID){
+	public Response cancelSupport(String userID, Long commentID){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("commentID", commentID);
@@ -75,8 +76,9 @@ public class CommentService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return Response.ok().build();
 	}
 }
