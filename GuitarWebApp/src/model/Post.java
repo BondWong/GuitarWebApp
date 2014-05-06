@@ -64,7 +64,6 @@ public class Post {
 		inverseJoinColumns=@JoinColumn(name="LIKER_ID"))
 	private Set<User> likers;
 	
-	@Transient
 	private boolean active;
 	@Transient
 	private Joinable joinable;
@@ -110,6 +109,9 @@ public class Post {
 		this.type = type;
 		if(type.equals(PostType.ACTIVITY)){
 			this.joinable = new JoinableImp();
+		}
+		else{
+			this.joinable = new Unjoinable();
 		}
 	}
 	
@@ -224,6 +226,89 @@ public class Post {
 		} else{
 			return this.ID.hashCode();
 		}
+	}
+	
+	public class ShortCut{
+		private Long ID;
+		private Set<String>mediaLocation;
+		private String topic;
+		private String content;
+		private PostType type;
+
+		private int likeNum;
+		private int participentsNum;
+		
+		public Long getID() {
+			return ID;
+		}
+		
+		public void setID(Long iD) {
+			ID = iD;
+		}
+
+		public Set<String> getMediaLocation() {
+			return mediaLocation;
+		}
+
+		public void setMediaLocation(Set<String> mediaLocation) {
+			this.mediaLocation = mediaLocation;
+		}
+
+		public String getTopic() {
+			return topic;
+		}
+		
+		public void setTopic(String topic) {
+			this.topic = topic;
+		}
+		
+		public String getContent() {
+			return content;
+		}
+		
+		public void setContent(String content) {
+			this.content = content;
+		}
+		
+		public PostType getType() {
+			return type;
+		}
+		
+		public void setType(PostType type) {
+			this.type = type;
+		}
+		
+
+		public int getLikeNum() {
+			return likeNum;
+		}
+		
+		public void setLikeNum(int likeNum) {
+			this.likeNum = likeNum;
+		}
+		
+		public int getParticipentsNum() {
+			return participentsNum;
+		}
+		
+		public void setParticipentsNum(int participentsNum) {
+			this.participentsNum = participentsNum;
+		}
+		
+	}
+	
+	public ShortCut getShortCut(){
+		ShortCut psc = new ShortCut();
+		
+		psc.setID(this.getID());
+		psc.setMediaLocation(this.getMediaLocation());
+		psc.setContent(this.getContent());
+		psc.setTopic(this.getTopic());
+		psc.setType(this.getType());
+		psc.setLikeNum(this.getLikeNum());
+		psc.setParticipentsNum(this.getParticipantsNum());
+		
+		return psc;
 	}
 	
 }

@@ -39,7 +39,7 @@ public class AddPostTest extends TestCase{
 		assertEquals(u1,p1.getOwner());
 		assertEquals("2011052407",p1.getOwner().getID());
 		assertEquals(p1,u1.getPosts().iterator().next());
-		assertEquals(PostType.QUESTION.toString(), p1.getType());
+		assertEquals(PostType.QUESTION, p1.getType());
 		assertEquals(false, p1.isJoinable());
 	}
 	

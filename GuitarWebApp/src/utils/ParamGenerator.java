@@ -1,9 +1,11 @@
 package utils;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.LinkedHashSet;
-import java.util.Map;
 import java.util.Random;
+
+import services.CommentRep;
+import services.PostRep;
 
 public class ParamGenerator {
 	private static String[] printable = {"1","2","3","4","5","6","7","8","9","a","b","c","d","e","f",
@@ -12,27 +14,23 @@ public class ParamGenerator {
 			"V","W","X","Y","Z","-","_","=","+","*","&","^","%","$","#","@","!","~","<",">",
 			"?",",",".","{","}","\\","|","/",";",":","'","(",")"};
 	
-	public static Map<String, Object> generateCommentParam(CommentType type){
-		Map<String, Object> commentParams = new HashMap<String, Object>();
-		commentParams.put("content", generateContent(50));
-		commentParams.put("commentType", type);
+	public static CommentRep generateCommentParam(CommentType type){
+		CommentRep commentParams = new CommentRep();
+		commentParams.setContent(generateContent(50));
+		commentParams.setType(type);
 		
 		return commentParams;
 	}
 	
-	public static Map<String, Object> generatePostParam(PostType type){
-		Map<String, Object> postParams = new HashMap<String, Object>();
-		postParams.put("topic",generateContent(10));
-		postParams.put("content", generateContent(50));
-		postParams.put("mediaLinks", new LinkedHashSet<String>());
-		postParams.put("postType", type);
-		
-		if(type.equals(PostType.ACTIVITY)){
-			postParams.put("year", 2014);
-			postParams.put("month", new Random(74).nextInt(11));
-			postParams.put("day", new Random(51).nextInt(31));
-			
-		}
+	@SuppressWarnings("deprecation")
+	public static PostRep generatePostParam(PostType type){
+		PostRep postParams = new PostRep();
+		postParams.setTopic(generateContent(10));
+		postParams.setContent(generateContent(50));
+		postParams.setMediaLocation(new LinkedHashSet<String>());
+		postParams.setType(type);
+		postParams.setPublishDate(new Date());
+		postParams.setStartDate(new Date(2014-1900, new Random(74).nextInt(11),new Random(51).nextInt(31)));
 		
 		return postParams;
 	}

@@ -43,9 +43,8 @@ public class Comment {
 		supportable = new Unsupportable();
 	}
 	
-	public Comment(String content,CommentType commentTypes){
+	public Comment(String content){
 		this.content = content;
-		this.type = commentTypes;
 	}
 	
 	public Long getID(){
@@ -65,6 +64,8 @@ public class Comment {
 	public void setType(CommentType type){
 		if(type.equals(CommentType.ANSWER))
 			supportable = new SupportableImp();
+		else
+			supportable = new Unsupportable();
 		this.type = type;
 	}
 	
@@ -130,4 +131,5 @@ public class Comment {
 		
 		return false;
 	}
+	
 }
