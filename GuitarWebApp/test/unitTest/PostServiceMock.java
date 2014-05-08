@@ -1,4 +1,4 @@
-package services;
+package unitTest;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +15,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import model.Post;
+import services.PostRep;
 import utils.PostType;
 
 @Path("/post")
-public class PostService {
-	private Transaction transaction;
+public class PostServiceMock {
 	
 	@Path("add/{userID : \\d+}")
 	@POST
@@ -30,13 +30,7 @@ public class PostService {
 		params.put("userID", userID);
 		params.put("postRep", postRep);
 		
-		transaction = new AddPostTransaction();
-		
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return Response.ok().build();
 	}
@@ -49,17 +43,11 @@ public class PostService {
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
-		transaction = new DeletePostTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return Response.ok().build();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Path("fetchByUserID/{userID : \\d+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
@@ -67,18 +55,11 @@ public class PostService {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		
-		transaction = new FetchPostsByUserIDTransaction();
-		
-		try {
-			return (List<Post>) transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return null;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Path("fetchByType/{type : \\w+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
@@ -86,16 +67,11 @@ public class PostService {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("type", type);
 		
-		transaction = new FetchPostsByTypeTransaction();
-		try {
-			return (List<Post>) transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
+		
 		return null;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Path("fetchByFollowee/{userID : \\d+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
@@ -103,13 +79,7 @@ public class PostService {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		
-		transaction = new FetchPostsByFolloweeTransaction();
-		
-		try {
-			return (List<Post>) transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return null;
 	}
@@ -121,12 +91,7 @@ public class PostService {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("postID", postID);
 		
-		transaction = new GetPostByIDTransaction();
-		try {
-			return (Post) transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return null;
 	}
@@ -139,12 +104,7 @@ public class PostService {
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
-		transaction = new LikePostTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return Response.ok().build();
 	}
@@ -157,12 +117,7 @@ public class PostService {
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
-		transaction = new CancelLikeTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return Response.ok().build();
 	}
@@ -175,12 +130,7 @@ public class PostService {
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
-		transaction = new CollectPostTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return Response.ok().build();
 	}
@@ -193,12 +143,7 @@ public class PostService {
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
-		transaction = new CancelCollectTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return Response.ok().build();
 	}
@@ -211,12 +156,7 @@ public class PostService {
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
-		transaction = new JoinActivityTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return Response.ok().build();
 	}

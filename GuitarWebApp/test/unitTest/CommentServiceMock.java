@@ -1,4 +1,4 @@
-package services;
+package unitTest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,9 +12,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import services.CommentRep;
+
 @Path("/comment")
-public class CommentService {
-	private Transaction transaction;
+public class CommentServiceMock {
 	
 	@Path("/add/{userID : \\d+}/{postID : \\d+}")
 	@POST
@@ -26,12 +27,7 @@ public class CommentService {
 		params.put("postID", postID);
 		params.put("commentRep", commentRep);
 		
-		transaction = new AddCommentTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return Response.ok().build();
 	}
@@ -46,12 +42,8 @@ public class CommentService {
 		params.put("postID", postID);
 		params.put("commentID", commentID);
 		
-		transaction = new DeleteCommentTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
+		
 		return Response.ok().build();
 	}
 	
@@ -63,12 +55,7 @@ public class CommentService {
 		params.put("userID", userID);
 		params.put("commentID", commentID);
 		
-		transaction = new SupportAnswerTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return Response.ok().build();
 	}
@@ -81,12 +68,7 @@ public class CommentService {
 		params.put("userID", userID);
 		params.put("commentID", commentID);
 		
-		transaction = new CancelSupportTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println(params);
 		
 		return Response.ok().build();
 	}
