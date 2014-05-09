@@ -18,7 +18,7 @@ public class CommentService {
 	
 	@Path("/add/{userID : \\d+}/{postID : \\d+}")
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes({MediaType.APPLICATION_JSON})
 	public Response addComment(@PathParam("userID") String userID, 
 			@PathParam("postID") Long postID, CommentRep commentRep){
 		Map<String, Object> params = new HashMap<String, Object>();

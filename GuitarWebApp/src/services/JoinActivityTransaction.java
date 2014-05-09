@@ -8,7 +8,7 @@ import model.Post;
 import model.User;
 import persistence.DAO;
 
-public class JoinActivityTransaction extends Transaction{
+public class JoinActivityTransaction extends DAOTransaction{
 
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params)

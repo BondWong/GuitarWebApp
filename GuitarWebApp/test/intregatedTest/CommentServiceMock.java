@@ -1,4 +1,4 @@
-package unitTest;
+package intregatedTest;
 
 import java.util.HashMap;
 import java.util.Map;

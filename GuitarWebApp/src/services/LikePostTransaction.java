@@ -8,7 +8,7 @@ import model.Post;
 import model.User;
 import persistence.DAO;
 
-public class LikePostTransaction extends Transaction{
+public class LikePostTransaction extends DAOTransaction{
 
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params)

@@ -1,11 +1,14 @@
 package services;
 
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
+
+
+@ApplicationPath("/root")
 public class GuitarWebApp extends Application{
 	public Set<Class<?>> getClasses(){
 		Set<Class<?>> classes = new LinkedHashSet<Class<?>>();
@@ -16,7 +19,9 @@ public class GuitarWebApp extends Application{
 	}
 	
 	public Set<Object> getSingletons(){
-		return Collections.emptySet();
+		Set<Object> singletons = new LinkedHashSet<Object>();
+		
+		return singletons;
 	}
 	
 }

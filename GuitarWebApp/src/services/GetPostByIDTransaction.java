@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import model.Post;
 import persistence.DAO;
 
-public class GetPostByIDTransaction extends Transaction{
+public class GetPostByIDTransaction extends DAOTransaction{
 
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params)

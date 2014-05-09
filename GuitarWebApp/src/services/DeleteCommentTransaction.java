@@ -9,7 +9,7 @@ import model.Comment;
 import model.Post;
 import model.User;
 
-public class DeleteCommentTransaction extends Transaction{
+public class DeleteCommentTransaction extends DAOTransaction{
 
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params)

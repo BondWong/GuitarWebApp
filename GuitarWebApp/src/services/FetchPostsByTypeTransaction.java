@@ -9,7 +9,7 @@ import model.Post;
 import persistence.DAO;
 import utils.PostType;
 
-public class FetchPostsByTypeTransaction extends Transaction{
+public class FetchPostsByTypeTransaction extends DAOTransaction{
 
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params)

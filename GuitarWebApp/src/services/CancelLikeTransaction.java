@@ -8,7 +8,7 @@ import model.Post;
 import model.User;
 import persistence.DAO;
 
-public class CancelLikeTransaction extends Transaction{
+public class CancelLikeTransaction extends DAOTransaction{
 
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params)

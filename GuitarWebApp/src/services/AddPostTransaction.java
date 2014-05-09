@@ -8,7 +8,7 @@ import persistence.DAO;
 import model.Post;
 import model.User;
 
-public class AddPostTransaction extends Transaction{
+public class AddPostTransaction extends DAOTransaction{
 
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params) throws Exception {

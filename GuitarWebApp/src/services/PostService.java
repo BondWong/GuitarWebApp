@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -63,55 +65,59 @@ public class PostService {
 	@Path("fetchByUserID/{userID : \\d+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public List<Post> fetchPostsByUserID(@PathParam("userID") String userID){
+	public Response fetchPostsByUserID(@PathParam("userID") String userID){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		
 		transaction = new FetchPostsByUserIDTransaction();
 		
+		List<Post> posts = new ArrayList<Post>();
 		try {
-			return (List<Post>) transaction.execute(params);
+			posts = (List<Post>) transaction.execute(params);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return Response.ok(new GenericEntity<List<Post>>(posts){}).build();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Path("fetchByType/{type : \\w+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public List<Post> fetchPostsByType(@PathParam("type") PostType type){
+	public Response fetchPostsByType(@PathParam("type") PostType type){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("type", type);
 		
 		transaction = new FetchPostsByTypeTransaction();
+		
+		List<Post> posts = new ArrayList<Post>();
 		try {
-			return (List<Post>) transaction.execute(params);
+			posts = (List<Post>) transaction.execute(params);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return Response.ok(new GenericEntity<List<Post>>(posts){}).build();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Path("fetchByFollowee/{userID : \\d+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public List<Post> fetchPostsByFollowee(@PathParam("userID") String userID){
+	public Response fetchPostsByFollowee(@PathParam("userID") String userID){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		
 		transaction = new FetchPostsByFolloweeTransaction();
 		
+		List<Post> posts = new ArrayList<Post>();
 		try {
-			return (List<Post>) transaction.execute(params);
+			posts = (List<Post>) transaction.execute(params);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return Response.ok(new GenericEntity<List<Post>>(posts){}).build();
 	}
 	
 	@Path("getByID/{postID : \\d+}")
@@ -122,13 +128,15 @@ public class PostService {
 		params.put("postID", postID);
 		
 		transaction = new GetPostByIDTransaction();
+		
+		Post post = null;
 		try {
-			return (Post) transaction.execute(params);
+			post = (Post) transaction.execute(params);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return post;
 	}
 	
 	@Path("like/{userID : \\d+}/{postID : \\d+}")

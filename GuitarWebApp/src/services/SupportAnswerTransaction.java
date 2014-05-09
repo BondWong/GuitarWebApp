@@ -8,7 +8,7 @@ import model.Comment;
 import model.User;
 import persistence.DAO;
 
-public class SupportAnswerTransaction extends Transaction{
+public class SupportAnswerTransaction extends DAOTransaction{
 
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params)
