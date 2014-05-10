@@ -15,6 +15,7 @@ import org.glassfish.jersey.media.multipart.MultiPartFeature;
 public class GuitarWebApp extends Application{
 	public Set<Class<?>> getClasses(){
 		Set<Class<?>> classes = new LinkedHashSet<Class<?>>();
+		classes.add(ModelJsonTest.class);
 		classes.add(PostService.class);
 		classes.add(CommentService.class);
 		classes.add(JacksonFeature.class);

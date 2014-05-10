@@ -1,6 +1,6 @@
 package intregatedTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
@@ -10,18 +10,17 @@ import javax.ws.rs.core.Response;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
-import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import services.CommentRep;
 import utils.CommentType;
 
 public class CommentServiceMockTest extends JerseyTest{
-	private Entity<String> nullEntity;
+	private static Entity<String> nullEntity;
 	
-	@Before
-	public void setUp(){
+	@BeforeClass
+	public static void classSsetUp(){
 		nullEntity = Entity.text("");
 	}
 	
@@ -30,7 +29,6 @@ public class CommentServiceMockTest extends JerseyTest{
 		return new ResourceConfig(CommentServiceMock.class).register(JacksonFeature.class);
 	}
 	
-	@Ignore
 	@Test
 	public void testCommentServiceAddComment(){
 		CommentRep commentRep = new CommentRep();
@@ -45,7 +43,6 @@ public class CommentServiceMockTest extends JerseyTest{
 		assertEquals(200, response.getStatus());
 	}
 	
-	@Ignore
 	@Test
 	public void testCommentServiceDeleteComment(){
 		Response response = target("/comment/delete/2011052407/1/1")
@@ -55,7 +52,6 @@ public class CommentServiceMockTest extends JerseyTest{
 		assertEquals(200, response.getStatus());
 	}
 	
-	@Ignore
 	@Test
 	public void testCommentServiceSupportAnswer(){
 		Response response = target("/comment/support/2011052407/1")

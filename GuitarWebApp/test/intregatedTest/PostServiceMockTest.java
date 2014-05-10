@@ -14,7 +14,6 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import services.PostRep;
@@ -51,7 +50,6 @@ public class PostServiceMockTest extends JerseyTest{
 		
 	}
 	
-	@Ignore
 	@Test
 	public void testPostServiceDeletePost(){
 		Response response =target("/post/delete/2011052407/1")
@@ -61,7 +59,6 @@ public class PostServiceMockTest extends JerseyTest{
 		assertEquals(200, response.getStatus());
 	}
 	
-	@Ignore
 	@Test
 	public void testPostServiceFetchByUserID(){
 		Response response = target("/post/fetchByUserID/2011052407")
@@ -71,7 +68,6 @@ public class PostServiceMockTest extends JerseyTest{
 		assertEquals(204, response.getStatus());
 	}
 	
-	@Ignore
 	@Test
 	public void testPostServiceFetchByType(){
 		Response response = target("/post/fetchByType/DISSCUSSION")
@@ -81,7 +77,6 @@ public class PostServiceMockTest extends JerseyTest{
 		assertEquals(204, response.getStatus());
 	}
 	
-	@Ignore
 	@Test
 	public void testPostServiceFetchByFollowee(){
 		Response response = target("/post/fetchByFollowee/2011052407")
@@ -91,7 +86,6 @@ public class PostServiceMockTest extends JerseyTest{
 		assertEquals(204, response.getStatus());
 	}
 	
-	@Ignore
 	@Test
 	public void testPostServiceGetByID(){
 		Response response = target("/post/getByID/1")
@@ -101,7 +95,6 @@ public class PostServiceMockTest extends JerseyTest{
 		assertEquals(204, response.getStatus());
 	}
 	
-	@Ignore
 	@Test
 	public void testPostServiceLikePost(){
 		Response response = target("/post/like/2011052407/1")
@@ -111,7 +104,6 @@ public class PostServiceMockTest extends JerseyTest{
 		assertEquals(200, response.getStatus());
 	}
 	
-	@Ignore
 	@Test
 	public void testPostServiceCancelLike(){
 		Response response = target("/post/cancelLike/2011052407/1")
@@ -121,7 +113,6 @@ public class PostServiceMockTest extends JerseyTest{
 		assertEquals(200, response.getStatus());
 	}
 	
-	@Ignore
 	@Test
 	public void testPostServiceCollectPost(){
 		Response response = target("/post/collect/2011052407/1")
