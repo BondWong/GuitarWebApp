@@ -33,7 +33,6 @@ public class PostServiceMockTest extends JerseyTest{
 		return new ResourceConfig(PostServiceMock.class).register(JacksonFeature.class);
 	}
 	
-	@Ignore
 	@Test
 	public void testPostServiceAddPost(){
 		PostRep postRep = new PostRep();

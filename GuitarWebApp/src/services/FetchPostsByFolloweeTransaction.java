@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,15 @@ public class FetchPostsByFolloweeTransaction extends DAOTransaction{
 		String userID = (String) params.get("userID");
 		
 		DAO<Post> pdao = new DAO<Post>(Post.class, em);
-		return (List<Post>) pdao.collectionRead("Post.fetchByFollowee", Post.class, userID);
+		List<Post> posts = new ArrayList<Post>();
+		List<Post.ShortCut> shortCuts = new ArrayList<Post.ShortCut>();
+		
+		posts = pdao.collectionRead("Post.fetchByFollowee", Post.class, userID);
+		for(Post p : posts){
+			shortCuts.add(p.getShortCut());
+		}
+		
+		return shortCuts;
 	}
 
 }

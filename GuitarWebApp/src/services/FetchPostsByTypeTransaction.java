@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,14 @@ public class FetchPostsByTypeTransaction extends DAOTransaction{
 		PostType type = (PostType) params.get("type");
 		
 		DAO<Post> pdao = new DAO<Post>(Post.class, em);
-		return (List<Post>) pdao.collectionRead("Post.fetchByType", Post.class, type);
+		
+		List<Post> posts = new ArrayList<Post>();
+		posts = pdao.collectionRead("Post.fetchByType", Post.class, type);
+		List<Post.ShortCut> shortCuts = new ArrayList<Post.ShortCut>();
+		for(Post p : posts){
+			shortCuts.add(p.getShortCut());
+		}
+		return shortCuts;
 	}
 
 }

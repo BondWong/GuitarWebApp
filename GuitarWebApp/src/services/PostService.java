@@ -71,14 +71,14 @@ public class PostService {
 		
 		transaction = new FetchPostsByUserIDTransaction();
 		
-		List<Post> posts = new ArrayList<Post>();
+		List<Post.ShortCut> posts = new ArrayList<Post.ShortCut>();
 		try {
-			posts = (List<Post>) transaction.execute(params);
+			posts = (List<Post.ShortCut>) transaction.execute(params);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return Response.ok(new GenericEntity<List<Post>>(posts){}).build();
+		return Response.ok(new GenericEntity<List<Post.ShortCut>>(posts){}).build();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -91,13 +91,13 @@ public class PostService {
 		
 		transaction = new FetchPostsByTypeTransaction();
 		
-		List<Post> posts = new ArrayList<Post>();
+		List<Post.ShortCut> posts = new ArrayList<Post.ShortCut>();
 		try {
-			posts = (List<Post>) transaction.execute(params);
+			posts = (List<Post.ShortCut>) transaction.execute(params);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return Response.ok(new GenericEntity<List<Post>>(posts){}).build();
+		return Response.ok(new GenericEntity<List<Post.ShortCut>>(posts){}).build();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -110,14 +110,14 @@ public class PostService {
 		
 		transaction = new FetchPostsByFolloweeTransaction();
 		
-		List<Post> posts = new ArrayList<Post>();
+		List<Post.ShortCut> posts = new ArrayList<Post.ShortCut>();
 		try {
-			posts = (List<Post>) transaction.execute(params);
+			posts = (List<Post.ShortCut>) transaction.execute(params);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return Response.ok(new GenericEntity<List<Post>>(posts){}).build();
+		return Response.ok(new GenericEntity<List<Post.ShortCut>>(posts){}).build();
 	}
 	
 	@Path("getByID/{postID : \\d+}")

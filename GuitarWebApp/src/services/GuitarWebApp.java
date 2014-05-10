@@ -6,14 +6,19 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
+import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 
-@ApplicationPath("/root")
+
+@ApplicationPath("/app")
 public class GuitarWebApp extends Application{
 	public Set<Class<?>> getClasses(){
 		Set<Class<?>> classes = new LinkedHashSet<Class<?>>();
 		classes.add(PostService.class);
 		classes.add(CommentService.class);
+		classes.add(JacksonFeature.class);
+		classes.add(MultiPartFeature.class);
 		
 		return classes;
 	}
