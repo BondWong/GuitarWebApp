@@ -6,8 +6,8 @@ import model.User;
 import org.junit.Before;
 import org.junit.Test;
 
-import services.CommentFactory;
-import services.Factory;
+import factory.CommentFactory;
+import factory.Factory;
 import utils.CommentType;
 import utils.ParamGenerator;
 import junit.framework.TestCase;

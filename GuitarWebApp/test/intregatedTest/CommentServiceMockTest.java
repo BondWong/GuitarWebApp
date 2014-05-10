@@ -13,7 +13,7 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import services.CommentRep;
+import factory.CommentRep;
 import utils.CommentType;
 
 public class CommentServiceMockTest extends JerseyTest{

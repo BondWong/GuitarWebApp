@@ -7,8 +7,8 @@ import javax.xml.bind.JAXBException;
 
 import org.junit.Test;
 
-import services.CommentFactory;
-import services.PostFactory;
+import factory.CommentFactory;
+import factory.PostFactory;
 import utils.CommentType;
 import utils.ParamGenerator;
 import utils.PostType;

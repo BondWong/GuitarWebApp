@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import services.Factory;
-import services.PostFactory;
+import factory.Factory;
+import factory.PostFactory;
 import utils.ParamGenerator;
 import utils.PostType;
 import model.Post;

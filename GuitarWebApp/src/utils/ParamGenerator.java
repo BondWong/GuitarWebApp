@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Random;
 
-import services.CommentRep;
-import services.PostRep;
+import factory.CommentRep;
+import factory.PostRep;
 
 public class ParamGenerator {
 	private static String[] printable = {"1","2","3","4","5","6","7","8","9","a","b","c","d","e","f",

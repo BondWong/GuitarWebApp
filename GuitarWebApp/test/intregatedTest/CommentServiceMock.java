@@ -12,7 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import services.CommentRep;
+import factory.CommentRep;
 
 @Path("/comment")
 public class CommentServiceMock {

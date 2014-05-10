@@ -11,10 +11,10 @@ import model.User;
 import org.junit.Before;
 import org.junit.Test;
 
+import factory.CommentFactory;
+import factory.PostFactory;
 import persistence.DAO;
-import services.CommentFactory;
 import services.CommentService;
-import services.PostFactory;
 import utils.CommentType;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;

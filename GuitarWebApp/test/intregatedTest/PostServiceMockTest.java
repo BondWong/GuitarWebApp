@@ -16,7 +16,7 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import services.PostRep;
+import factory.PostRep;
 import utils.PostType;
 
 public class PostServiceMockTest extends JerseyTest{

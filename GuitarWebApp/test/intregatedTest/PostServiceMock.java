@@ -14,8 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import factory.PostRep;
 import model.Post;
-import services.PostRep;
 import utils.PostType;
 
 @Path("/post")
