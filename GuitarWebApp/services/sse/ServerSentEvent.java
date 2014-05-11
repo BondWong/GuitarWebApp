@@ -1,15 +1,18 @@
-package services;
+package sse;
+
+import utils.SSEType;
 
 public class ServerSentEvent {
-	private String name;
+	private SSEType name;
 	private String data;
 	
-	public void setName(String name){
+	
+	public void setName(SSEType name){
 		this.name = name;
 	}
 	
 	public String getName(){
-		return name;
+		return name.toString();
 	}
 	
 	public void setData(String data){
@@ -18,6 +21,10 @@ public class ServerSentEvent {
 	
 	public String getData(){
 		return data;
+	}
+	
+	public String toString(){
+		return "name: " + getName() + "data: " + getData();
 	}
 	
 }

@@ -8,6 +8,8 @@ import javax.ws.rs.Produces;
 import org.glassfish.jersey.media.sse.EventOutput;
 import org.glassfish.jersey.media.sse.SseFeature;
 
+import sse.ServerSentEventBroadcaster;
+
 @Singleton
 @Path("/event")
 public class ServerSentEventService {

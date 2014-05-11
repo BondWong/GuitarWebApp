@@ -36,12 +36,12 @@ import utils.PostType;
 @Entity
 @Access(AccessType.FIELD)
 @NamedQueries({@NamedQuery(name="Post.fetchByUserID",query="SELECT p FROM Post p "
-		+ "WHERE p.owner.ID = ?1 ORDER BY p.publishDate DESC"),
+		+ "WHERE p.owner.ID = ?1 ORDER BY p.ID DESC"),
 	@NamedQuery(name="Post.fetchByType",query="SELECT p FROM Post p "
-			+ "WHERE p.type = ?1 ORDER BY p.publishDate DESC"),
+			+ "WHERE p.type = ?1 ORDER BY p.ID DESC"),
 	@NamedQuery(name="Post.fetchByFollowee",query="SELECT p FROM Post p "
 			+ "WHERE p.owner IN(SELECT uf FROM User u JOIN u.followees uf WHERE "
-			+ "u.ID = ?1 ) ORDER BY p.publishDate DESC")})
+			+ "u.ID = ?1 ) ORDER BY p.ID DESC")})
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class Post {

@@ -3,9 +3,9 @@ package persistence;
 import javax.persistence.EntityManager;
 
 import components.CollectionReadable;
+import components.CollectionReadableImp;
 import components.Creatable;
 import components.Deletable;
-import components.NonCollectionReadable;
 import components.NonCreatable;
 import components.NonDeletable;
 import components.SingleResultReadable;
@@ -33,7 +33,7 @@ public class CommentDAOComponentFactory extends DAOComponentFactory{
 	@Override
 	public CollectionReadable createCollectionReadable() {
 		// TODO Auto-generated method stub
-		return new NonCollectionReadable();
+		return new CollectionReadableImp(em);
 	}
 
 	@Override

@@ -10,4 +10,10 @@ public class NonCollectionReadable implements CollectionReadable{
 		return null;
 	}
 
+	@Override
+	public <T> List<T> read(String criteria, Class<T> type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -15,9 +15,11 @@ import org.glassfish.jersey.media.multipart.MultiPartFeature;
 public class GuitarWebApp extends Application{
 	public Set<Class<?>> getClasses(){
 		Set<Class<?>> classes = new LinkedHashSet<Class<?>>();
+		
 		classes.add(ModelJsonTest.class);
-		classes.add(PostService.class);
-		classes.add(CommentService.class);
+		classes.add(SSETest.class);
+		//classes.add(PostService.class);
+		//classes.add(CommentService.class);
 		classes.add(JacksonFeature.class);
 		classes.add(MultiPartFeature.class);
 		
@@ -26,6 +28,8 @@ public class GuitarWebApp extends Application{
 	
 	public Set<Object> getSingletons(){
 		Set<Object> singletons = new LinkedHashSet<Object>();
+		
+		singletons.add(new ServerSentEventService());
 		
 		return singletons;
 	}

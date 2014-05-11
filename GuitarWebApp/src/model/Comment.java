@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -28,6 +30,8 @@ import utils.CommentType;
 
 @Entity
 @Access(AccessType.FIELD)
+@NamedQueries({@NamedQuery(name="Comment.fetchByID",query="SELECT c FROM Comment c "
+		+ "WHERE c.owner.ID = ?1 ORDER BY p.ID DESC")})
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class Comment {

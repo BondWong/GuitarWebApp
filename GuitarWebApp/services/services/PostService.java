@@ -12,29 +12,40 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import factory.PostRep;
 import model.Post;
+import transactions.AddPostSSETransaction;
 import transactions.AddPostTransaction;
+import transactions.CancelCollectSSETransaction;
 import transactions.CancelCollectTransaction;
+import transactions.CancelLikeSSETransaction;
 import transactions.CancelLikeTransaction;
+import transactions.CollectPostSSETransaction;
 import transactions.CollectPostTransaction;
+import transactions.DeletePostSSETransaction;
 import transactions.DeletePostTransaction;
 import transactions.FetchPostsByFolloweeTransaction;
 import transactions.FetchPostsByTypeTransaction;
 import transactions.FetchPostsByUserIDTransaction;
 import transactions.GetPostByIDTransaction;
+import transactions.GetPostsByIDsTransaction;
+import transactions.JoinActivitySSETransaction;
 import transactions.JoinActivityTransaction;
+import transactions.LikePostSSETransaction;
 import transactions.LikePostTransaction;
-import transactions.Transaction;
+import transactions.DAOTransaction;
+import transactions.SSETransaction;
 import utils.PostType;
 
 @Path("/post")
 public class PostService {
-	private Transaction transaction;
+	private DAOTransaction transaction;
+	private SSETransaction sseTransaction;
 	
 	@Path("add/{userID : \\d+}")
 	@POST
@@ -53,6 +64,14 @@ public class PostService {
 			e.printStackTrace();
 		}
 		
+		sseTransaction = new AddPostSSETransaction();
+		try {
+			sseTransaction.execute(params);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return Response.ok().build();
 	}
 	
@@ -68,6 +87,14 @@ public class PostService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		sseTransaction = new DeletePostSSETransaction();
+		try {
+			sseTransaction.execute(params);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -152,6 +179,26 @@ public class PostService {
 		return post;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Path("getByIDs")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getPostsByIDs(@QueryParam("postIDs") List<Long> postIDs){
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("postIDs", postIDs);
+		
+		transaction = new GetPostsByIDsTransaction();
+		List<Post> posts = new ArrayList<Post>();
+		try {
+			posts = (List<Post>) transaction.execute(params);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return Response.ok(new GenericEntity<List<Post>>(posts){}).build();
+	}
+	
 	@Path("like/{userID : \\d+}/{postID : \\d+}")
 	@PUT
 	public Response likePost(@PathParam("userID") String userID, 
@@ -164,6 +211,14 @@ public class PostService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		sseTransaction = new LikePostSSETransaction();
+		try {
+			sseTransaction.execute(params);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -185,6 +240,14 @@ public class PostService {
 			e.printStackTrace();
 		}
 		
+		sseTransaction = new CancelLikeSSETransaction();
+		try {
+			sseTransaction.execute(params);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return Response.ok().build();
 	}
 	
@@ -200,6 +263,14 @@ public class PostService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		sseTransaction = new CollectPostSSETransaction();
+		try {
+			sseTransaction.execute(params);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -221,6 +292,14 @@ public class PostService {
 			e.printStackTrace();
 		}
 		
+		sseTransaction = new CancelCollectSSETransaction();
+		try {
+			sseTransaction.execute(params);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return Response.ok().build();
 	}
 	
@@ -236,6 +315,14 @@ public class PostService {
 		try {
 			transaction.execute(params);
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		sseTransaction = new JoinActivitySSETransaction();
+		try {
+			sseTransaction.execute(params);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -4,10 +4,10 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
-import persistence.DAO;
 import model.Comment;
 import model.Post;
 import model.User;
+import persistence.DAO;
 
 public class DeleteCommentTransaction extends DAOTransaction{
 

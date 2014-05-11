@@ -39,6 +39,10 @@ public class DAO<E> {
 		return srReadable.read(ID, type);
 	}
 	
+	public List<E> collectionRead(String queryName, Class<E> type){
+		return cReadable.read(queryName, type);
+	}
+	
 	public List<E> collectionRead(String queryName, int startIndex, int pageSize, Class<E> type, Object...params){
 		return cReadable.read(queryName, startIndex, pageSize, type, params);
 	}

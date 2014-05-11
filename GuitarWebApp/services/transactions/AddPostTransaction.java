@@ -4,12 +4,12 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
+import model.Post;
+import model.User;
+import persistence.DAO;
 import factory.Factory;
 import factory.PostFactory;
 import factory.PostRep;
-import persistence.DAO;
-import model.Post;
-import model.User;
 
 public class AddPostTransaction extends DAOTransaction{
 

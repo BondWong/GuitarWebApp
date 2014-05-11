@@ -1,4 +1,4 @@
-package services;
+package sse;
 
 import javax.ws.rs.core.MediaType;
 
@@ -29,6 +29,8 @@ public class ServerSentEventBroadcaster {
 	
 	public void subscribe(EventOutput eventOutput){
 		this.sseBroadcaster.add(eventOutput);
+		System.out.println(sseBroadcaster);
+		System.out.println(eventOutput);
 	}
 	
 	public void broadcast(ServerSentEvent serverSentEvent){
@@ -37,6 +39,7 @@ public class ServerSentEventBroadcaster {
 				.data(String.class, serverSentEvent.getData())
 				.build();
 		
+		System.out.println(event);
 		this.sseBroadcaster.broadcast(event);
 	}
 }

@@ -22,4 +22,11 @@ public class CollectionReadableImp implements CollectionReadable{
 		return query.getResultList();
 	}
 
+	@Override
+	public <T> List<T> read(String criteria, Class<T> type) {
+		// TODO Auto-generated method stub
+		TypedQuery<T> query = em.createQuery(criteria, type);
+		return query.getResultList();
+	}
+
 }

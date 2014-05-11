@@ -12,12 +12,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import factory.CommentRep;
 import transactions.AddCommentTransaction;
 import transactions.CancelSupportTransaction;
 import transactions.DeleteCommentTransaction;
 import transactions.SupportAnswerTransaction;
 import transactions.Transaction;
+import factory.CommentRep;
 
 @Path("/comment")
 public class CommentService {
@@ -39,6 +39,8 @@ public class CommentService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		transaction = new AddCommentSSeTransaction();
+		transaction.execute(params);
 		
 		return Response.ok().build();
 	}
@@ -59,6 +61,9 @@ public class CommentService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		transaction = new DeleteCommentSSETransaction();
+		transaction.execute(params);
 		return Response.ok().build();
 	}
 	
@@ -77,6 +82,9 @@ public class CommentService {
 			e.printStackTrace();
 		}
 		
+		transaction = new SupportAnswerSSETransaction();
+		transaction.execute(params);
+		
 		return Response.ok().build();
 	}
 	
@@ -94,6 +102,9 @@ public class CommentService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		transaction = new CancelSupportSSETransaction();
+		transaction.execute(params);
 		
 		return Response.ok().build();
 	}
