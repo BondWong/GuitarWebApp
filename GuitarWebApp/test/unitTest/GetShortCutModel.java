@@ -6,7 +6,7 @@ import model.Post;
 import org.junit.Assert;
 import org.junit.Test;
 
-import factory.PostFactory;
+import service.factory.PostFactory;
 import utils.ParamGenerator;
 import utils.PostType;
 

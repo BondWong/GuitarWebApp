@@ -8,9 +8,9 @@ import model.User;
 import org.junit.Before;
 import org.junit.Test;
 
-import factory.CommentFactory;
-import factory.Factory;
-import factory.PostFactory;
+import service.factory.CommentFactory;
+import service.factory.Factory;
+import service.factory.PostFactory;
 import utils.CommentType;
 import utils.ParamGenerator;
 import utils.PostType;

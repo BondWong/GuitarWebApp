@@ -223,31 +223,6 @@ public class Post {
 		return getParticipants().size();
 	}
 	
-	@Override
-	public boolean equals(Object o){
-		if(o instanceof Post){
-			Post other = (Post) o;
-			if(other.getID()!=null&&this.ID!=null){
-				return other.getID().equals(this.ID);
-			} else if(other.getID()==null&&this.ID==null){
-				return super.equals(other);
-			} else{
-				return false;
-			}
-		}
-		
-		return false;
-	}
-	
-	@Override
-	public int hashCode(){
-		if(this.ID==null){
-			return super.hashCode();
-		} else{
-			return this.ID.hashCode();
-		}
-	}
-	
 	public class ShortCut{
 		private Long ID;
 		private Set<String>mediaLocation;
@@ -329,6 +304,31 @@ public class Post {
 		psc.setParticipentsNum(this.getParticipantsNum());
 		
 		return psc;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		if(o instanceof Post){
+			Post other = (Post) o;
+			if(other.getID()!=null&&this.ID!=null){
+				return other.getID().equals(this.ID);
+			} else if(other.getID()==null&&this.ID==null){
+				return super.equals(other);
+			} else{
+				return false;
+			}
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+		if(this.ID==null){
+			return super.hashCode();
+		} else{
+			return this.ID.hashCode();
+		}
 	}
 	
 }

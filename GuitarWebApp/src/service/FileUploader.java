@@ -21,7 +21,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.google.gson.Gson;
 
 
-@WebServlet("/fileUploader")
+@WebServlet("/app/fileUploader")
 public class FileUploader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String root;

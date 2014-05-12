@@ -11,8 +11,8 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import factory.CommentFactory;
-import factory.PostFactory;
+import service.factory.CommentFactory;
+import service.factory.PostFactory;
 import utils.CommentType;
 import utils.ParamGenerator;
 import utils.PostType;

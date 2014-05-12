@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +29,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Access(AccessType.FIELD)
+@NamedQueries({ @NamedQuery(name = "User.getUserByIDandPassword",
+	query = "SELECT u FROM User u WHERE u.ID = ?1"
+			+ " AND u.password = ?2") })
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class User {
@@ -302,6 +307,87 @@ public class User {
 		for(Post p : posts){
 			p.delete();
 		}
+	}
+	
+	public class ShortCut{
+		private String ID;
+		private List<String> auth;
+		private String avaterLink;
+		private String gender;
+		private String nickName;
+		private String lookingFor;
+		private String relationship;
+		
+		public String getID() {
+			return ID;
+		}
+		
+		public void setID(String iD) {
+			ID = iD;
+		}
+
+		public String getAvaterLink() {
+			return avaterLink;
+		}
+
+		public void setAvaterLink(String avaterLink) {
+			this.avaterLink = avaterLink;
+		}
+
+		public String getGender() {
+			return gender;
+		}
+
+		public void setGender(String gender) {
+			this.gender = gender;
+		}
+
+		public String getNickName() {
+			return nickName;
+		}
+
+		public void setNickName(String nickName) {
+			this.nickName = nickName;
+		}
+
+		public String getLookingFor() {
+			return lookingFor;
+		}
+
+		public void setLookingFor(String lookingFor) {
+			this.lookingFor = lookingFor;
+		}
+
+		public String getRelationship() {
+			return relationship;
+		}
+
+		public void setRelationship(String relationship) {
+			this.relationship = relationship;
+		}
+
+		public List<String> getAuth() {
+			return auth;
+		}
+
+		public void setAuth(List<String> auth) {
+			this.auth = auth;
+		}
+		
+	}
+	
+	public ShortCut getShortCut(){
+		ShortCut sc = new ShortCut();
+		
+		sc.setID(this.getID());
+		sc.setNickName(this.getNickName());
+		sc.setGender(this.getGender());
+		sc.setAvaterLink(this.getAvatarLink());
+		sc.setLookingFor(this.getLookingFor());
+		sc.setRelationship(this.getRelationShip());
+		sc.setAuth(this.getAuthority());
+		
+		return sc;
 	}
 	
 	@Override

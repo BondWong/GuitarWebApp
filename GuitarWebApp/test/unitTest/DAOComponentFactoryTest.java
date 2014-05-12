@@ -23,7 +23,7 @@ public class DAOComponentFactoryTest {
 		daocf = DAOComponentFactory.createInstance(null, User.class);
 		assertEquals(CreatableImp.class, daocf.createCreatable().getClass());
 		assertEquals(SingleResultReadableImp.class, daocf.createSingleResultReadable().getClass());
-		assertEquals(NonCollectionReadable.class, daocf.createCollectionReadable().getClass());
+		assertEquals(CollectionReadableImp.class, daocf.createCollectionReadable().getClass());
 		assertEquals(NonDeletable.class, daocf.createDeletable().getClass());
 	}
 	
@@ -41,7 +41,7 @@ public class DAOComponentFactoryTest {
 		daocf = DAOComponentFactory.createInstance(null, Comment.class);
 		assertEquals(NonCreatable.class, daocf.createCreatable().getClass());
 		assertEquals(SingleResultReadableImp.class, daocf.createSingleResultReadable().getClass());
-		assertEquals(NonCollectionReadable.class, daocf.createCollectionReadable().getClass());
+		assertEquals(CollectionReadableImp.class, daocf.createCollectionReadable().getClass());
 		assertEquals(NonDeletable.class, daocf.createDeletable().getClass());
 	}
 }

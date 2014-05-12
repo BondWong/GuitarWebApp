@@ -5,8 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.util.Date;
 import java.util.LinkedHashSet;
 
-import factory.PostRep;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.client.Entity;
@@ -25,6 +23,7 @@ import org.junit.Test;
 
 import persistence.DAO;
 import service.PostService;
+import service.factory.PostRep;
 import utils.EntityManagerFactoryCreator;
 import utils.PostType;
 

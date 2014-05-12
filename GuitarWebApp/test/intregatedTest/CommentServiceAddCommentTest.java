@@ -13,8 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import persistence.DAO;
-import factory.PostFactory;
 import service.CommentService;
+import service.factory.PostFactory;
 import utils.CommentType;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;

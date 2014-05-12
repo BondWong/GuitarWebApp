@@ -19,8 +19,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import persistence.DAO;
-import factory.Factory;
-import factory.PostFactory;
+import service.factory.Factory;
+import service.factory.PostFactory;
 import service.transactions.DAOTransaction;
 import service.transactions.GetPostsByIDsTransaction;
 import utils.EntityManagerFactoryCreator;

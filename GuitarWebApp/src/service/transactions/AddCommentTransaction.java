@@ -5,11 +5,11 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 
 import persistence.DAO;
+import service.factory.CommentFactory;
+import service.factory.CommentRep;
 import model.Comment;
 import model.Post;
 import model.User;
-import factory.CommentFactory;
-import factory.CommentRep;
 
 public class AddCommentTransaction extends DAOTransaction{
 

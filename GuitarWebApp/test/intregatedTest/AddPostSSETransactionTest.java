@@ -13,13 +13,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import persistence.DAO;
+import service.factory.Factory;
+import service.factory.PostFactory;
 import service.sse.ServerSentEvent;
 import service.transactions.AddPostSSETransaction;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;
 import utils.PostType;
-import factory.Factory;
-import factory.PostFactory;
 
 public class AddPostSSETransactionTest {
 	@Before

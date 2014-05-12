@@ -1,4 +1,4 @@
-package factory;
+package service.factory;
 
 
 public interface Factory{

@@ -16,16 +16,11 @@ public class CollectionReadableImp implements CollectionReadable{
 	public <T> List<T> read(String criteria, int startIndex, int pageSize, Class<T> type, Object...params) {
 		// TODO Auto-generated method stub
 		TypedQuery<T> query = em.createNamedQuery(criteria,  type);
-		query.setParameter(1, params[0]);
+		for(int i=0;params!=null&&i<params.length;i++){
+			query.setParameter(i+1, params[i]);
+		}
 		query.setFirstResult(startIndex);
 		query.setMaxResults(pageSize);
-		return query.getResultList();
-	}
-
-	@Override
-	public <T> List<T> read(String criteria, Class<T> type) {
-		// TODO Auto-generated method stub
-		TypedQuery<T> query = em.createQuery(criteria, type);
 		return query.getResultList();
 	}
 

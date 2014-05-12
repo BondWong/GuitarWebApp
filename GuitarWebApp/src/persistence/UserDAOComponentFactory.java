@@ -3,10 +3,10 @@ package persistence;
 import javax.persistence.EntityManager;
 
 import persistence.components.CollectionReadable;
+import persistence.components.CollectionReadableImp;
 import persistence.components.Creatable;
 import persistence.components.CreatableImp;
 import persistence.components.Deletable;
-import persistence.components.NonCollectionReadable;
 import persistence.components.NonDeletable;
 import persistence.components.SingleResultReadable;
 import persistence.components.SingleResultReadableImp;
@@ -32,7 +32,7 @@ public class UserDAOComponentFactory extends DAOComponentFactory{
 	@Override
 	public CollectionReadable createCollectionReadable() {
 		// TODO Auto-generated method stub
-		return new NonCollectionReadable();
+		return new CollectionReadableImp(em);
 	}
 
 	@Override

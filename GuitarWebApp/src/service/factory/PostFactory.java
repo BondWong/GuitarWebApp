@@ -1,4 +1,4 @@
-package factory;
+package service.factory;
 
 import model.Post;
 

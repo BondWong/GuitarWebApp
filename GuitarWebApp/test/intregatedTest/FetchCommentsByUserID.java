@@ -17,14 +17,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import persistence.DAO;
+import service.factory.CommentFactory;
+import service.factory.PostFactory;
 import service.transactions.DAOTransaction;
 import service.transactions.FetchCommentsByUserIDTransaction;
 import utils.CommentType;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;
 import utils.PostType;
-import factory.CommentFactory;
-import factory.PostFactory;
 
 public class FetchCommentsByUserID {
 	@Before

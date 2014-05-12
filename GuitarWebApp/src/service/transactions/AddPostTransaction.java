@@ -5,11 +5,11 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 
 import persistence.DAO;
+import service.factory.Factory;
+import service.factory.PostFactory;
+import service.factory.PostRep;
 import model.Post;
 import model.User;
-import factory.Factory;
-import factory.PostFactory;
-import factory.PostRep;
 
 public class AddPostTransaction extends DAOTransaction{
 
