@@ -11,8 +11,8 @@ import model.User;
 import org.junit.Before;
 import org.junit.Test;
 
-import factory.PostFactory;
 import persistence.DAO;
+import factory.PostFactory;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;
 import utils.PostType;

@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import persistence.DAO;
-import services.PostService;
+import service.PostService;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;
 import utils.PostType;

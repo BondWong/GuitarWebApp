@@ -7,14 +7,13 @@ import model.User;
 
 import org.junit.Test;
 
-import components.CollectionReadableImp;
-import components.CreatableImp;
-import components.NonCollectionReadable;
-import components.NonCreatable;
-import components.NonDeletable;
-import components.SingleResultReadableImp;
-
 import persistence.DAOComponentFactory;
+import persistence.components.CollectionReadableImp;
+import persistence.components.CreatableImp;
+import persistence.components.NonCollectionReadable;
+import persistence.components.NonCreatable;
+import persistence.components.NonDeletable;
+import persistence.components.SingleResultReadableImp;
 
 public class DAOComponentFactoryTest {
 	private DAOComponentFactory daocf;

@@ -30,8 +30,8 @@ import utils.CommentType;
 
 @Entity
 @Access(AccessType.FIELD)
-@NamedQueries({@NamedQuery(name="Comment.fetchByID",query="SELECT c FROM Comment c "
-		+ "WHERE c.owner.ID = ?1 ORDER BY p.ID DESC")})
+@NamedQueries({@NamedQuery(name="Comment.fetchByUserID",query="SELECT c FROM Comment c "
+		+ "WHERE c.owner.ID = ?1 ORDER BY c.ID DESC")})
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class Comment {

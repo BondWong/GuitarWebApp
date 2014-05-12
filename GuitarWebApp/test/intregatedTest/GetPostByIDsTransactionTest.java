@@ -18,11 +18,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import persistence.DAO;
 import factory.Factory;
 import factory.PostFactory;
-import persistence.DAO;
-import transactions.DAOTransaction;
-import transactions.GetPostsByIDsTransaction;
+import service.transactions.DAOTransaction;
+import service.transactions.GetPostsByIDsTransaction;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;
 import utils.PostType;

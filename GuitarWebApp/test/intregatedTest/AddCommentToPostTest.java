@@ -13,9 +13,9 @@ import model.User;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import persistence.DAO;
 import factory.CommentFactory;
 import factory.PostFactory;
-import persistence.DAO;
 import utils.CommentType;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;

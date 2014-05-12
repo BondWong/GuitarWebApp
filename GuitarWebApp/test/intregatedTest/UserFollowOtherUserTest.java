@@ -9,8 +9,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import model.User;
 import persistence.DAO;
+import model.User;
 import utils.EntityManagerFactoryCreator;
 
 public class UserFollowOtherUserTest {

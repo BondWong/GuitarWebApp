@@ -13,8 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import persistence.DAO;
-import sse.ServerSentEvent;
-import transactions.AddPostSSETransaction;
+import service.sse.ServerSentEvent;
+import service.transactions.AddPostSSETransaction;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;
 import utils.PostType;

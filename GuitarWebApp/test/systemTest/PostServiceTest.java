@@ -24,7 +24,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import persistence.DAO;
-import services.PostService;
+import service.PostService;
 import utils.EntityManagerFactoryCreator;
 import utils.PostType;
 
