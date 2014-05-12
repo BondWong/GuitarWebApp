@@ -10,7 +10,6 @@ import org.junit.Test;
 import persistence.DAOComponentFactory;
 import persistence.components.CollectionReadableImp;
 import persistence.components.CreatableImp;
-import persistence.components.NonCollectionReadable;
 import persistence.components.NonCreatable;
 import persistence.components.NonDeletable;
 import persistence.components.SingleResultReadableImp;

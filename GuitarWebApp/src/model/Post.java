@@ -229,9 +229,13 @@ public class Post {
 		private String topic;
 		private String content;
 		private PostType type;
+		private String publishDate;
 
 		private int likeNum;
 		private int participentsNum;
+		
+		private String ownerAvatarLink;
+		private String ownerNickName;
 		
 		public Long getID() {
 			return ID;
@@ -274,6 +278,14 @@ public class Post {
 		}
 		
 
+		public String getPublishDate() {
+			return publishDate;
+		}
+
+		public void setPublishDate(String publishDate) {
+			this.publishDate = publishDate;
+		}
+
 		public int getLikeNum() {
 			return likeNum;
 		}
@@ -289,6 +301,22 @@ public class Post {
 		public void setParticipentsNum(int participentsNum) {
 			this.participentsNum = participentsNum;
 		}
+
+		public String getOwnerAvatarLink() {
+			return ownerAvatarLink;
+		}
+
+		public void setOwnerAvatarLink(String ownerAvatarLink) {
+			this.ownerAvatarLink = ownerAvatarLink;
+		}
+
+		public String getOwnerNickName() {
+			return ownerNickName;
+		}
+
+		public void setOwnerNickName(String ownerNickName) {
+			this.ownerNickName = ownerNickName;
+		}
 		
 	}
 	
@@ -302,6 +330,9 @@ public class Post {
 		psc.setType(this.getType());
 		psc.setLikeNum(this.getLikeNum());
 		psc.setParticipentsNum(this.getParticipantsNum());
+		psc.setPublishDate(this.getPusblishDate());
+		psc.setOwnerNickName(/*this.getOwner().getNickName()*/"fucker");
+		psc.setOwnerAvatarLink(/*this.getOwner().getAvatarLink()*/"xxx.xxx.x");
 		
 		return psc;
 	}

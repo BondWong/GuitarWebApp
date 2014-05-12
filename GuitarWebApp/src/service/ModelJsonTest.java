@@ -19,9 +19,9 @@ import utils.PostType;
 import model.Post;
 import model.User;
 
-@Path("test")
+@Path("/test")
 public class ModelJsonTest {
-	@Path("Post.ShortCuts")
+	@Path("/Post.ShortCuts")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPostShortCuts(){
@@ -31,7 +31,7 @@ public class ModelJsonTest {
 		return Response.ok(new GenericEntity<List<Post.ShortCut>>(shortCuts){}).build();
 	}
 	
-	@Path("Post")
+	@Path("/Post")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getFullPost(){
@@ -46,7 +46,7 @@ public class ModelJsonTest {
 		return Response.ok(Entity.json(post)).build();
 	}
 	
-	@Path("Post.ShortCut")
+	@Path("/Post.ShortCut")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPostShortCut(){

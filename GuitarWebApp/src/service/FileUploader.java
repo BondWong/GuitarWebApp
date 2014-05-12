@@ -49,10 +49,9 @@ public class FileUploader extends HttpServlet {
 			
 			setUp();
 			List<String> links = process(request);
-			Gson gson = new Gson();
 			response.setContentType("application/json");
 			response.setStatus(200);
-			response.getWriter().write(gson.toJson(links));
+			response.getWriter().write(new Gson().toJson(links));
 			
 		} catch (FileUploadBase.InvalidContentTypeException icte){
 			response.sendError(406);

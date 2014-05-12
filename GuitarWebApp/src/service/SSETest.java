@@ -19,6 +19,7 @@ public class SSETest {
 		ServerSentEvent sse = new ServerSentEvent();
 		sse.setName(SSEType.TEST);
 		sse.setData(userID + " say hi to you");
+		System.out.println(sse);
 		broadcaster.broadcast(sse);
 	}
 

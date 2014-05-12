@@ -122,7 +122,7 @@ public class PostService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Path("fetchByType/{type : \\w+}")
+	@Path("fetchByType/{type : [A-Z]+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response fetchPostsByType(@PathParam("type") PostType type){
