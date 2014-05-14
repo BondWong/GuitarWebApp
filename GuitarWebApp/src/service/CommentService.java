@@ -12,7 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import service.factory.CommentRep;
+import security.validation.CommentRep;
 import service.transactions.AddCommentSSETransaction;
 import service.transactions.AddCommentTransaction;
 import service.transactions.CancelSupportSSETransaction;

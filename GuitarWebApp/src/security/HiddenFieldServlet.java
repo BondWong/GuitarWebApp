@@ -1,4 +1,4 @@
-package service.security;
+package security;
 
 import java.io.IOException;
 
@@ -13,13 +13,13 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class HiddenFildServlet
  */
 @WebServlet("/HiddenFildServlet")
-public class HiddenFildServlet extends HttpServlet {
+public class HiddenFieldServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HiddenFildServlet() {
+    public HiddenFieldServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,6 +29,11 @@ public class HiddenFildServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String hiddenField = System.currentTimeMillis() + "";
+		HttpSession session = request.getSession();
+		session.setAttribute("hiddenField", hiddenField);
+		
+		response.getWriter().write(hiddenField);
 	}
 
 	/**
@@ -36,11 +41,6 @@ public class HiddenFildServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String hiddenField = System.currentTimeMillis() + "";
-		HttpSession session = request.getSession();
-		session.setAttribute("hiddenField", hiddenField);
-		
-		response.getWriter().write(hiddenField);
 	}
 
 }

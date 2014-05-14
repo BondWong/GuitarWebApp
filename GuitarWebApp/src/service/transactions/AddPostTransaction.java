@@ -5,9 +5,9 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 
 import persistence.DAO;
+import security.validation.PostRep;
 import service.factory.Factory;
 import service.factory.PostFactory;
-import service.factory.PostRep;
 import model.Post;
 import model.User;
 

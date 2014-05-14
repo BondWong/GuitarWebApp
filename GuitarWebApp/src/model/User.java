@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Access(AccessType.FIELD)
-@NamedQueries({ @NamedQuery(name = "User.getUserByIDandPassword",
+@NamedQueries({ @NamedQuery(name = "User.getByIDandPassword",
 	query = "SELECT u FROM User u WHERE u.ID = ?1"
 			+ " AND u.password = ?2") })
 @XmlRootElement

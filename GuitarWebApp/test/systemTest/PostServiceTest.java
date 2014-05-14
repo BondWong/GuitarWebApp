@@ -22,8 +22,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import persistence.DAO;
+import security.validation.PostRep;
 import service.PostService;
-import service.factory.PostRep;
 import utils.EntityManagerFactoryCreator;
 import utils.PostType;
 
@@ -54,7 +54,7 @@ public class PostServiceTest extends JerseyTest{
 		postRep.setMediaLocation(new LinkedHashSet<String>());
 		postRep.setPublishDate(new Date());
 		postRep.setTopic("hehe");
-		postRep.setType(PostType.DISSCUSSION);
+		postRep.setPostType(PostType.DISSCUSSION.name());
 		
 		Entity<PostRep> entity = Entity.entity(postRep, MediaType.APPLICATION_JSON);
 		Response response = target("/post/add/2011052407")

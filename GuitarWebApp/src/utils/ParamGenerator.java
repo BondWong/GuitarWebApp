@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Random;
 
-import service.factory.CommentRep;
-import service.factory.PostRep;
+import security.validation.CommentRep;
+import security.validation.PostRep;
 
 public class ParamGenerator {
 	private static String[] printable = {"1","2","3","4","5","6","7","8","9","a","b","c","d","e","f",
@@ -17,7 +17,7 @@ public class ParamGenerator {
 	public static CommentRep generateCommentParam(CommentType type){
 		CommentRep commentParams = new CommentRep();
 		commentParams.setContent(generateContent(50));
-		commentParams.setType(type);
+		commentParams.setCommentType(type.name());
 		
 		return commentParams;
 	}
@@ -28,7 +28,7 @@ public class ParamGenerator {
 		postParams.setTopic(generateContent(10));
 		postParams.setContent(generateContent(50));
 		postParams.setMediaLocation(new LinkedHashSet<String>());
-		postParams.setType(type);
+		postParams.setPostType(type.name());
 		postParams.setPublishDate(new Date());
 		postParams.setStartDate(new Date(2014-1900, new Random(74).nextInt(11),new Random(51).nextInt(31)));
 		

@@ -1,4 +1,4 @@
-package service.security;
+package security;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ import service.transactions.LoginTransaction;
 /**
  * Servlet implementation class UserLoginServlet
  */
-@WebServlet("/app/security/userLoginServlet")
+@WebServlet("/security/UserLoginServlet")
 public class UserLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -72,7 +72,7 @@ public class UserLoginServlet extends HttpServlet {
 			response.addCookie(cookie);
 			response.getWriter().write(new Gson().toJson(shortCut));
 		} else{
-			
+
 		}
 		
 	}

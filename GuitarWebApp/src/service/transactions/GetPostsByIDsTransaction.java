@@ -34,7 +34,7 @@ public class GetPostsByIDsTransaction extends DAOTransaction{
 		List<Post> posts = new ArrayList<Post>();
 		List<Post.ShortCut> shortCuts = new ArrayList<Post.ShortCut>();
 		DAO<Post> pdao = new DAO<Post>(Post.class, em);
-		posts = pdao.collectionRead(query, Post.class);
+		posts = pdao.collectionDynamicRead(query, Post.class);
 		for(Post post : posts){
 			shortCuts.add(post.getShortCut());
 		}

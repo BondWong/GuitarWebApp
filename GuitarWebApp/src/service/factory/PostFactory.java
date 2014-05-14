@@ -1,5 +1,7 @@
 package service.factory;
 
+import security.validation.PostRep;
+import utils.PostType;
 import model.Post;
 
 public class PostFactory implements Factory{
@@ -10,7 +12,7 @@ public class PostFactory implements Factory{
 					postRep.getContent(), 
 					postRep.getMediaLocation());
 		
-		post.setType(postRep.getType());
+		post.setType(PostType.valueOf(postRep.getPostType()));
 		post.setStartDate(postRep.getStartDate());
 		
 		return post;

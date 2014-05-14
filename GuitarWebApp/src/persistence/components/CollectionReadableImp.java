@@ -24,4 +24,17 @@ public class CollectionReadableImp implements CollectionReadable{
 		return query.getResultList();
 	}
 
+	@Override
+	public <T> List<T> dynamicRead(String query, int startIndex, int pageSize,
+			Class<T> type, Object... params) {
+		// TODO Auto-generated method stub
+		TypedQuery<T> dynamicQuery = em.createQuery(query, type);
+		for(int i=0;params!=null&&i<params.length;i++){
+			dynamicQuery.setParameter(i+1, params[i]);
+		}
+		dynamicQuery.setFirstResult(startIndex);
+		dynamicQuery.setMaxResults(pageSize);
+		return dynamicQuery.getResultList();
+	}
+
 }

@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import model.Post;
-import service.factory.PostRep;
+import security.validation.PostRep;
 import service.transactions.AddPostSSETransaction;
 import service.transactions.AddPostTransaction;
 import service.transactions.CancelCollectSSETransaction;

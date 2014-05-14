@@ -40,7 +40,7 @@ public class DAO<E> {
 	}
 	
 	public List<E> collectionRead(String queryName, Class<E> type){
-		return cReadable.read(queryName, 0, 10, type);
+		return collectionRead(queryName, type);
 	}
 	
 	public List<E> collectionRead(String queryName, int startIndex, int pageSize, Class<E> type, Object...params){
@@ -49,6 +49,18 @@ public class DAO<E> {
 	
 	public List<E> collectionRead(String queryName, Class<E> type, Object...params){
 		return collectionRead(queryName, 0, 10, type, params);
+	}
+	
+	public List<E> collectionDynamicRead(String query, int startIndex, int pageSize, Class<E> type, Object...params){
+		return cReadable.dynamicRead(query, startIndex, pageSize, type, params);
+	}
+	
+	public List<E> collectionDynamicRead(String query, Class<E> type, Object...params){
+		return collectionDynamicRead(query, 0, 10, type, params);
+	}
+	
+	public List<E> collectionDynamicRead(String query, Class<E> type){
+		return collectionDynamicRead(query, 0, 10, type);
 	}
 	
 	public void update(E e){

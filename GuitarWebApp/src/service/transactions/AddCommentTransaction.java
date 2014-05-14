@@ -5,8 +5,8 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 
 import persistence.DAO;
+import security.validation.CommentRep;
 import service.factory.CommentFactory;
-import service.factory.CommentRep;
 import model.Comment;
 import model.Post;
 import model.User;

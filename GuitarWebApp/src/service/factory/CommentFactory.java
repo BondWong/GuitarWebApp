@@ -1,5 +1,7 @@
 package service.factory;
 
+import security.validation.CommentRep;
+import utils.CommentType;
 import model.Comment;
 
 public class CommentFactory implements Factory{
@@ -8,7 +10,7 @@ public class CommentFactory implements Factory{
 		CommentRep commentRep = (CommentRep)object;
 		Comment comment = new Comment(commentRep.getContent());
 		
-		comment.setType(commentRep.getType());
+		comment.setType(CommentType.valueOf(commentRep.getCommentType()));
 		
 		return comment;
 	}

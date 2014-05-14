@@ -1,4 +1,4 @@
-package service.security;
+package security;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * Servlet implementation class UserLogoutServlet
  */
-@WebServlet("/UserLogoutServlet")
+@WebServlet("/security/UserLogoutServlet")
 public class UserLogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

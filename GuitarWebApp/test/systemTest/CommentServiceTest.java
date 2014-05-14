@@ -20,9 +20,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import persistence.DAO;
+import security.validation.CommentRep;
 import service.CommentService;
 import service.factory.CommentFactory;
-import service.factory.CommentRep;
 import service.factory.PostFactory;
 import utils.CommentType;
 import utils.EntityManagerFactoryCreator;
@@ -72,7 +72,7 @@ private static Entity<String> nullEntity;
 		commentRep.setContent("gehe");
 		
 		Entity<CommentRep> entity = Entity.json(commentRep);
-		commentRep.setType(CommentType.COMMENT);
+		commentRep.setCommentType(CommentType.COMMENT.name());
 		Response response = target("/comment/add/2011052407/1")
 				.register(JacksonFeature.class).request(MediaType.APPLICATION_JSON)
 				.post(entity);
