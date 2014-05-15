@@ -11,44 +11,36 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
 
 import model.User;
-import service.transactions.FollowTransaction;
-import service.transactions.GetUserByIDTransaction;
 import service.transactions.Transaction;
+import service.transactions.daoTransactions.FollowTransaction;
+import service.transactions.daoTransactions.GetUserByIDTransaction;
 
 @Path("/user")
 public class UserService {
 	@Path("follow/{userID : \\d+}/{otherUserID : \\d+}")
 	@PUT
-	public Response follow(@PathParam("userID") String userID, @PathParam("otherUserID") String otherUserID){
+	public Response follow(@PathParam("userID") String userID, @PathParam("otherUserID") String otherUserID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("otherUserID", otherUserID);
 		
 		Transaction transaction = new FollowTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		transaction.execute(params);
+
 		
 		return Response.ok().build();
 	}
 	
 	@Path("getShortCut/{userID : \\d+}")
 	@GET
-	public Response getShortCut(@PathParam("userID") String userID){
+	public Response getShortCut(@PathParam("userID") String userID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		
 		Transaction transaction = new GetUserByIDTransaction();
 		User user = null;
-		try {
-			user = (User) transaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		user = (User) transaction.execute(params);
+
 		
 		return Response.ok(new GenericEntity<User.ShortCut>(user.getShortCut()){}).build();
 	}

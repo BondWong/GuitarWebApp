@@ -20,7 +20,8 @@ public class GuitarWebApp extends Application{
 		classes.add(SSETest.class);
 		//classes.add(PostService.class);
 		//classes.add(CommentService.class);
-		classes.add(ServerSentEventService.class);
+		//classes.add(UserService.class);
+		//classes.add(ServerSentEventService.class);
 		classes.add(JacksonFeature.class);
 		classes.add(MultiPartFeature.class);
 		System.out.println(classes);

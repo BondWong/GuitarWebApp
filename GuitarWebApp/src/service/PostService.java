@@ -19,27 +19,27 @@ import javax.ws.rs.core.Response;
 
 import model.Post;
 import security.validation.PostRep;
-import service.transactions.AddPostSSETransaction;
-import service.transactions.AddPostTransaction;
-import service.transactions.CancelCollectSSETransaction;
-import service.transactions.CancelCollectTransaction;
-import service.transactions.CancelLikeSSETransaction;
-import service.transactions.CancelLikeTransaction;
-import service.transactions.CollectPostSSETransaction;
-import service.transactions.CollectPostTransaction;
-import service.transactions.DAOTransaction;
-import service.transactions.DeletePostSSETransaction;
-import service.transactions.DeletePostTransaction;
-import service.transactions.FetchPostsByFolloweeTransaction;
-import service.transactions.FetchPostsByTypeTransaction;
-import service.transactions.FetchPostsByUserIDTransaction;
-import service.transactions.GetPostByIDTransaction;
-import service.transactions.GetPostsByIDsTransaction;
-import service.transactions.JoinActivitySSETransaction;
-import service.transactions.JoinActivityTransaction;
-import service.transactions.LikePostSSETransaction;
-import service.transactions.LikePostTransaction;
-import service.transactions.SSETransaction;
+import service.transactions.SSETransactions.AddPostSSETransaction;
+import service.transactions.SSETransactions.CancelCollectSSETransaction;
+import service.transactions.SSETransactions.CancelLikeSSETransaction;
+import service.transactions.SSETransactions.CollectPostSSETransaction;
+import service.transactions.SSETransactions.DeletePostSSETransaction;
+import service.transactions.SSETransactions.JoinActivitySSETransaction;
+import service.transactions.SSETransactions.LikePostSSETransaction;
+import service.transactions.SSETransactions.SSETransaction;
+import service.transactions.daoTransactions.AddPostTransaction;
+import service.transactions.daoTransactions.CancelCollectTransaction;
+import service.transactions.daoTransactions.CancelLikeTransaction;
+import service.transactions.daoTransactions.CollectPostTransaction;
+import service.transactions.daoTransactions.DAOTransaction;
+import service.transactions.daoTransactions.DeletePostTransaction;
+import service.transactions.daoTransactions.FetchPostsByFolloweeTransaction;
+import service.transactions.daoTransactions.FetchPostsByTypeTransaction;
+import service.transactions.daoTransactions.FetchPostsByUserIDTransaction;
+import service.transactions.daoTransactions.GetPostByIDTransaction;
+import service.transactions.daoTransactions.GetPostsByIDsTransaction;
+import service.transactions.daoTransactions.JoinActivityTransaction;
+import service.transactions.daoTransactions.LikePostTransaction;
 import utils.PostType;
 
 @Path("/post")
@@ -51,26 +51,15 @@ public class PostService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addPost(@PathParam("userID") String userID, 
-			PostRep postRep){
+			PostRep postRep) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postRep", postRep);
 		
 		transaction = new AddPostTransaction();
-		
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		transaction.execute(params);
 		sseTransaction = new AddPostSSETransaction();
-		try {
-			sseTransaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sseTransaction.execute(params);
 		
 		return Response.ok().build();
 	}
@@ -78,25 +67,16 @@ public class PostService {
 	@Path("delete/{userID : \\d+}/{postID : \\d+}")
 	@PUT
 	public Response deletePost(@PathParam("userID") String userID, 
-			@PathParam("postID") Long postID){
+			@PathParam("postID") Long postID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
 		transaction = new DeletePostTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		sseTransaction = new DeletePostSSETransaction();
-		try {
-			sseTransaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sseTransaction.execute(params);
 		
 		return Response.ok().build();
 	}
@@ -105,18 +85,14 @@ public class PostService {
 	@Path("fetchByUserID/{userID : \\d+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response fetchPostsByUserID(@PathParam("userID") String userID){
+	public Response fetchPostsByUserID(@PathParam("userID") String userID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		
 		transaction = new FetchPostsByUserIDTransaction();
 		
 		List<Post.ShortCut> posts = new ArrayList<Post.ShortCut>();
-		try {
-			posts = (List<Post.ShortCut>) transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		posts = (List<Post.ShortCut>) transaction.execute(params);
 		
 		return Response.ok(new GenericEntity<List<Post.ShortCut>>(posts){}).build();
 	}
@@ -125,18 +101,15 @@ public class PostService {
 	@Path("fetchByType/{type : [A-Z]+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response fetchPostsByType(@PathParam("type") PostType type){
+	public Response fetchPostsByType(@PathParam("type") PostType type) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("type", type);
 		
 		transaction = new FetchPostsByTypeTransaction();
 		
 		List<Post.ShortCut> posts = new ArrayList<Post.ShortCut>();
-		try {
-			posts = (List<Post.ShortCut>) transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		posts = (List<Post.ShortCut>) transaction.execute(params);
+		
 		return Response.ok(new GenericEntity<List<Post.ShortCut>>(posts){}).build();
 	}
 	
@@ -144,18 +117,14 @@ public class PostService {
 	@Path("fetchByFollowee/{userID : \\d+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response fetchPostsByFollowee(@PathParam("userID") String userID){
+	public Response fetchPostsByFollowee(@PathParam("userID") String userID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		
 		transaction = new FetchPostsByFolloweeTransaction();
 		
 		List<Post.ShortCut> posts = new ArrayList<Post.ShortCut>();
-		try {
-			posts = (List<Post.ShortCut>) transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		posts = (List<Post.ShortCut>) transaction.execute(params);
 		
 		return Response.ok(new GenericEntity<List<Post.ShortCut>>(posts){}).build();
 	}
@@ -163,18 +132,14 @@ public class PostService {
 	@Path("getByID/{postID : \\d+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public Post getPostByID(@PathParam("postID") Long postID){
+	public Post getPostByID(@PathParam("postID") Long postID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("postID", postID);
 		
 		transaction = new GetPostByIDTransaction();
 		
 		Post post = null;
-		try {
-			post = (Post) transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		post = (Post) transaction.execute(params);
 		
 		return post;
 	}
@@ -183,44 +148,30 @@ public class PostService {
 	@Path("getByIDs")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getPostsByIDs(@QueryParam("postIDs") List<Long> postIDs){
+	public Response getPostsByIDs(@QueryParam("postIDs") List<Long> postIDs) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("postIDs", postIDs);
 		
 		transaction = new GetPostsByIDsTransaction();
-		List<Post> posts = new ArrayList<Post>();
-		try {
-			posts = (List<Post>) transaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		List<Post.ShortCut> posts = new ArrayList<Post.ShortCut>();
+		posts = (List<Post.ShortCut>) transaction.execute(params);
 		
-		return Response.ok(new GenericEntity<List<Post>>(posts){}).build();
+		return Response.ok(new GenericEntity<List<Post.ShortCut>>(posts){}).build();
 	}
 	
 	@Path("like/{userID : \\d+}/{postID : \\d+}")
 	@PUT
 	public Response likePost(@PathParam("userID") String userID, 
-			@PathParam("postID") Long postID){
+			@PathParam("postID") Long postID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
 		transaction = new LikePostTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		sseTransaction = new LikePostSSETransaction();
-		try {
-			sseTransaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sseTransaction.execute(params);
 		
 		return Response.ok().build();
 	}
@@ -228,25 +179,16 @@ public class PostService {
 	@Path("cancelLike/{userID : \\d+}/{postID : \\d+}")
 	@PUT
 	public Response cancelLike(@PathParam("userID") String userID, 
-			@PathParam("postID") Long postID){
+			@PathParam("postID") Long postID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
 		transaction = new CancelLikeTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		sseTransaction = new CancelLikeSSETransaction();
-		try {
-			sseTransaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sseTransaction.execute(params);
 		
 		return Response.ok().build();
 	}
@@ -254,25 +196,16 @@ public class PostService {
 	@Path("collect/{userID : \\d+}/{postID : \\d+}")
 	@PUT
 	public Response collectPost(@PathParam("userID") String userID, 
-			@PathParam("postID") Long postID){
+			@PathParam("postID") Long postID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
 		transaction = new CollectPostTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		sseTransaction = new CollectPostSSETransaction();
-		try {
-			sseTransaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sseTransaction.execute(params);
 		
 		return Response.ok().build();
 	}
@@ -280,25 +213,16 @@ public class PostService {
 	@Path("cancelCollect/{userID : \\d+}/{postID : \\d+}")
 	@PUT
 	public Response cancelCollect(@PathParam("userID") String userID, 
-			@PathParam("postID") Long postID){
+			@PathParam("postID") Long postID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
 		transaction = new CancelCollectTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		sseTransaction = new CancelCollectSSETransaction();
-		try {
-			sseTransaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sseTransaction.execute(params);
 		
 		return Response.ok().build();
 	}
@@ -306,25 +230,16 @@ public class PostService {
 	@Path("join/{userID : \\d+}/{postID : \\d+}")
 	@PUT
 	public Response joinActivity(@PathParam("userID") String userID, 
-			@PathParam("postID") Long postID){
+			@PathParam("postID") Long postID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
 		
 		transaction = new JoinActivityTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		sseTransaction = new JoinActivitySSETransaction();
-		try {
-			sseTransaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sseTransaction.execute(params);
 		
 		return Response.ok().build();
 	}

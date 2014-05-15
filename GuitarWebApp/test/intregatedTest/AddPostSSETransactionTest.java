@@ -16,7 +16,7 @@ import persistence.DAO;
 import service.factory.Factory;
 import service.factory.PostFactory;
 import service.sse.ServerSentEvent;
-import service.transactions.AddPostSSETransaction;
+import service.transactions.SSETransactions.AddPostSSETransaction;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;
 import utils.PostType;

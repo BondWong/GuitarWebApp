@@ -67,8 +67,7 @@ public class FileUploader extends HttpServlet {
 	
 	private void setUp(){
 		factory = new DiskFileItemFactory();
-    	File repository = (File) this.getServletConfig()
-				.getServletContext()
+    	File repository = (File) this.getServletContext()
 				.getAttribute("javax.servlet.context.tempdir");
 		factory.setRepository(repository);
 		upload = new ServletFileUpload(factory);

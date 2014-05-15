@@ -13,15 +13,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import security.validation.CommentRep;
-import service.transactions.AddCommentSSETransaction;
-import service.transactions.AddCommentTransaction;
-import service.transactions.CancelSupportSSETransaction;
-import service.transactions.CancelSupportTransaction;
-import service.transactions.DeleteCommentSSETransaction;
-import service.transactions.DeleteCommentTransaction;
-import service.transactions.SupportAnswerSSETransaction;
-import service.transactions.SupportAnswerTransaction;
 import service.transactions.Transaction;
+import service.transactions.SSETransactions.AddCommentSSETransaction;
+import service.transactions.SSETransactions.CancelSupportSSETransaction;
+import service.transactions.SSETransactions.DeleteCommentSSETransaction;
+import service.transactions.SSETransactions.SupportAnswerSSETransaction;
+import service.transactions.daoTransactions.AddCommentTransaction;
+import service.transactions.daoTransactions.CancelSupportTransaction;
+import service.transactions.daoTransactions.DeleteCommentTransaction;
+import service.transactions.daoTransactions.SupportAnswerTransaction;
 
 @Path("/comment")
 public class CommentService {
@@ -31,25 +31,16 @@ public class CommentService {
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON})
 	public Response addComment(@PathParam("userID") String userID, 
-			@PathParam("postID") Long postID, CommentRep commentRep){
+			@PathParam("postID") Long postID, CommentRep commentRep) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
 		params.put("commentRep", commentRep);
 		
 		transaction = new AddCommentTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		transaction = new AddCommentSSETransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		return Response.ok().build();
 	}
@@ -58,51 +49,34 @@ public class CommentService {
 	@DELETE
 	public Response deleteComment(@PathParam("userID") String userID, 
 			@PathParam("postID") Long postID, 
-			@PathParam("commentID") Long commentID){
+			@PathParam("commentID") Long commentID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postID", postID);
 		params.put("commentID", commentID);
 		
 		transaction = new DeleteCommentTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		transaction = new DeleteCommentSSETransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		transaction.execute(params);
+		
 		return Response.ok().build();
 	}
 	
 	@Path("/support/{userID : \\d+}/{commentID : \\d+}")
 	@PUT
 	public Response supportAnswer(@PathParam("userID") String userID, 
-			@PathParam("commentID") Long commentID){
+			@PathParam("commentID") Long commentID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("commentID", commentID);
 		
 		transaction = new SupportAnswerTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		transaction = new SupportAnswerSSETransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		return Response.ok().build();
 	}
@@ -110,25 +84,16 @@ public class CommentService {
 	@Path("/cancelSupport/{userID : \\d+}/{commentID : \\d+}")
 	@PUT
 	public Response cancelSupport(@PathParam("userID") String userID, 
-			@PathParam("commentID") Long commentID){
+			@PathParam("commentID") Long commentID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("commentID", commentID);
 		
 		transaction = new CancelSupportTransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		transaction = new CancelSupportSSETransaction();
-		try {
-			transaction.execute(params);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		transaction.execute(params);
 		
 		return Response.ok().build();
 	}

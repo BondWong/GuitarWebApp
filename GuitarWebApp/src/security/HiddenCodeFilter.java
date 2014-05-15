@@ -8,6 +8,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
 public class HiddenCodeFilter implements Filter {
 
@@ -38,7 +39,8 @@ public class HiddenCodeFilter implements Filter {
 			// pass the request along the filter chain
 			chain.doFilter(request, response);
 		} else{
-			System.out.println("error");
+			HttpServletResponse httpResponse = (HttpServletResponse) response;
+			httpResponse.setStatus(403);
 		}
 	}
 

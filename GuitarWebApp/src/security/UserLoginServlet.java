@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.MediaType;
 
 import model.User;
-import service.transactions.DAOTransaction;
-import service.transactions.GetUserByIDandPasswordTransaction;
+import service.transactions.daoTransactions.DAOTransaction;
+import service.transactions.daoTransactions.GetUserByIDandPasswordTransaction;
 
 /**
  * Servlet implementation class UserLoginServlet

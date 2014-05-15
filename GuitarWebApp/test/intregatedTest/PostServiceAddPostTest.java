@@ -32,7 +32,7 @@ public class PostServiceAddPostTest {
 	}
 	
 	@Test
-	public void testPostServiceAddPost(){
+	public void testPostServiceAddPost() throws Exception{
 		PostService ps = new PostService();
 		ps.addPost("2011052407", ParamGenerator.generatePostParam(PostType.ACTIVITY));
 		
