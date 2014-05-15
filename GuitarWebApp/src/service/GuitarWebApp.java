@@ -17,7 +17,6 @@ public class GuitarWebApp extends Application{
 		Set<Class<?>> classes = new LinkedHashSet<Class<?>>();
 		
 		classes.add(ModelJsonTest.class);
-		classes.add(SSETest.class);
 		//classes.add(PostService.class);
 		//classes.add(CommentService.class);
 		//classes.add(UserService.class);

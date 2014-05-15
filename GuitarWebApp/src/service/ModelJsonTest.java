@@ -54,4 +54,46 @@ public class ModelJsonTest {
 		return Response.ok(new GenericEntity<Post.ShortCut>(post.getShortCut()){}).build();
 	}
 	
+	@Path("/User.ShortCut")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getUserShortCut(){
+		User user = new User("2011052407");
+		User u2 = new User("2011052406");
+		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+		Post p =new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
+		user.follow(u2);
+		user.addPost(post);
+		u2.addPost(post);
+		user.likePost(p);
+		user.likePost(post);
+		user.collectPost(p);
+		user.joinActivity(p);
+		
+		return Response.ok(user.getShortCut()).build();
+	}
+	
+	@Path("/User.ShortCuts")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getUserShortCuts(){
+		User user = new User("2011052407");
+		User u2 = new User("2011052406");
+		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+		Post p =new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
+		user.follow(u2);
+		user.addPost(post);
+		u2.addPost(post);
+		user.likePost(p);
+		user.likePost(post);
+		user.collectPost(p);
+		user.joinActivity(p);
+		
+		List<User.ShortCut> shortCuts = new ArrayList<User.ShortCut>();
+		shortCuts.add(user.getShortCut());
+		shortCuts.add(u2.getShortCut());
+		
+		return Response.ok(new GenericEntity<List<User.ShortCut>>(shortCuts){}).build();
+	}
+	
 }

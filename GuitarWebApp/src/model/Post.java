@@ -230,7 +230,7 @@ public class Post {
 		private String content;
 		private PostType type;
 		private String publishDate;
-
+		
 		private int likeNum;
 		private int participentsNum;
 		

@@ -12,13 +12,12 @@ public abstract class SSETransaction implements Transaction{
 	
 	@Override
 	public Object execute(Map<String, Object> params) throws Exception {
-		sse = new ServerSentEvent();
-		initEvent(sse, params);
+		sse = initEvent(params);
 		System.out.println("sse" + sse);
 		broadcaster.broadcast(sse);
 		return null;
 	}
 	
-	public abstract void initEvent(ServerSentEvent sse, Map<String, Object> params) throws Exception;
+	public abstract ServerSentEvent initEvent(Map<String, Object> params) throws Exception;
 
 }

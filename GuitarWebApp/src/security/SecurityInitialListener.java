@@ -41,6 +41,7 @@ public class SecurityInitialListener implements ServletContextListener {
     	ProtectedURLManager.addURL("/post/joinActivity");
     	
     	ProtectedURLManager.addURL("/user/follow");
+    	ProtectedURLManager.addURL("/user/getShortCut");
     	
     	ProtectedURLManager.addURL("/comment/add");
     	ProtectedURLManager.addURL("/comment/delete");

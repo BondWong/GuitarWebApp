@@ -15,7 +15,6 @@ import org.junit.Test;
 import persistence.DAO;
 import service.factory.Factory;
 import service.factory.PostFactory;
-import service.sse.ServerSentEvent;
 import service.transactions.SSETransactions.AddPostSSETransaction;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;
@@ -51,6 +50,6 @@ User user = new User("2011052407");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", "2011052407");
 		AddPostSSETransaction transaction = new AddPostSSETransaction();
-		transaction.initEvent(new ServerSentEvent(), params);
+		transaction.initEvent(params);
 	}
 }
