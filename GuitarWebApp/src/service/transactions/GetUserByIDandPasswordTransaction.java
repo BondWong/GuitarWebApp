@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import persistence.DAO;
 import model.User;
 
-public class LoginTransaction extends DAOTransaction{
+public class GetUserByIDandPasswordTransaction extends DAOTransaction{
 
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params)

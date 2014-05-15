@@ -44,6 +44,7 @@ public class UserLoginValidationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
+		System.out.println("UserLoginValidationFilter");
 		String userID = request.getParameter("userID");
 		String password = request.getParameter("password");
 		UserRep uRep = new UserRep();

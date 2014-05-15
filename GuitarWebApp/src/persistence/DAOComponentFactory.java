@@ -2,14 +2,13 @@ package persistence;
 
 import javax.persistence.EntityManager;
 
+import model.Comment;
+import model.Post;
+import model.User;
 import persistence.components.CollectionReadable;
 import persistence.components.Creatable;
 import persistence.components.Deletable;
 import persistence.components.SingleResultReadable;
-import model.Community;
-import model.Post;
-import model.User;
-import model.Comment;
 
 public abstract class DAOComponentFactory {
 	public static <T> DAOComponentFactory createInstance(EntityManager em, Class<T> t) throws Exception{
@@ -19,9 +18,7 @@ public abstract class DAOComponentFactory {
 			return new UserDAOComponentFactory(em);
 		} else if(t.equals(Comment.class)){
 			return new CommentDAOComponentFactory(em);
-		} else if(t.equals(Community.class)){
-			return new CommunityDAOComponentFactory(em);
-		} else{
+		}  else{
 			throw new ClassNotFoundException();
 		}
 		

@@ -40,6 +40,9 @@ public class UserSystemTestListener implements ServletContextListener {
     	User user = new User("2011052407");
     	user.setPassword("1901103390");
     	
+    	User u2 = new User("2011052406");
+    	u2.setPassword("BM1003mb");
+    	
     	EntityManagerFactory emf = EntityManagerFactoryCreator.getInstance().getEntityManagerFactory();
     	EntityManager em = emf.createEntityManager();
     	DAO<User> udao = null;
@@ -51,6 +54,7 @@ public class UserSystemTestListener implements ServletContextListener {
 		}
     	em.getTransaction().begin();
     	udao.create(user);
+    	udao.create(u2);
     	em.getTransaction().commit();
     }
 	

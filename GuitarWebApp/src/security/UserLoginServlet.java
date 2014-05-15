@@ -6,18 +6,15 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.MediaType;
 
-import com.google.gson.Gson;
-
 import model.User;
 import service.transactions.DAOTransaction;
-import service.transactions.LoginTransaction;
+import service.transactions.GetUserByIDandPasswordTransaction;
 
 /**
  * Servlet implementation class UserLoginServlet
@@ -53,7 +50,7 @@ public class UserLoginServlet extends HttpServlet {
 		params.put("userID", userID);
 		params.put("password", password);
 		
-		DAOTransaction transaction = new LoginTransaction();
+		DAOTransaction transaction = new GetUserByIDandPasswordTransaction();
 		try{
 			user = (User) transaction.execute(params);
 		} catch(Exception e){
@@ -63,14 +60,10 @@ public class UserLoginServlet extends HttpServlet {
 		if(user!=null){
 			HttpSession session = request.getSession();
 			synchronized(session){
-				session.setAttribute(user.getID(), user);
+				session.setAttribute(user.getID(), user.getID());
 			}
 			response.setContentType(MediaType.APPLICATION_JSON);
-			User.ShortCut shortCut = user.getShortCut();
-			Cookie cookie = new Cookie("userID", userID);
-			cookie.setMaxAge(60*20);
-			response.addCookie(cookie);
-			response.getWriter().write(new Gson().toJson(shortCut));
+			response.sendRedirect("/GuitarWebApp/pages/index.html");
 		} else{
 
 		}

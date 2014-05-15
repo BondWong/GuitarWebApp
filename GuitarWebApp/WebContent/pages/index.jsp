@@ -6,7 +6,8 @@
 </head>
 <body>
 	hello
-	<form action="app/fileUploader" method="post" enctype="multipart/form-data">
+	<input type="hidden" value="<%= session.getAttribute("userID")%>" />
+	<form action="/GuitarWebApp/app/fileUploader" method="post" enctype="multipart/form-data">
 		<input type="text" name="userID"/>
 		<input type="file" name="image1"/>
 		<input type="file" name="image2"/>
