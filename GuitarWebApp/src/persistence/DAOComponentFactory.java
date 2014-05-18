@@ -3,6 +3,7 @@ package persistence;
 import javax.persistence.EntityManager;
 
 import model.Comment;
+import model.Community;
 import model.Post;
 import model.User;
 import persistence.components.CollectionReadable;
@@ -18,7 +19,9 @@ public abstract class DAOComponentFactory {
 			return new UserDAOComponentFactory(em);
 		} else if(t.equals(Comment.class)){
 			return new CommentDAOComponentFactory(em);
-		}  else{
+		} else if(t.equals(Community.class)){
+			return new CommunityDAOComponentFactory(em);
+		} else{
 			throw new ClassNotFoundException();
 		}
 		

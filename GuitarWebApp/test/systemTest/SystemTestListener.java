@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebListener;
 
 import persistence.DAO;
 import utils.EntityManagerFactoryCreator;
+import utils.PostType;
+import model.Community;
 import model.User;
 
 
@@ -16,12 +18,12 @@ import model.User;
  *
  */
 @WebListener
-public class UserSystemTestListener implements ServletContextListener {
+public class SystemTestListener implements ServletContextListener {
 
     /**
      * Default constructor. 
      */
-    public UserSystemTestListener() {
+    public SystemTestListener() {
         // TODO Auto-generated constructor stub
     }
 
@@ -55,6 +57,28 @@ public class UserSystemTestListener implements ServletContextListener {
     	em.getTransaction().begin();
     	udao.create(user);
     	udao.create(u2);
+    	em.getTransaction().commit();
+    	
+    	DAO<Community> cdao = null;
+    	try {
+			cdao = new DAO<Community>(Community.class, em);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	em.getTransaction().begin();
+    	Community c1 = new Community();
+    	c1.setName("disscussion");
+    	c1.setPostType(PostType.DISSCUSSION);
+    	Community c2 = new Community();
+    	c2.setName("activity");
+    	c2.setPostType(PostType.ACTIVITY);
+    	Community c3 = new Community();
+    	c3.setName("question");
+    	c3.setPostType(PostType.QUESTION);
+    	cdao.create(c1);
+    	cdao.create(c2);
+    	cdao.create(c3);
     	em.getTransaction().commit();
     }
 	

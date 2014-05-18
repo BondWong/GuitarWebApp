@@ -40,7 +40,7 @@ public class DAO<E> {
 	}
 	
 	public List<E> collectionRead(String queryName, Class<E> type){
-		return collectionRead(queryName, type);
+		return collectionRead(queryName, 0, 10, type);
 	}
 	
 	public List<E> collectionRead(String queryName, int startIndex, int pageSize, Class<E> type, Object...params){
