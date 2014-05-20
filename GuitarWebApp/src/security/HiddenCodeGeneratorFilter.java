@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class HiddenCodeGeneratorFilter
  */
-@WebFilter("/pages/*")
+//@WebFilter("/pages/*")
 public class HiddenCodeGeneratorFilter implements Filter {
 
     /**
