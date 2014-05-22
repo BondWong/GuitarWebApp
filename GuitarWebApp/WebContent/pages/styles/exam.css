@@ -1,0 +1,5 @@
+.item {
+	width: 25%;
+	margin: 10px;
+}
+.item.w2 { width: 50%; }

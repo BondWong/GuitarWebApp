@@ -1,0 +1,406 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+}
+
+
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+.navbar-wrapper .navbar {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 500px;
+  margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
+
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Pad the edges of the mobile views a bit */
+.marketing {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+  /* Remove the edge padding needed for mobile */
+  .marketing {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+    padding-left:  15px;
+    padding-right: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-left:  0;
+    padding-right: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+}
+.navbar-form.navbar-costom:last-child {
+	float: right;
+	margin-right: 15px;
+  }
+
+.container.container_custom {
+	background-color: #EEEEEE;
+	margin-top: 70px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 1150px;
+}
+.content_container {
+	background-color: #FFF;
+	display: block;
+	height: 375px;
+	width: 265px;
+	margin-top: 10px;
+}
+.img_container {
+	height: 265px;
+	width: 265px;
+}
+.btn_cust {
+	float: right;
+	margin-top: 10px;
+	font-size: 8px;
+}
+.nav_cust {
+	float: right;
+}
+.img_cust {
+	margin-top: 7px;
+	margin-left: 20px;
+}
+.profile_nav {
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FFF;
+	color: #D6D6D6;
+	width: 900px;
+}
+.profile_navul {
+	margin-left: 150px;
+	font-size: 16px;
+}
+.share {
+	height: 180px;
+	width: 440px;
+	background-color: #FFFFFF;
+	float: left;
+}
+.pro_body {
+	margin-right: auto;
+	margin-left: auto;
+	width: 900px;
+	margin-top: 20px;
+}
+.nav-tabs > li {
+	float: left;
+	margin-bottom: -1px;
+	margin-left:70px;
+}
+.post {
+	background-color: #FFF;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	float: left;
+	width: 435px;
+}
+.pro_body .user_img {
+
+
+
+}
+.post_body {
+	margin-right: auto;
+	margin-left: auto;
+	width: 95%;
+}
+
+
+.pro_body .post_info {
+
+}
+.row.row_custu {
+	padding-top: 20px;
+}
+.post_info {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #DFDFDF;
+}
+.post_img {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #DFDFDF;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+}
+
+.media_show {
+	background-color: #FFF;
+	padding: 20px;
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+.media_comm {
+	background-color: #FFF;
+}
+.conten_head {
+	font-size: 20px;
+	color: #000;
+}
+.act_person {
+	margin-bottom: 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #DFDFDF;
+	padding-bottom: 5px;
+}
+.act_head {
+	font-size: 20px;
+	color: #090;
+}
+.act_info {
+	margin-top: 20px;
+}
+.media_comm {
+	padding: 5px;
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+.act_content {
+	font-size: 12px;
+	margin-top: 10px;
+}
+.act_comment {
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #CDCDCD;
+}
+
+
+
+
+
+
+.content_info {
+	width: 85%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 20px;
+}
+.content_join {
+	display: block;
+	height: 30px;
+	width: 70px;
+	text-align: center;
+	border: 1px solid #E6E6E6;
+	font-size: 14px;
+	vertical-align: middle;
+	padding: 5px;
+	float: right;
+}
+.act_time {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.post_title {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #E2E2E2;
+}
+.act_fee {
+	margin-bottom: 5px;
+}
+.act_place {
+	margin-bottom: 5px;
+}
+
+.profile_head {
+	height: 300px;
+	width: 900px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.profile_info {
+	background-color: #A2A2A2;
+	height: 300px;
+	float: left;
+	width: 280px;
+}.profile_container {
+	margin-top: 50px;
+	vertical-align: middle;
+}
+.profile_user_img {
+	width: 50%;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.profile_img {
+
+
+
+}
+.profile_user_name {
+	width: 50%;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.question_box {
+	width: 970px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FBFBFB;
+}
+.question_container {
+	background-color: #FFF;
+	width: 970px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 20px;
+}
+.question_ask {
+	background-color: #FFF;
+	height: 150px;
+}
+.share_txt {
+	height: 90px;
+	width: 90%;
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.share_button_group {
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 20px;
+	text-align: center;
+}

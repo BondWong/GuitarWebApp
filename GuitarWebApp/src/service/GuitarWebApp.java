@@ -18,10 +18,9 @@ public class GuitarWebApp extends Application{
 		
 		classes.add(ModelJsonTest.class);
 		classes.add(CommunityService.class);
-		//classes.add(PostService.class);
-		//classes.add(CommentService.class);
-		//classes.add(UserService.class);
-		//classes.add(ServerSentEventService.class);
+		classes.add(PostService.class);
+		classes.add(CommentService.class);
+		classes.add(UserService.class);
 		classes.add(JacksonFeature.class);
 		classes.add(MultiPartFeature.class);
 		System.out.println(classes);
