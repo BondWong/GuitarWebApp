@@ -57,16 +57,18 @@
 	<div class="container container_custom">
 		<div class="pro_body">
           <div class="share post">
-          	<input class="share_txt form-control" type="text" placeholder="share anything you what to share"/>
+          <form enctype="multipart/form-data">
+          	<input class="form-control" id="share_txt" type="text" placeholder="share anything you what to share"/>
             <div class="share_button_group btn-group">
-            <form enctype="multipart/form-data">
+            
               <button type="button" class="btn btn-default" id="btn_motion" >表情</button>
   			  <button type="button" class="btn btn-default" id="btn_pic" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">图片</button>
   			  <button type="button" class="btn btn-default" id="btn_video">视频</button>
               <button type="button" class="btn btn-success" id="btn_share" value="upload">分享</button>
               <input type="file"  name="file"/>
-             </form>
+             
             </div>
+            </form>
           </div>
        	  <div class="post">
           	<div class="post_body">
@@ -193,28 +195,13 @@
           <div class="post"><img src="images/2.jpg" /></div>
           </div> 
         </div>
-        
-	</div>
 	<script src="js/jquery-1.10.2.js"></script>
-    <script src="styles/bootstrap-3.0.3-dist/dist/js/bootstrap.min.js"></script>
+	<script src="js/jquery.json.min.js"></script>
+    <script src="styles/bootstrap-3.0.3-dist/dist/js/bootstrap.min.js"></script>  
     <script src="js/masonry.pkgd.min.js"></script>
     <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/jquery.infinitescroll.js"></script>
-    <script src="js/appenddiv.js"></script>
-    <script src="js/EventHandle.js"></script>
-    <script type="text/javascript">
-	var container = document.querySelector('.pro_body');
-	var msnry;
-	imagesLoaded( container, function() {
-	msnry = new Masonry( container,{
-  	columnWidth: 435,
-  	itemSelector: '.post',
-	gutter:20
-	});
-});
-	$('#btn_pic').popover();
-	
-</script>
-    
+    <script src="js/function.js"></script>
+    <script src="js/addpost.js"></script>
+    <script src="js/EventHandle.js"></script>    
 </body>
 </html>

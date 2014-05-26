@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 /**
  * Servlet Filter implementation class CommentRepValidationFilter
  */
-@WebFilter("/app/comment/add/*")
+//@WebFilter("/app/comment/add/*")
 public class CommentRepValidationFilter implements Filter {
 
     /**

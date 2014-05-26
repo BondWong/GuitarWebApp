@@ -26,7 +26,7 @@ import com.google.gson.Gson;
 /**
  * Servlet Filter implementation class PostRepValidationFilter
  */
-@WebFilter("/app/post/add/*")
+//@WebFilter("/app/post/add/*")
 public class PostRepValidationFilter implements Filter {
 
     /**
