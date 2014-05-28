@@ -110,10 +110,13 @@
             <div class="post_img"><img src="images/12.png" /></div>
             <div class="row">
             	<div class="col-md-1">
-                	<div class="like"><a><span class="glyphicon glyphicon-heart-empty" style="font-size:20px"></span></a></div>
+                	<div class="post_like" style="cursor:pointer"><a><input id="likeID" type='hidden' value="1" /><span class="glyphicon glyphicon-heart-empty" style="font-size:20px">0</span></a></div>
                 </div>
                 <div class="col-md-1">
-                	<div class="post_share"><a><span class="glyphicon glyphicon-share-alt" style="font-size:20px"></span></a></div>
+                	<div class="post_collect" style="cursor:pointer"><a><input id="collectID" type='hidden' value="1" /><span class="glyphicon glyphicon-star-empty" style="font-size:20px"></span></a></div>
+                </div>
+                <div class="col-md-1">
+                	<div class="post_share" style="cursor:pointer"><a><span class="glyphicon glyphicon-share-alt" style="font-size:20px"></span></a></div>
                 </div>
             </div>
           	</div>
@@ -201,7 +204,9 @@
     <script src="js/masonry.pkgd.min.js"></script>
     <script src="js/imagesloaded.pkgd.min.js"></script>
     <script src="js/function.js"></script>
-    <script src="js/addpost.js"></script>
-    <script src="js/EventHandle.js"></script>    
+    <script src="js/EventHandle.js"></script>
+    <script type="text/javascript">
+   		 Msnry('.pro_body','.post',435);
+    </script>
 </body>
 </html>

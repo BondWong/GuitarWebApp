@@ -75,10 +75,10 @@
                         <div class="act_person">主办方:吉他协会</div>
                       <div class="row">
             			<div class="col-md-1">
-                			<div class="like"><a><span class="glyphicon glyphicon-heart-empty" style="font-size:20px"></span></a></div>
+                			<div class="post_like" style="cursor:pointer"><a><input id="likeID" type='hidden' value="1" /><span class="glyphicon glyphicon-heart-empty" style="font-size:20px">0</span></a></div>
                 		</div>
                		 	<div class="col-md-1">
-                			<div class="act_join"><a><span class="glyphicon glyphicon-ok" style="font-size:20px"></span></a></div>
+                			<div class="act_join" id="activityJoin" style="cursor:pointer"><a><span class="glyphicon glyphicon-ok" style="font-size:20px"></span></a></div>
                 		</div>
             		 </div>
                     </div>
@@ -108,7 +108,7 @@
             			</div>
                     </div>
                     <div class="col-lg-4">
-                    	<button type="submit" class="btn btn-success">Summit</button>
+                    	<button type="submit" class="btn btn-success" id="addComment">Summit</button>
                     </div>
                 </div>
                 <div class="act_content">
@@ -137,6 +137,9 @@
      </div>
     </div>
 	<script src="js/jquery-1.10.2.js"></script>
-    <script src="styles/bootstrap-3.0.3-dist/dist/js/bootstrap.min.js"></script>
+	<script src="js/jquery.json.min.js"></script>
+    <script src="styles/bootstrap-3.0.3-dist/dist/js/bootstrap.min.js"></script>  
+    <script src="js/function.js"></script>
+    <script src="js/EventHandle.js"></script>
 </body>
 </html>
