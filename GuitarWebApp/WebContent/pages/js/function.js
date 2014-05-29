@@ -16,7 +16,7 @@ $(document).ready(function(){
 	(function($){  
 		$.fn.userTips = function () {
 
-			var tipFrame = '<div class="popTip"><div class="content"><div class="urserBgShort"><img src="images/urseBgShort.jpg" /></div><div class="urserInfShort"><img src="images/user_img4.jpg" /><p><h1>Bond</h1></p><p> a good guy</p><button>follow</button></div></div></div>';
+			var tipFrame = '<div class="popTip"><div class="content"><div class="urserBgShort"><img src="images/urseBgShort.jpg" /></div><div class="urserInfShort"><img src="images/user_img4.jpg" /><p><h1>Bond</h1></p><p> a good guy</p><button id="followBtn">follow</button></div></div></div>';
 			
 			// Speed of the animations in milliseconds - 1000 = 1 second.
 			var animSpeed = 300;
@@ -29,32 +29,32 @@ $(document).ready(function(){
 				var divTip = 'div.popTip';
 				tinyTip = $(divTip);
 				tinyTip.hide();
-				
-				// Offsets so that the tooltip is centered over the element it is being applied to but
-				// raise it up above the element so it isn't covering it.
-				var yOffset = tinyTip.height();
-				var xOffset = (tinyTip.width() / 2) - ($(this).width() / 2);
-				
 				// Grab the coordinates for the element with the tooltip and make a new copy
-				// so that we can keep the original un-touched.
 				var pos = $(this).offset();
 				var nPos = pos;
 				
 				// Add the offsets to the tooltip position
-				nPos.top = pos.top - yOffset;
-				nPos.left = pos.left - xOffset;
-				
+				nPos.top = pos.top + 20;
+				nPos.left = pos.left + 40;
 				// Make sure that the tooltip has absolute positioning and a high z-index, 
 				// then place it at the correct spot and fade it in.
 				tinyTip.css('position', 'absolute').css('z-index', '1000');
 				tinyTip.css(nPos).fadeIn(animSpeed);
-				
-			}, function() {
-				// Fade the tooltip out once the mouse moves away and then remove it from the DOM.
-				tinyTip.fadeOut(animSpeed, function() {
-					$(this).remove();
-					//$('div.popTip').remove();
+				tinyTip.hover(function(){
+					clearTimeout(window.timer);
+				},function(){
+					tinyTip.fadeOut(animSpeed, function() {
+						$(this).remove();
+					});
 				});
+			}, function() {
+				// Fade the tooltip out once the mouse moves away and then remove it from the DOM.	
+				window.timer = setTimeout(function(){
+					tinyTip.fadeOut(animSpeed, function() {
+					$(this).remove();
+				});
+					}, 200);
+								
 			});				
 		};
 	})(jQuery);
@@ -165,6 +165,12 @@ $(document).ready(function(){
 					type:'put'
 				});
 			}
+			/*if($(this).text()=="Following"){
+				$.ajax({
+					url:'../../GuitarWebApp/app/user/cancelFollow/2011052407/2011052406',//'../../GuitarWebApp/app/user/follow/2011052407/'+id
+					type:'put'
+				});
+			}*/
 		});
 		
 });
