@@ -22,11 +22,11 @@ public class FetchPostsByTypeTransaction extends DAOTransaction{
 		
 		List<Post> posts = new ArrayList<Post>();
 		posts = pdao.collectionRead("Post.fetchByType", Post.class, type);
-		List<Post.ShortCut> shortCuts = new ArrayList<Post.ShortCut>();
+		List<Post.RepresentationShortCut> representationShortCuts = new ArrayList<Post.RepresentationShortCut>();
 		for(Post p : posts){
-			shortCuts.add(p.getShortCut());
+			representationShortCuts.add(p.getRepresentationShortCut());
 		}
-		return shortCuts;
+		return representationShortCuts;
 	}
 
 }

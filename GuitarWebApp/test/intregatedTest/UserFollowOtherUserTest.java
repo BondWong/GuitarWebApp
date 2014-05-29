@@ -76,5 +76,19 @@ public class UserFollowOtherUserTest {
 		assertEquals(1, ub.getFollowers().size());
 		assertEquals(1, uc.getFollowers().size());
 		assertEquals(1, ud.getFollowers().size());
+		
+		ua.cancelFollow(ub);
+		ua.cancelFollow(uc);
+		uc.cancelFollow(ud);
+		
+		em.getTransaction().begin();
+		udao.update(ua);
+		udao.update(uc);
+		em.getTransaction().commit();
+		
+		assertEquals(0, ua.getFollowees().size());
+		assertEquals(0, uc.getFollowees().size());
+		assertEquals(0, ub.getFollowers().size());
+		assertEquals(0, ud.getFollowers().size());
 	}
 }

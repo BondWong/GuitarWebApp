@@ -39,7 +39,7 @@ public class SSEContentTest {
 	public void testAddPostSSE(){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", "2011052407");
-		params.put("postShortCut", new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY)).getShortCut());
+		params.put("postShortCut", new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY)).getRepresentationShortCut());
 		AddPostServerSentEvent acsse = new AddPostServerSentEvent(params);
 		System.out.println(acsse.toString());
 	}

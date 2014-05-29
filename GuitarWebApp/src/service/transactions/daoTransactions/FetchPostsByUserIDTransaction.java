@@ -20,11 +20,11 @@ public class FetchPostsByUserIDTransaction extends DAOTransaction{
 		DAO<Post> pdao = new DAO<Post>(Post.class, em);
 		List<Post> posts = new ArrayList<Post>();
 		posts = pdao.collectionRead("Post.fetchByUserID", Post.class, userID);
-		List<Post.ShortCut> shortCuts = new ArrayList<Post.ShortCut>();
+		List<Post.RepresentationShortCut> representationShortCuts = new ArrayList<Post.RepresentationShortCut>();
 		for(Post post : posts){
-			shortCuts.add(post.getShortCut());
+			representationShortCuts.add(post.getRepresentationShortCut());
 		}
-		return shortCuts;
+		return representationShortCuts;
 	}
 
 }

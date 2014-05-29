@@ -15,7 +15,7 @@ public class GetShortCutModel {
 	public void testGetShortCutModel(){
 		Post p = new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
 		
-		Post.ShortCut psc = p.getShortCut();
+		Post.RepresentationShortCut psc = p.getRepresentationShortCut();
 		
 		Assert.assertNotNull(psc);
 		assertEquals(psc.getID(), p.getID());

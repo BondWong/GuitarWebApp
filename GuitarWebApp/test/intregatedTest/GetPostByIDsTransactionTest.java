@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import model.Post;
-import model.Post.ShortCut;
 import model.User;
 
 import org.junit.Assert;
@@ -62,7 +61,7 @@ public class GetPostByIDsTransactionTest {
 		postIDs.add(new Long(3));
 		params.put("postIDs", postIDs);
 		@SuppressWarnings("unchecked")
-		List<Post.ShortCut> shortCuts = (List<ShortCut>) transaction.execute(params);
+		List<Post.RepresentationShortCut> shortCuts = (List<Post.RepresentationShortCut>) transaction.execute(params);
 		
 		Assert.assertNotNull(shortCuts);
 		assertEquals(3, shortCuts.size());

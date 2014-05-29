@@ -18,7 +18,6 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import persistence.DAO;
@@ -65,7 +64,6 @@ public class PostServiceTest extends JerseyTest{
 		
 	}
 	
-	@Ignore
 	@Test
 	public void testPostServiceDeletePost(){
 		Response response =target("/post/delete/2011052407/1")
@@ -75,7 +73,6 @@ public class PostServiceTest extends JerseyTest{
 		assertEquals(200, response.getStatus());
 	}
 	
-	@Ignore
 	@Test
 	public void testPostServiceFetchByUserID(){
 		Response response = target("/post/fetchByUserID/2011052407")

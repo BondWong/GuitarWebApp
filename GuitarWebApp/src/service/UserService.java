@@ -14,9 +14,11 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
 
 import model.User;
-import model.User.ShortCut;
+import model.representation.UserRepresentation;
 import service.transactions.Transaction;
+import service.transactions.SSETransactions.CancelFollowSSETransaction;
 import service.transactions.SSETransactions.FollowSSETransaction;
+import service.transactions.daoTransactions.CancelFollowTransaction;
 import service.transactions.daoTransactions.FollowTransaction;
 import service.transactions.daoTransactions.GetUserByIDTransaction;
 import service.transactions.daoTransactions.GetUsersByIDsTransaction;
@@ -39,9 +41,25 @@ public class UserService {
 		return Response.ok().build();
 	}
 	
+	@Path("cancelFollow/{userID : \\d+}/{otherUserID} : \\d+")
+	@PUT
+	public Response cancelFollow(@PathParam("userID") String userID, @PathParam("otherUserID") String otherUserID) throws Exception{
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userID", userID);
+		params.put("otherUserID", otherUserID);
+		
+		Transaction transaction = new CancelFollowTransaction();
+		transaction.execute(params);
+		
+		transaction = new CancelFollowSSETransaction();
+		transaction.execute(params);
+		
+		return Response.ok().build();
+	}
+	
 	@Path("getShortCut/{userID : \\d+}")
 	@GET
-	public Response getShortCut(@PathParam("userID") String userID) throws Exception{
+	public Response getUser(@PathParam("userID") String userID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		
@@ -49,21 +67,21 @@ public class UserService {
 		User user = null;
 		user = (User) transaction.execute(params);
 
-		return Response.ok(new GenericEntity<User.ShortCut>(user.getShortCut()){}).build();
+		return Response.ok(new GenericEntity<UserRepresentation>(user.getRepresentation()){}).build();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Path("getShortCuts")
 	@GET
-	public Response getShortCut(@QueryParam("userIDs") List<String> userIDs) throws Exception{
+	public Response getUsers(@QueryParam("userIDs") List<String> userIDs) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userIDs", userIDs);
 		
 		Transaction transaction = new GetUsersByIDsTransaction();
-		List<User.ShortCut> shortCuts = new ArrayList<User.ShortCut>();
-		shortCuts = (List<ShortCut>) transaction.execute(params);
+		List<UserRepresentation> representations = new ArrayList<UserRepresentation>();
+		representations = (List<UserRepresentation>) transaction.execute(params);
 		
 		
-		return Response.ok(new GenericEntity<List<User.ShortCut>>(shortCuts){}).build();
+		return Response.ok(new GenericEntity<List<UserRepresentation>>(representations){}).build();
 	}
 }

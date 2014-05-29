@@ -2,9 +2,8 @@ package service.sse;
 
 import java.util.Map;
 
-import model.Comment;
 import model.Post;
-import model.Post.ShortCut;
+import model.representation.CommentRepresentation;
 
 import com.google.gson.Gson;
 
@@ -46,23 +45,23 @@ public abstract class ServerSentEvent {
 		tpjo.setPostID((Long) params.get("postID"));
 		tpjo.setCommentID((Long) params.get("commentID"));
 		
-		return gson.toJson(tpjo);
+		return toJson(tpjo);
 	}
 	
 	
 	protected String getPostShortCutJsonObject(){
-		PostShortCutJsonObject pscjo = new PostShortCutJsonObject();
+		PostRepresentationShortCutJsonObject pscjo = new PostRepresentationShortCutJsonObject();
 		pscjo.setUserID((String) params.get("userID"));
-		pscjo.setPostShortCut((ShortCut) params.get("postShortCut"));
+		pscjo.setPostRepresentationShortCut((Post.RepresentationShortCut) params.get("postRepresentationShortCut"));
 		
 		return toJson(pscjo);
 	}
 	
 	protected String getCommentShortCutJsonObject(){
-		CommentShortCutJsonObject cscjo = new CommentShortCutJsonObject();
+		CommentRepresentationJsonObject cscjo = new CommentRepresentationJsonObject();
 		cscjo.setUserID((String) params.get("userID"));
 		cscjo.setPostID((Long) params.get("postID"));
-		cscjo.setComment((Comment) params.get("comment"));
+		cscjo.setCommentRepresentation((CommentRepresentation) params.get("commentShortCut"));
 		
 		return toJson(cscjo);
 	}
@@ -122,9 +121,9 @@ public abstract class ServerSentEvent {
 		
 	}
 	
-	private class PostShortCutJsonObject{
+	private class PostRepresentationShortCutJsonObject{
 		private String userID;
-		private Post.ShortCut postShortCut;
+		private Post.RepresentationShortCut postRepresentationShortCut;
 		@SuppressWarnings("unused")
 		public String getUserID() {
 			return userID;
@@ -133,18 +132,18 @@ public abstract class ServerSentEvent {
 			this.userID = userID;
 		}
 		@SuppressWarnings("unused")
-		public Post.ShortCut getPostShortCut() {
-			return postShortCut;
+		public Post.RepresentationShortCut getPostRepresentationShortCut() {
+			return postRepresentationShortCut;
 		}
-		public void setPostShortCut(Post.ShortCut postShortCut) {
-			this.postShortCut = postShortCut;
+		public void setPostRepresentationShortCut(Post.RepresentationShortCut postRepresentationShortCut) {
+			this.postRepresentationShortCut = postRepresentationShortCut;
 		}
 	}
 	
-	private class CommentShortCutJsonObject{
+	private class CommentRepresentationJsonObject{
 		private String userID;
 		private Long postID;
-		private Comment comment;
+		private CommentRepresentation commentRepresentation;
 		@SuppressWarnings("unused")
 		public String getUserID() {
 			return userID;
@@ -160,11 +159,11 @@ public abstract class ServerSentEvent {
 			this.postID = postID;
 		}
 		@SuppressWarnings("unused")
-		public Comment getComment() {
-			return comment;
+		public CommentRepresentation getCommentRepresentation() {
+			return commentRepresentation;
 		}
-		public void setComment(Comment comment) {
-			this.comment = comment;
+		public void setCommentRepresentation(CommentRepresentation commentRepresentation) {
+			this.commentRepresentation = commentRepresentation;
 		}
 	}
 	

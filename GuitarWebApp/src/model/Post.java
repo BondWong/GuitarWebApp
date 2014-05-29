@@ -25,62 +25,47 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.Version;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import model.representation.PostRepresentation;
 import utils.PostType;
 
 @Entity
 @Access(AccessType.FIELD)
 @NamedQueries({@NamedQuery(name="Post.fetchByUserID",query="SELECT p FROM Post p "
-		+ "WHERE p.owner.ID = ?1 ORDER BY p.ID DESC"),
+		+ "WHERE p.owner.ID = ?1 AND p.active = 1 ORDER BY p.ID DESC"),
 	@NamedQuery(name="Post.fetchByType",query="SELECT p FROM Post p "
-			+ "WHERE p.type = ?1 ORDER BY p.ID DESC"),
+			+ "WHERE p.type = ?1 AND p.active = 1 ORDER BY p.ID DESC"),
 	@NamedQuery(name="Post.fetchByFollowee",query="SELECT p FROM Post p "
-			+ "WHERE p.owner IN(SELECT uf FROM User u JOIN u.followees uf WHERE "
+			+ "WHERE p.active = 1 AND p.owner IN(SELECT uf FROM User u JOIN u.followees uf WHERE "
 			+ "u.ID = ?1 ) ORDER BY p.ID DESC")})
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.NONE)
 public class Post {
 	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
-	@XmlElement
 	private Long ID;
 	@Version
 	private Integer version;
 	
-	@XmlElement
 	private String topic;
-	@XmlElement
 	private String content;
 	@ElementCollection
-	@XmlElement
 	private Set<String> mediaLocation;
 	@Transient
-	@XmlElement
 	private PostType type;
 	@Temporal(TemporalType.TIMESTAMP)
-	@XmlElement
 	private Date publishDate;
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.MERGE,
 			orphanRemoval=true)
-	@XmlElement
 	private Set<Comment> comments;
 	@ManyToOne
 	@JoinColumn(name="OWNER_ID")
-	@XmlElement
 	private User owner;
 	
 	@OneToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="POST_LIKERS",
 		joinColumns=@JoinColumn(name="POST_ID"),
 		inverseJoinColumns=@JoinColumn(name="LIKER_ID"))
-	@XmlElement
 	private Set<User> likers;
 	
-	@XmlElement
 	private boolean active;
 	@Transient
 	@XmlTransient
@@ -133,8 +118,8 @@ public class Post {
 		}
 	}
 	
-	public String getPusblishDate(){
-		return publishDate.toString();
+	public Date getPusblishDate(){
+		return publishDate;
 	}
 	
 	public void clickLike(User user){
@@ -192,7 +177,6 @@ public class Post {
 	
 	@Access(AccessType.PROPERTY)
 	@Temporal(TemporalType.TIMESTAMP)
-	@XmlElement
 	public Date getStartDate(){
 		return joinable.getStartDate();
 	}
@@ -210,7 +194,6 @@ public class Post {
 	@JoinTable(name="POSTS_PARTICIPANTS",
 		joinColumns=@JoinColumn(name="POST_ID"),
 		inverseJoinColumns=@JoinColumn(name="PARTICIPANT_ID"))
-	@XmlElement
 	public Set<User> getParticipants(){
 		return joinable.getParticipants();
 	}
@@ -223,13 +206,13 @@ public class Post {
 		return getParticipants().size();
 	}
 	
-	public class ShortCut{
+	public class RepresentationShortCut{
 		private Long ID;
 		private Set<String>mediaLocation;
 		private String topic;
 		private String content;
 		private PostType type;
-		private String publishDate;
+		private Date publishDate;
 		
 		private int likeNum;
 		private int participentsNum;
@@ -278,11 +261,11 @@ public class Post {
 		}
 		
 
-		public String getPublishDate() {
+		public Date getPublishDate() {
 			return publishDate;
 		}
 
-		public void setPublishDate(String publishDate) {
+		public void setPublishDate(Date publishDate) {
 			this.publishDate = publishDate;
 		}
 
@@ -320,8 +303,8 @@ public class Post {
 		
 	}
 	
-	public ShortCut getShortCut(){
-		ShortCut psc = new ShortCut();
+	public RepresentationShortCut getRepresentationShortCut(){
+		RepresentationShortCut psc = new RepresentationShortCut();
 		
 		psc.setID(this.getID());
 		psc.setMediaLocation(this.getMediaLocation());
@@ -335,6 +318,26 @@ public class Post {
 		psc.setOwnerAvatarLink(/*this.getOwner().getAvatarLink()*/"xxx.xxx.x");
 		
 		return psc;
+	}
+		
+	public PostRepresentation getRepresentation(){
+		PostRepresentation representation = new PostRepresentation();
+		
+		representation.setID(this.getID());
+		representation.setActive(this.isActive());
+		representation.setTopic(this.getTopic());
+		representation.setType(this.getType());
+		representation.setContent(this.getContent());
+		representation.setMediaLocation(this.getMediaLocation());
+		representation.setPublishDate(this.getPusblishDate());
+		representation.setOwner(this.getOwner().getRepresentation());
+		representation.addCommentRepresentations(this.comments);
+		representation.addLikerRepresentation(this.likers);
+		
+		representation.setStartDate(this.getStartDate());
+		representation.addParticipantRepresentations(this.getParticipants());
+		
+		return representation;
 	}
 	
 	@Override

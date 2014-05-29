@@ -16,8 +16,8 @@ public class AddPostSSETransaction extends SSETransaction{
 	public ServerSentEvent initEvent(Map<String, Object> params) throws Exception {
 		// TODO Auto-generated method stub
 		DAOTransaction transaction = new FetchPostsByUserIDTransaction();
-		List<Post.ShortCut> shortCuts = (List<Post.ShortCut>) transaction.execute(params);
-		params.put("postShortCut", shortCuts.get(0));
+		List<Post.RepresentationShortCut> representationShortCuts = (List<Post.RepresentationShortCut>) transaction.execute(params);
+		params.put("postRepresentationShortCut", representationShortCuts.get(0));
 		
 		return new AddPostServerSentEvent(params);
 	}

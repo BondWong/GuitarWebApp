@@ -20,31 +20,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.persistence.Version;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import model.representation.CommentRepresentation;
 import utils.CommentType;
 
 @Entity
 @Access(AccessType.FIELD)
 @NamedQueries({@NamedQuery(name="Comment.fetchByUserID",query="SELECT c FROM Comment c "
 		+ "WHERE c.owner.ID = ?1 ORDER BY c.ID DESC")})
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.NONE)
 public class Comment {
 	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
-	@XmlElement
 	private Long ID;
 	@Version
 	private Integer version;
 	
-	@XmlElement
 	private String content;
 	@Transient
-	@XmlElement
 	private CommentType type;
 	
 	@Transient
@@ -52,7 +44,6 @@ public class Comment {
 	private Supportable supportable;
 	
 	@OneToOne
-	@XmlElement
 	private User owner;
 	
 	public Comment(){
@@ -118,7 +109,6 @@ public class Comment {
 	@JoinTable(name="COMMENT_SUPPORTORS",
 	joinColumns=@JoinColumn(name="COMMENT_ID"),
 	inverseJoinColumns=@JoinColumn(name="SUPPORTOR_ID"))
-	@XmlElement
 	public Set<User> getSupportors(){
 		return supportable.getSupportors();
 	}
@@ -130,6 +120,22 @@ public class Comment {
 	public void delete(){
 		owner = null;
 		supportable.delete();
+	}
+
+	public CommentRepresentation getRepresentation(){
+		CommentRepresentation shortCut = new CommentRepresentation();
+		
+		shortCut.setID(this.getID());
+		shortCut.setContent(this.getContent());
+		shortCut.setType(this.getType());
+		
+		for(User supportor : this.getSupportors()){
+			shortCut.addSupportorShortCuts(supportor.getRepresentation());
+		}
+		
+		shortCut.setOwnerShortCut(this.getOwner().getRepresentation());
+		
+		return shortCut;
 	}
 	
 	@Override

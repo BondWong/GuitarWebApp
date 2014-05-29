@@ -19,14 +19,14 @@ public class FetchPostsByFolloweeTransaction extends DAOTransaction{
 		
 		DAO<Post> pdao = new DAO<Post>(Post.class, em);
 		List<Post> posts = new ArrayList<Post>();
-		List<Post.ShortCut> shortCuts = new ArrayList<Post.ShortCut>();
+		List<Post.RepresentationShortCut> representationShortCuts = new ArrayList<Post.RepresentationShortCut>();
 		
 		posts = pdao.collectionRead("Post.fetchByFollowee", Post.class, userID);
 		for(Post p : posts){
-			shortCuts.add(p.getShortCut());
+			representationShortCuts.add(p.getRepresentationShortCut());
 		}
 		
-		return shortCuts;
+		return representationShortCuts;
 	}
 
 }

@@ -7,9 +7,16 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import persistence.DAO;
+import service.factory.CommentFactory;
+import service.factory.Factory;
+import service.factory.PostFactory;
+import utils.CommentType;
 import utils.EntityManagerFactoryCreator;
+import utils.ParamGenerator;
 import utils.PostType;
+import model.Comment;
 import model.Community;
+import model.Post;
 import model.User;
 
 
@@ -79,6 +86,35 @@ public class SystemTestListener implements ServletContextListener {
     	cdao.create(c1);
     	cdao.create(c2);
     	cdao.create(c3);
+    	em.getTransaction().commit();
+    	
+    	Factory f = new PostFactory();
+    	Factory f1 = new CommentFactory();
+    	em.getTransaction().begin();
+    	for(int i=0;i<10;i++){
+    		if(i<5){
+    			Post p = (Post)f.create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+    			user.addPost(p);
+    			Comment c = (Comment)f1.create(ParamGenerator.generateCommentParam(CommentType.COMMENT));
+    			u2.addComment(p, c);
+    			u2.likePost(p);
+    		}
+    		if(i>5){
+    			Post p = (Post)f.create(ParamGenerator.generatePostParam(PostType.QUESTION));
+    			u2.addPost(p);
+    			Comment c = (Comment)f1.create(ParamGenerator.generateCommentParam(CommentType.ANSWER));
+    			user.addComment(p, c);
+    			user.cancelCollect(p);
+    		}
+    		
+    		if(i>8){
+    			Post p = (Post)f.create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
+    			u2.addPost(p);
+    			user.joinActivity(p);
+    		}
+    	}
+    	udao.update(user);
+    	udao.update(u2);
     	em.getTransaction().commit();
     }
 	

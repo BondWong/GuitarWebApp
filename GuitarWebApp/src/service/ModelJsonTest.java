@@ -6,7 +6,6 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -18,23 +17,25 @@ import utils.ParamGenerator;
 import utils.PostType;
 import model.Post;
 import model.User;
+import model.representation.UserRepresentation;
+import model.representation.PostRepresentation;;
 
 @Path("/test")
 public class ModelJsonTest {
-	@Path("/Post.ShortCuts")
+	@Path("/Post.RepresentationShortCuts")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getPostShortCuts(){
+	public Response getPostRepresentationShortCuts(){
 		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
-		List<Post.ShortCut> shortCuts = new ArrayList<Post.ShortCut>();
-		shortCuts.add(post.getShortCut());
-		return Response.ok(new GenericEntity<List<Post.ShortCut>>(shortCuts){}).build();
+		List<Post.RepresentationShortCut> representationShortCuts = new ArrayList<Post.RepresentationShortCut>();
+		representationShortCuts.add(post.getRepresentationShortCut());
+		return Response.ok(new GenericEntity<List<Post.RepresentationShortCut>>(representationShortCuts){}).build();
 	}
 	
 	@Path("/Post")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getFullPost(){
+	public Response getPostRepresentation(){
 		User user = new User("2011052407");
 		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.QUESTION));
 		user.addPost(post);
@@ -43,21 +44,21 @@ public class ModelJsonTest {
 			u.addComment(post, new CommentFactory().create(ParamGenerator.generateCommentParam(CommentType.ANSWER)));
 		}
 		
-		return Response.ok(Entity.json(post)).build();
+		return Response.ok(new GenericEntity<PostRepresentation>(post.getRepresentation()){}).build();
 	}
 	
-	@Path("/Post.ShortCut")
+	@Path("/Post.RepresentationShortCut")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getPostShortCut(){
+	public Response getPostRepresentationShortCut(){
 		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
-		return Response.ok(new GenericEntity<Post.ShortCut>(post.getShortCut()){}).build();
+		return Response.ok(new GenericEntity<Post.RepresentationShortCut>(post.getRepresentationShortCut()){}).build();
 	}
 	
-	@Path("/User.ShortCut")
+	@Path("/User.Representation")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUserShortCut(){
+	public Response getUserRepresentation(){
 		User user = new User("2011052407");
 		User u2 = new User("2011052406");
 		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
@@ -70,10 +71,10 @@ public class ModelJsonTest {
 		user.collectPost(p);
 		user.joinActivity(p);
 		
-		return Response.ok(user.getShortCut()).build();
+		return Response.ok(user.getRepresentation()).build();
 	}
 	
-	@Path("/User.ShortCuts")
+	@Path("/User.Representations")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUserShortCuts(){
@@ -89,11 +90,11 @@ public class ModelJsonTest {
 		user.collectPost(p);
 		user.joinActivity(p);
 		
-		List<User.ShortCut> shortCuts = new ArrayList<User.ShortCut>();
-		shortCuts.add(user.getShortCut());
-		shortCuts.add(u2.getShortCut());
+		List<UserRepresentation> representations = new ArrayList<UserRepresentation>();
+		representations.add(user.getRepresentation());
+		representations.add(u2.getRepresentation());
 		
-		return Response.ok(new GenericEntity<List<User.ShortCut>>(shortCuts){}).build();
+		return Response.ok(new GenericEntity<List<UserRepresentation>>(representations){}).build();
 	}
 	
 }

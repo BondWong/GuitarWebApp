@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import model.Post;
 import model.User;
+import model.representation.PostRepresentation;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,14 +36,9 @@ public class PostServiceAddPostTest {
 		PostService ps = new PostService();
 		ps.addPost("2011052407", ParamGenerator.generatePostParam(PostType.ACTIVITY));
 		
-		Post p = ps.getPostByID(new Long(1));
+		PostRepresentation p = ps.getPostByID(new Long(1));
 		
 		Assert.assertNotNull(p);
 		assertEquals(true, p.isActive());
-		
-		ps.deletePost("2011052407", new Long(1));
-		
-		p = ps.getPostByID(new Long(1));
-		assertEquals(false, p.isActive());
 	}
 }

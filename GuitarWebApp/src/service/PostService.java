@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import model.Post;
+import model.representation.PostRepresentation;
 import security.validation.PostRep;
 import service.transactions.SSETransactions.AddPostSSETransaction;
 import service.transactions.SSETransactions.CancelCollectSSETransaction;
@@ -91,10 +92,10 @@ public class PostService {
 		
 		transaction = new FetchPostsByUserIDTransaction();
 		
-		List<Post.ShortCut> posts = new ArrayList<Post.ShortCut>();
-		posts = (List<Post.ShortCut>) transaction.execute(params);
+		List<Post.RepresentationShortCut> posts = new ArrayList<Post.RepresentationShortCut>();
+		posts = (List<Post.RepresentationShortCut>) transaction.execute(params);
 		
-		return Response.ok(new GenericEntity<List<Post.ShortCut>>(posts){}).build();
+		return Response.ok(new GenericEntity<List<Post.RepresentationShortCut>>(posts){}).build();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -107,10 +108,10 @@ public class PostService {
 		
 		transaction = new FetchPostsByTypeTransaction();
 		
-		List<Post.ShortCut> posts = new ArrayList<Post.ShortCut>();
-		posts = (List<Post.ShortCut>) transaction.execute(params);
+		List<Post.RepresentationShortCut> posts = new ArrayList<Post.RepresentationShortCut>();
+		posts = (List<Post.RepresentationShortCut>) transaction.execute(params);
 		
-		return Response.ok(new GenericEntity<List<Post.ShortCut>>(posts){}).build();
+		return Response.ok(new GenericEntity<List<Post.RepresentationShortCut>>(posts){}).build();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -123,23 +124,23 @@ public class PostService {
 		
 		transaction = new FetchPostsByFolloweeTransaction();
 		
-		List<Post.ShortCut> posts = new ArrayList<Post.ShortCut>();
-		posts = (List<Post.ShortCut>) transaction.execute(params);
+		List<Post.RepresentationShortCut> posts = new ArrayList<Post.RepresentationShortCut>();
+		posts = (List<Post.RepresentationShortCut>) transaction.execute(params);
 		
-		return Response.ok(new GenericEntity<List<Post.ShortCut>>(posts){}).build();
+		return Response.ok(new GenericEntity<List<Post.RepresentationShortCut>>(posts){}).build();
 	}
 	
 	@Path("getByID/{postID : \\d+}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public Post getPostByID(@PathParam("postID") Long postID) throws Exception{
+	public PostRepresentation getPostByID(@PathParam("postID") Long postID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("postID", postID);
 		
 		transaction = new GetPostByIDTransaction();
 		
-		Post post = null;
-		post = (Post) transaction.execute(params);
+		PostRepresentation post = null;
+		post = (PostRepresentation) transaction.execute(params);
 		
 		return post;
 	}
@@ -153,10 +154,10 @@ public class PostService {
 		params.put("postIDs", postIDs);
 		
 		transaction = new GetPostsByIDsTransaction();
-		List<Post.ShortCut> posts = new ArrayList<Post.ShortCut>();
-		posts = (List<Post.ShortCut>) transaction.execute(params);
+		List<Post.RepresentationShortCut> posts = new ArrayList<Post.RepresentationShortCut>();
+		posts = (List<Post.RepresentationShortCut>) transaction.execute(params);
 		
-		return Response.ok(new GenericEntity<List<Post.ShortCut>>(posts){}).build();
+		return Response.ok(new GenericEntity<List<Post.RepresentationShortCut>>(posts){}).build();
 	}
 	
 	@Path("like/{userID : \\d+}/{postID : \\d+}")

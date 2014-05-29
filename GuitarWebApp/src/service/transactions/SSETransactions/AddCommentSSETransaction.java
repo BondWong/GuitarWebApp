@@ -19,7 +19,7 @@ public class AddCommentSSETransaction extends SSETransaction{
 		DAOTransaction transaction = new FetchCommentsByUserIDTransaction();
 		List<Comment> comments = (List<Comment>) transaction.execute(params);
 		
-		params.put("comment", comments.get(0));
+		params.put("commentShortCut", comments.get(0).getRepresentation());
 		
 		return new AddCommentServerSentEvent(params);
 	}

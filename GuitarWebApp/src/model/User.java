@@ -22,47 +22,34 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.Version;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import model.representation.UserRepresentation;
 
 @Entity
 @Access(AccessType.FIELD)
 @NamedQueries({ @NamedQuery(name = "User.getByIDandPassword",
 	query = "SELECT u FROM User u WHERE u.ID = ?1"
-			+ " AND u.password = ?2") })
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.NONE)
+			+ " AND u.password = ?2 AND u.active = 1") })
 public class User {
 	@Id
-	@XmlElement
 	private String ID;
 	@Version
 	private Integer version;
 	
 	private String password;
-	@XmlElement
 	private String avatarLink;
-	@XmlElement
 	private String profileImageLink;
-	@XmlElement
 	private String gender;
-	@XmlElement
 	private String nickName;
-	@XmlElement
 	private String lookingFor;
-	@XmlElement
 	private String relationship;
 	@Temporal(TemporalType.DATE)
-	@XmlElement
 	private Date birthday;
 	
 	@Transient
 	private Authority auth;
 	
 	@ElementCollection
-	@XmlElement
 	private Set<String> imageLinks;
 	
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.MERGE
@@ -309,75 +296,8 @@ public class User {
 		}
 	}
 	
-	public class ShortCut{
-		private String ID;
-		private List<String> auth;
-		private String avaterLink;
-		private String gender;
-		private String nickName;
-		private String lookingFor;
-		private String relationship;
-		
-		public String getID() {
-			return ID;
-		}
-		
-		public void setID(String iD) {
-			ID = iD;
-		}
-
-		public String getAvaterLink() {
-			return avaterLink;
-		}
-
-		public void setAvaterLink(String avaterLink) {
-			this.avaterLink = avaterLink;
-		}
-
-		public String getGender() {
-			return gender;
-		}
-
-		public void setGender(String gender) {
-			this.gender = gender;
-		}
-
-		public String getNickName() {
-			return nickName;
-		}
-
-		public void setNickName(String nickName) {
-			this.nickName = nickName;
-		}
-
-		public String getLookingFor() {
-			return lookingFor;
-		}
-
-		public void setLookingFor(String lookingFor) {
-			this.lookingFor = lookingFor;
-		}
-
-		public String getRelationship() {
-			return relationship;
-		}
-
-		public void setRelationship(String relationship) {
-			this.relationship = relationship;
-		}
-
-		public List<String> getAuth() {
-			return auth;
-		}
-
-		public void setAuth(List<String> auth) {
-			this.auth = auth;
-		}
-		
-	}
-	
-	public ShortCut getShortCut(){
-		ShortCut sc = new ShortCut();
+	public UserRepresentation getRepresentation(){
+		UserRepresentation sc = new UserRepresentation();
 		
 		sc.setID(this.getID());
 		sc.setNickName(this.getNickName());
@@ -387,6 +307,13 @@ public class User {
 		sc.setRelationship(this.getRelationShip());
 		sc.setAuth(this.getAuthority());
 		
+		for(User followee : this.followees){
+			sc.addFolloweeID(followee.getID());
+		}
+		
+		for(User follower : this.followers){
+			sc.addFollowerID(follower.getID());
+		}
 		return sc;
 	}
 	

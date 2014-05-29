@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import model.User;
-import model.User.ShortCut;
+import model.representation.UserRepresentation;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -48,7 +48,7 @@ public class GetUsersByIDsTest {
 		params.put("userIDs", userIDs);
 		
 		Transaction transaction = new GetUsersByIDsTransaction();
-		List<User.ShortCut> shortCuts = (List<ShortCut>) transaction.execute(params);
+		List<UserRepresentation> shortCuts = (List<UserRepresentation>) transaction.execute(params);
 	
 		assertEquals(3, shortCuts.size());
 	}

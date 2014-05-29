@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 
 import model.Post;
 import model.User;
+import model.representation.PostRepresentation;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -48,9 +49,9 @@ public class PostServiceLikeCollectJoinTest {
 		ps.collectPost("2011052406", new Long(1));
 		ps.joinActivity("2011052406", new Long(1));
 		
-		Post p = ps.getPostByID(new Long(1));
-		assertEquals(2, p.getLikeNum());
-		assertEquals(1, p.getParticipantsNum());
-		assertEquals("2011052406", p.getParticipants().iterator().next().getID());
+		PostRepresentation p = ps.getPostByID(new Long(1));
+		assertEquals(2, p.getLikerRepresentations().size());
+		assertEquals(1, p.getParticipantRepresentations().size());
+		assertEquals("2011052406", p.getParticipantRepresentations().iterator().next().getID());
 	}
 }

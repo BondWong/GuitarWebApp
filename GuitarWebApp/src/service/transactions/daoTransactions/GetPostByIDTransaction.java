@@ -17,7 +17,7 @@ public class GetPostByIDTransaction extends DAOTransaction{
 		
 		DAO<Post> pdao = new DAO<Post>(Post.class, em);
 		Post p = pdao.singleResultRead(postID, Post.class);
-		return p;
+		return p.getRepresentation();
 	}
 
 }
