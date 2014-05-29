@@ -404,3 +404,18 @@ body {
 	margin-top: 20px;
 	text-align: center;
 }
+
+.popTip {
+	width: 240px;
+	background-color: #FFF;
+	padding-bottom: 20px;
+}
+.popTip.ursNameShort {
+	text-align: center;
+	margin-top: -40px;
+}
+.popTip .urserInfShort {
+	text-align: center;
+	margin-top: -40px;
+}
+
