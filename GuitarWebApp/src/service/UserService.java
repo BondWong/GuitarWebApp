@@ -41,7 +41,7 @@ public class UserService {
 		return Response.ok().build();
 	}
 	
-	@Path("cancelFollow/{userID : \\d+}/{otherUserID} : \\d+")
+	@Path("cancelFollow/{userID : \\d+}/{otherUserID : \\d+}")
 	@PUT
 	public Response cancelFollow(@PathParam("userID") String userID, @PathParam("otherUserID") String otherUserID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();

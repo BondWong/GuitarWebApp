@@ -40,7 +40,7 @@
                   <ul class="dropdown-menu">
                     <li><a href="index.html"><span class="glyphicon glyphicon-home">主页</span></a></li>
                     <li><a href="activities.html"><span class="glyphicon glyphicon-th">活动区</span></a></li>
-                    <li><a href="activities.html"><span class="glyphicon glyphicon-comment">讨论区</span></a></li>
+                    <li><a href="circle.html"><span class="glyphicon glyphicon-comment">讨论区</span></a></li>
                     <li><a href="activities.html"><span class="glyphicon glyphicon glyphicon-check">悬赏区</span></a></li>
                   </ul>
             </li>
@@ -122,12 +122,14 @@
           	 <div class="media_comm">
             	<div class="row addCommentBtn">
                 	<div class="col-lg-8">
+                	 
                     	<div class="form-group">
-              				<input type="text" placeholder="Add a comment" class="form-control">
+              				<input type="text" placeholder="Add a comment" class="form-control" id="commentText12"/>
             			</div>
                     </div>
                     <div class="col-lg-4">
-                    	<button type="submit" class="btn btn-success" id="addComment"><input id="commentID" type='hidden' value="1" />Summit</button>
+                    	
+                    	<button type="button" class="btn btn-success" id="addComment" value="12">Submit</button>
                     </div>
                 </div>
                 <div class="act_content">
@@ -176,6 +178,7 @@
                 </div>
             </div>
           	</div>
+          	
           </div>
           <div class="post">
           	<div class="post_body">
@@ -239,6 +242,7 @@
     <script src="js/EventHandle.js"></script>
     <script type="text/javascript">
    		 Msnry('.pro_body','.post',435);
+   		 fecthPostsByType('DISSCUSSION');
     </script>
 </body>
 </html>
