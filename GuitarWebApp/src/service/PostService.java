@@ -56,6 +56,8 @@ public class PostService {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("postRep", postRep);
+		params.put("startIndex", 0);
+		params.put("pageSize", 1);
 		
 		transaction = new AddPostTransaction();
 		transaction.execute(params);

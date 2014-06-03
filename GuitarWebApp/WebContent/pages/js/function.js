@@ -20,7 +20,7 @@
 //function fecthPostsBytype
 	function fecthPostsByType(type){
 		$.ajax({
-			url:'../../GuitarWebApp/app/post/fetchByType/'+type,
+			url:'../../GuitarWebApp/app/post/fetchByType/'+type+'/0/10',
 			type:'get',
 			success:function(data){
 				$.each(data,function(index,jsonPostShortCut){
@@ -114,7 +114,7 @@ $(document).ready(function(){
 	    		var jtype = $("#type").val();
 	    		var jpublishDate = $("#publishDate").val();
 	    		var jstartDate = $("#startDate").val();
-	    		var jsonString = {mediaLocation:data,topic:jtopic,content:jcontent,postType:"DISSCUSSION",publishDate:date,startDate:date};
+	    		var jsonString = {mediaLocation:data,topic:jtopic,content:jcontent,postType:"DISCUSSION",publishDate:date,startDate:date};
 	    		var jsonData = $.toJSON(jsonString);
 	    		$.ajax({
 	    			type:"POST",
