@@ -46,7 +46,7 @@ public class FetchPostsByFolloweeTest {
 			u2.addPost(p);
 		}
 		for(int i=0;i<4;i++){
-			Post p = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+			Post p = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
 			u1.addPost(p);
 		}
 		udao.update(u1);

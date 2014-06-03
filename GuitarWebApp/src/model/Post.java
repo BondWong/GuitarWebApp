@@ -212,7 +212,7 @@ public class Post {
 		private String topic;
 		private String content;
 		private PostType type;
-		private Date publishDate;
+		private String publishDate;
 		
 		private int likeNum;
 		private int participentsNum;
@@ -261,11 +261,11 @@ public class Post {
 		}
 		
 
-		public Date getPublishDate() {
+		public String getPublishDate() {
 			return publishDate;
 		}
 
-		public void setPublishDate(Date publishDate) {
+		public void setPublishDate(String publishDate) {
 			this.publishDate = publishDate;
 		}
 
@@ -313,7 +313,7 @@ public class Post {
 		psc.setType(this.getType());
 		psc.setLikeNum(this.getLikeNum());
 		psc.setParticipentsNum(this.getParticipantsNum());
-		psc.setPublishDate(this.getPusblishDate());
+		psc.setPublishDate(this.getPusblishDate().toString());
 		psc.setOwnerNickName(/*this.getOwner().getNickName()*/"fucker");
 		psc.setOwnerAvatarLink(/*this.getOwner().getAvatarLink()*/"xxx.xxx.x");
 		
@@ -329,12 +329,12 @@ public class Post {
 		representation.setType(this.getType());
 		representation.setContent(this.getContent());
 		representation.setMediaLocation(this.getMediaLocation());
-		representation.setPublishDate(this.getPusblishDate());
+		representation.setPublishDate(this.getPusblishDate().toString());
 		representation.setOwner(this.getOwner().getRepresentation());
 		representation.addCommentRepresentations(this.comments);
 		representation.addLikerRepresentation(this.likers);
 		
-		representation.setStartDate(this.getStartDate());
+		representation.setStartDate(this.getStartDate().toString());
 		representation.addParticipantRepresentations(this.getParticipants());
 		
 		return representation;

@@ -16,12 +16,14 @@ public class FetchPostsByFolloweeTransaction extends DAOTransaction{
 			throws Exception {
 		// TODO Auto-generated method stub
 		String userID = (String) params.get("userID");
+		Integer startIndex = (Integer) params.get("startIndex");
+		Integer pageSize = (Integer) params.get("pageSize");
 		
 		DAO<Post> pdao = new DAO<Post>(Post.class, em);
 		List<Post> posts = new ArrayList<Post>();
 		List<Post.RepresentationShortCut> representationShortCuts = new ArrayList<Post.RepresentationShortCut>();
 		
-		posts = pdao.collectionRead("Post.fetchByFollowee", Post.class, userID);
+		posts = pdao.collectionRead("Post.fetchByFollowee", startIndex, pageSize, Post.class, userID);
 		for(Post p : posts){
 			representationShortCuts.add(p.getRepresentationShortCut());
 		}

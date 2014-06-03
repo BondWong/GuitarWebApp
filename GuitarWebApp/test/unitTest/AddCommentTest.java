@@ -34,7 +34,7 @@ public class AddCommentTest extends TestCase{
 		u2 = new User("2011052406");
 		
 		p1 = (Post) f1.create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
-		p2 = (Post) f1.create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+		p2 = (Post) f1.create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
 		
 		c1 = (Comment) f2.create(ParamGenerator.generateCommentParam(CommentType.COMMENT));
 		c2 = (Comment) f2.create(ParamGenerator.generateCommentParam(CommentType.COMMENT));

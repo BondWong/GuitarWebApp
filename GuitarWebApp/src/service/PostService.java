@@ -83,12 +83,16 @@ public class PostService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Path("fetchByUserID/{userID : \\d+}")
+	@Path("fetchByUserID/{userID : \\d+}/{startIndex : \\d{1,}}/{pageSize : \\d{1,}}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response fetchPostsByUserID(@PathParam("userID") String userID) throws Exception{
+	public Response fetchPostsByUserID(@PathParam("userID") String userID,
+			@PathParam("startIndex") int startIndex,
+			@PathParam("pageSize") int pageSize) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
+		params.put("startIndex", startIndex);
+		params.put("pageSize", pageSize);
 		
 		transaction = new FetchPostsByUserIDTransaction();
 		
@@ -99,12 +103,16 @@ public class PostService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Path("fetchByType/{type : [A-Z]+}")
+	@Path("fetchByType/{type : [A-Z]+}/{startIndex : \\d{1,}}/{pageSize : \\d{1,}}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response fetchPostsByType(@PathParam("type") PostType type) throws Exception{
+	public Response fetchPostsByType(@PathParam("type") PostType type,
+			@PathParam("startIndex") int startIndex,
+			@PathParam("pageSize") int pageSize) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("type", type);
+		params.put("startIndex", startIndex);
+		params.put("pageSize", pageSize);
 		
 		transaction = new FetchPostsByTypeTransaction();
 		
@@ -115,12 +123,16 @@ public class PostService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Path("fetchByFollowee/{userID : \\d+}")
+	@Path("fetchByFollowee/{userID : \\d+}/{startIndex : \\d{1,}}/{pageSize : \\d{1,}}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response fetchPostsByFollowee(@PathParam("userID") String userID) throws Exception{
+	public Response fetchPostsByFollowee(@PathParam("userID") String userID,
+			@PathParam("startIndex") int startIndex,
+			@PathParam("pageSize") int pageSize) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
+		params.put("startIndex", startIndex);
+		params.put("pageSize", pageSize);
 		
 		transaction = new FetchPostsByFolloweeTransaction();
 		

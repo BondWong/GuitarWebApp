@@ -33,8 +33,7 @@ public class FileUploader extends HttpServlet {
     }
     
     public void init(){
-    	root = getServletConfig().getServletContext()
-        		.getRealPath("/");
+    	setUp();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,7 +47,6 @@ public class FileUploader extends HttpServlet {
 				throw new FileUploadBase.InvalidContentTypeException();
 			}
 			
-			setUp();
 			List<String> links = process(request);
 			response.setContentType("application/json");
 			response.setStatus(200);
@@ -73,6 +71,8 @@ public class FileUploader extends HttpServlet {
 		factory.setRepository(repository);
 		upload = new ServletFileUpload(factory);
 		upload.setSizeMax(1024*1024*10);
+		root = getServletConfig().getServletContext()
+        		.getRealPath("/");
 	}
 	
 	private List<String> process(HttpServletRequest request) throws FileUploadException,

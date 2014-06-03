@@ -66,9 +66,9 @@ public class User {
 		inverseJoinColumns=@JoinColumn(name="JOINEDACTIVITY_ID"))
 	private Set<Post> joinedActivities;
 	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="FOLLOWEES_FOLLOWERS",
-		joinColumns=@JoinColumn(name="FOLLOWEE_ID"),
-		inverseJoinColumns=@JoinColumn(name="FOLLOWER_ID"))
+	@JoinTable(name="USER_OTHERUSER",
+		joinColumns=@JoinColumn(name="USER_ID"),
+		inverseJoinColumns=@JoinColumn(name="OTHERUSER_ID"))
 	private Set<User> followees;
 	@ManyToMany(mappedBy="followees",fetch=FetchType.LAZY)
 	private Set<User> followers;

@@ -61,7 +61,7 @@ public class ModelJsonTest {
 	public Response getUserRepresentation(){
 		User user = new User("2011052407");
 		User u2 = new User("2011052406");
-		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
 		Post p =new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
 		user.follow(u2);
 		user.addPost(post);
@@ -80,7 +80,7 @@ public class ModelJsonTest {
 	public Response getUserShortCuts(){
 		User user = new User("2011052407");
 		User u2 = new User("2011052406");
-		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
 		Post p =new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
 		user.follow(u2);
 		user.addPost(post);

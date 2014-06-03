@@ -38,10 +38,10 @@ public class GetPostByIDsTransactionTest {
 		
 		em.getTransaction().begin();
 		udao.create(user);
-		Post p1 = (Post) f.create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
-		Post p2 = (Post) f.create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
-		Post p3 = (Post) f.create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
-		Post p4 = (Post) f.create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+		Post p1 = (Post) f.create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
+		Post p2 = (Post) f.create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
+		Post p3 = (Post) f.create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
+		Post p4 = (Post) f.create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
 		user.addPost(p1);
 		user.addPost(p2);
 		user.addPost(p3);

@@ -17,11 +17,13 @@ public class FetchPostsByTypeTransaction extends DAOTransaction{
 			throws Exception {
 		// TODO Auto-generated method stub
 		PostType type = (PostType) params.get("type");
+		Integer startIndex = (Integer) params.get("startIndex");
+		Integer pageSize = (Integer) params.get("pageSize");
 		
 		DAO<Post> pdao = new DAO<Post>(Post.class, em);
 		
 		List<Post> posts = new ArrayList<Post>();
-		posts = pdao.collectionRead("Post.fetchByType", Post.class, type);
+		posts = pdao.collectionRead("Post.fetchByType", startIndex, pageSize, Post.class, type);
 		List<Post.RepresentationShortCut> representationShortCuts = new ArrayList<Post.RepresentationShortCut>();
 		for(Post p : posts){
 			representationShortCuts.add(p.getRepresentationShortCut());

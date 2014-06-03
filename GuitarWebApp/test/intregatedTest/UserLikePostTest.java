@@ -46,7 +46,7 @@ public class UserLikePostTest {
 		udao.create(u2);
 		em.getTransaction().commit();
 		
-		Post p1 = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+		Post p1 = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
 		em.getTransaction().begin();
 		u1 = udao.singleResultRead("2011052407", User.class);
 		u1.addPost(p1);
