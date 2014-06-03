@@ -53,7 +53,7 @@ public class PostServiceTest extends JerseyTest{
 		postRep.setMediaLocation(new LinkedHashSet<String>());
 		postRep.setPublishDate(new Date());
 		postRep.setTopic("hehe");
-		postRep.setPostType(PostType.DISSCUSSION.name());
+		postRep.setPostType(PostType.DISCUSSION.name());
 		
 		Entity<PostRep> entity = Entity.entity(postRep, MediaType.APPLICATION_JSON);
 		Response response = target("/post/add/2011052407")

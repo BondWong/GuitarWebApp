@@ -41,7 +41,7 @@ public class UserService {
 		return Response.ok().build();
 	}
 	
-	@Path("cancelFollow/{userID : \\d+}/{otherUserID} : \\d+")
+	@Path("cancelFollow/{userID : \\d+}/{otherUserID : \\d+}")
 	@PUT
 	public Response cancelFollow(@PathParam("userID") String userID, @PathParam("otherUserID") String otherUserID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -57,9 +57,9 @@ public class UserService {
 		return Response.ok().build();
 	}
 	
-	@Path("getShortCut/{userID : \\d+}")
+	@Path("getRepresentation/{userID : \\d+}")
 	@GET
-	public Response getUser(@PathParam("userID") String userID) throws Exception{
+	public Response getUserRepresentation(@PathParam("userID") String userID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		
@@ -71,9 +71,9 @@ public class UserService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Path("getShortCuts")
+	@Path("getRepresentations")
 	@GET
-	public Response getUsers(@QueryParam("userIDs") List<String> userIDs) throws Exception{
+	public Response getUsersRepresentation(@QueryParam("userIDs") List<String> userIDs) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userIDs", userIDs);
 		

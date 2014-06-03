@@ -19,6 +19,8 @@ public class CommentRepresentation{
 	@XmlElement
 	private CommentType type;
 	@XmlElement
+	private String publishDate;
+	@XmlElement
 	private Set<UserRepresentation> supportorRepresentations;
 	@XmlElement
 	private UserRepresentation ownerRepresentation;
@@ -45,6 +47,14 @@ public class CommentRepresentation{
 
 	public void setType(CommentType type) {
 		this.type = type;
+	}
+
+	public String getPublishDate() {
+		return publishDate;
+	}
+
+	public void setPublishDate(String publishDate) {
+		this.publishDate = publishDate;
 	}
 
 	public Set<UserRepresentation> getSupportorRepresentations() {

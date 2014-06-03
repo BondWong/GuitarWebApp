@@ -1,6 +1,5 @@
 package model.representation;
 
-import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -27,7 +26,7 @@ import utils.PostType;
 		@XmlElement
 		private PostType type;
 		@XmlElement
-		private Date publishDate;
+		private String publishDate;
 		@XmlElement
 		private boolean active;
 		
@@ -38,7 +37,7 @@ import utils.PostType;
 		@XmlElement
 		private Set<UserRepresentation> likerRepresentations;
 		@XmlElement
-		private Date startDate;
+		private String startDate;
 		@XmlElement
 		private Set<UserRepresentation> participantRepresentations;
 		
@@ -82,11 +81,11 @@ import utils.PostType;
 			this.type = type;
 		}
 
-		public Date getPublishDate() {
+		public String getPublishDate() {
 			return publishDate;
 		}
 
-		public void setPublishDate(Date publishDate) {
+		public void setPublishDate(String publishDate) {
 			this.publishDate = publishDate;
 		}
 		
@@ -132,11 +131,11 @@ import utils.PostType;
 			}
 		}
 
-		public Date getStartDate() {
+		public String getStartDate() {
 			return startDate;
 		}
 
-		public void setStartDate(Date startDate) {
+		public void setStartDate(String startDate) {
 			this.startDate = startDate;
 		}
 

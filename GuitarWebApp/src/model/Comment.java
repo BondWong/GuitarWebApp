@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Access;
@@ -18,6 +19,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlTransient;
@@ -38,6 +41,8 @@ public class Comment {
 	private String content;
 	@Transient
 	private CommentType type;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date publishDate;
 	
 	@Transient
 	@XmlTransient
@@ -76,6 +81,14 @@ public class Comment {
 		this.type = type;
 	}
 	
+	public Date getPublishDate() {
+		return publishDate;
+	}
+
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
+	}
+
 	public User getOwner() {
 		return owner;
 	}
@@ -128,6 +141,7 @@ public class Comment {
 		shortCut.setID(this.getID());
 		shortCut.setContent(this.getContent());
 		shortCut.setType(this.getType());
+		shortCut.setPublishDate(this.getPublishDate().toString());
 		
 		for(User supportor : this.getSupportors()){
 			shortCut.addSupportorShortCuts(supportor.getRepresentation());

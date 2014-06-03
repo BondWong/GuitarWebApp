@@ -24,7 +24,7 @@ public class JoinActivityTest extends TestCase{
 		f1 = new PostFactory();
 		
 		p1 = (Post) f1.create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
-		p2 = (Post) f1.create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+		p2 = (Post) f1.create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
 	}
 	
 	@Test

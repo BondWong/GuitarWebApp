@@ -1,7 +1,7 @@
 package utils;
 
 public enum PostType {
-	ACTIVITY, DISSCUSSION, QUESTION;
+	ACTIVITY, DISCUSSION, QUESTION;
 	
 	public String toString(){
 		return this.name();

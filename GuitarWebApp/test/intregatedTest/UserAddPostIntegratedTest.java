@@ -33,7 +33,7 @@ public class UserAddPostIntegratedTest {
 	
 	@Test
 	public void testUserAddPost() throws Exception{
-		Post p = (Post) new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+		Post p = (Post) new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
 		
 		DAO<User> dao = new DAO<User>(User.class, em);
 		em.getTransaction().begin();

@@ -64,6 +64,7 @@ public class SystemTestListener implements ServletContextListener {
     	em.getTransaction().begin();
     	udao.create(user);
     	udao.create(u2);
+    	user.follow(u2);
     	em.getTransaction().commit();
     	
     	DAO<Community> cdao = null;
@@ -76,7 +77,7 @@ public class SystemTestListener implements ServletContextListener {
     	em.getTransaction().begin();
     	Community c1 = new Community();
     	c1.setName("disscussion");
-    	c1.setPostType(PostType.DISSCUSSION);
+    	c1.setPostType(PostType.DISCUSSION);
     	Community c2 = new Community();
     	c2.setName("activity");
     	c2.setPostType(PostType.ACTIVITY);
@@ -93,7 +94,7 @@ public class SystemTestListener implements ServletContextListener {
     	em.getTransaction().begin();
     	for(int i=0;i<10;i++){
     		if(i<5){
-    			Post p = (Post)f.create(ParamGenerator.generatePostParam(PostType.DISSCUSSION));
+    			Post p = (Post)f.create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
     			user.addPost(p);
     			Comment c = (Comment)f1.create(ParamGenerator.generateCommentParam(CommentType.COMMENT));
     			u2.addComment(p, c);
