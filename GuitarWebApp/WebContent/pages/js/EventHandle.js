@@ -15,6 +15,7 @@ if (!!window.EventSource) {
 			var postID = jsondata.pcID;
 			var inputID = $("input[value='"+postID+"'][id='likeID']");
 			inputID.next().attr("class","glyphicon glyphicon-heart");
+			alert(inputID.next().text());
 			var like = parseInt(inputID.next().text())+1;
 			inputID.next().text(like); 
 		});
@@ -23,6 +24,7 @@ if (!!window.EventSource) {
 			var postID = jsondata.pcID;
 			var inputID = $("input[value='"+postID+"'][id='likeID']");
 			inputID.next().attr("class","glyphicon glyphicon-heart-empty");
+			alert(inputID.next().text());
 			var like = parseInt(inputID.next().text())-1;
 			inputID.next().text(like);
 		});

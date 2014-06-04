@@ -150,7 +150,7 @@ public class User {
 		return relationship;
 	}
 	
-	public void setRealationShip(String relationship){
+	public void setRelationShip(String relationship){
 		this.relationship = relationship;
 	}
 	
@@ -191,6 +191,10 @@ public class User {
 	
 	public void addImageLink(String link){
 		imageLinks.add(link);
+	}
+	
+	public void removeImageLink(String link){
+		imageLinks.remove(link);
 	}
 	
 	public Set<String> getImageLins(){
@@ -296,6 +300,90 @@ public class User {
 		}
 	}
 	
+	public class RepresentationShortCut{
+		private String nickName;
+		private String gender;
+		private String avatarLink;
+		private String lookingFor;
+		private String relationship;
+		private String birthday;
+		private Set<String> imgaeLinks;
+		
+		public String getNickName() {
+			return nickName;
+		}
+		
+		public void setNickName(String nickName) {
+			this.nickName = nickName;
+		}
+		
+		public String getGender() {
+			return gender;
+		}
+		
+		public void setGender(String gender) {
+			this.gender = gender;
+		}
+
+		public String getAvatarLink() {
+			return avatarLink;
+		}
+
+		public void setAvatarLink(String avatarLink) {
+			this.avatarLink = avatarLink;
+		}
+
+		public String getLookingFor() {
+			return lookingFor;
+		}
+
+		public void setLookingFor(String lookingFor) {
+			this.lookingFor = lookingFor;
+		}
+
+		public String getRelationship() {
+			return relationship;
+		}
+
+		public void setRelationship(String relationship) {
+			this.relationship = relationship;
+		}
+
+		public String getBirthday() {
+			return birthday;
+		}
+
+		public void setBirthday(String birthday) {
+			this.birthday = birthday;
+		}
+
+		public Set<String> getImgaeLinks() {
+			return imgaeLinks;
+		}
+
+		public void setImgaeLinks(Set<String> imgaeLinks) {
+			this.imgaeLinks = imgaeLinks;
+		}
+		
+	}
+	
+	public RepresentationShortCut getRepresentationShortCut(){
+		RepresentationShortCut rsc = new RepresentationShortCut();
+		
+		rsc.setNickName(this.getNickName());
+		rsc.setGender(this.getGender());
+		if(this.getBirthday()!=null){
+			rsc.setBirthday(this.getBirthday().toString());
+		} else{
+			rsc.setBirthday(null);
+		}
+		rsc.setLookingFor(this.getLookingFor());
+		rsc.setRelationship(this.getRelationShip());
+		rsc.setAvatarLink(this.getAvatarLink());
+		
+		return rsc;
+	}
+	
 	public UserRepresentation getRepresentation(){
 		UserRepresentation sc = new UserRepresentation();
 		
@@ -305,7 +393,13 @@ public class User {
 		sc.setAvaterLink(this.getAvatarLink());
 		sc.setLookingFor(this.getLookingFor());
 		sc.setRelationship(this.getRelationShip());
+		if(this.getBirthday()!=null){
+			sc.setBirthday(this.getBirthday().toString());
+		} else{
+			sc.setBirthday(null);
+		}
 		sc.setAuth(this.getAuthority());
+		sc.setImageLinks(this.getImageLins());
 		
 		for(User followee : this.followees){
 			sc.addFolloweeID(followee.getID());
@@ -314,6 +408,11 @@ public class User {
 		for(User follower : this.followers){
 			sc.addFollowerID(follower.getID());
 		}
+		
+		for(Post post : collectedPosts){
+			sc.addCollectedPost(post.getID());
+		}
+		
 		return sc;
 	}
 	

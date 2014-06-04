@@ -3,6 +3,9 @@ package unitTest;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.Post;
+import model.User;
+
 import org.junit.Test;
 
 import service.factory.CommentFactory;
@@ -39,7 +42,13 @@ public class SSEContentTest {
 	public void testAddPostSSE(){
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", "2011052407");
-		params.put("postShortCut", new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY)).getRepresentationShortCut());
+		User user = new User("2011052407");
+		user.setPassword("");
+		user.setNickName("Bond");
+		user.setAvatarLink("1");
+		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
+		user.addPost(post);
+		params.put("postShortCut", post.getRepresentationShortCut());
 		AddPostServerSentEvent acsse = new AddPostServerSentEvent(params);
 		System.out.println(acsse.toString());
 	}

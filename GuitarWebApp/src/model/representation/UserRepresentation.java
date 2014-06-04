@@ -27,6 +27,12 @@ public class UserRepresentation{
 	@XmlElement
 	private String relationship;
 	@XmlElement
+	private String birthday;
+	@XmlElement
+	private Set<String> imageLinks;
+	@XmlElement
+	private Set<Long> collectedPosts;
+	@XmlElement
 	private Set<String> followeesID;
 	@XmlElement
 	private Set<String> followersID;
@@ -87,6 +93,22 @@ public class UserRepresentation{
 		this.auth = auth;
 	}
 
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	public Set<String> getImageLinks() {
+		return imageLinks;
+	}
+
+	public void setImageLinks(Set<String> imageLinks) {
+		this.imageLinks = imageLinks;
+	}
+
 	public Set<String> getFolloweesID() {
 		return followeesID;
 	}
@@ -105,6 +127,17 @@ public class UserRepresentation{
 		if(followersID==null)
 			this.followersID = new LinkedHashSet<String>();
 		this.followersID.add(followerID);
+	}
+
+	public Set<Long> getCollectedPosts() {
+		return collectedPosts;
+	}
+	
+	public void addCollectedPost(Long collectedPost) {
+		if(this.collectedPosts == null){
+			this.collectedPosts = new LinkedHashSet<Long>();
+		}
+		this.collectedPosts.add(collectedPost);
 	}
 	
 }

@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -17,8 +18,7 @@ import utils.ParamGenerator;
 import utils.PostType;
 import model.Post;
 import model.User;
-import model.representation.UserRepresentation;
-import model.representation.PostRepresentation;;
+import model.representation.PostRepresentation;
 
 @Path("/test")
 public class ModelJsonTest {
@@ -27,12 +27,20 @@ public class ModelJsonTest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPostRepresentationShortCuts(){
 		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.ACTIVITY));
+		User user1 = new User("2011052406");
+		user1.setNickName("Obama");
+		user1.setAvatarLink("xx.xx.yy");
+		user1.addPost(post);
+		User user = new User("2011052407");
+		user.likePost(post);
+		user.collectPost(post);
+		user.joinActivity(post);
 		List<Post.RepresentationShortCut> representationShortCuts = new ArrayList<Post.RepresentationShortCut>();
 		representationShortCuts.add(post.getRepresentationShortCut());
 		return Response.ok(new GenericEntity<List<Post.RepresentationShortCut>>(representationShortCuts){}).build();
 	}
 	
-	@Path("/Post")
+	@Path("/Post.Representation")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPostRepresentation(){
@@ -44,6 +52,11 @@ public class ModelJsonTest {
 			u.addComment(post, new CommentFactory().create(ParamGenerator.generateCommentParam(CommentType.ANSWER)));
 		}
 		
+		User user1 = new User("2011052406");
+		user.likePost(post);
+		user1.likePost(post);
+		user1.collectPost(post);
+		user1.joinActivity(post);
 		return Response.ok(new GenericEntity<PostRepresentation>(post.getRepresentation()){}).build();
 	}
 	
@@ -70,14 +83,22 @@ public class ModelJsonTest {
 		user.likePost(post);
 		user.collectPost(p);
 		user.joinActivity(p);
+		user.setAvatarLink("xx.yy.zz");
+		user.setBirthday(new Date());
+		user.setGender("male");
+		user.setLookingFor("girls");
+		user.setNickName("Winson");
+		user.addImageLink("xx.zz.yy");
+		user.addImageLink("zz.yy.xx");
+		user.setRelationShip("has many wives");
 		
 		return Response.ok(user.getRepresentation()).build();
 	}
 	
-	@Path("/User.Representations")
+	@Path("/User.RepresentationShortCuts")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUserShortCuts(){
+	public Response getUserRepresentationShortCuts(){
 		User user = new User("2011052407");
 		User u2 = new User("2011052406");
 		Post post = new PostFactory().create(ParamGenerator.generatePostParam(PostType.DISCUSSION));
@@ -89,12 +110,20 @@ public class ModelJsonTest {
 		user.likePost(post);
 		user.collectPost(p);
 		user.joinActivity(p);
+		user.setAvatarLink("xx.yy.zz");
+		user.setBirthday(new Date());
+		user.setGender("male");
+		user.setLookingFor("girls");
+		user.setNickName("Winson");
+		user.addImageLink("xx.zz.yy");
+		user.addImageLink("zz.yy.xx");
+		user.setRelationShip("has many wives");
 		
-		List<UserRepresentation> representations = new ArrayList<UserRepresentation>();
-		representations.add(user.getRepresentation());
-		representations.add(u2.getRepresentation());
+		List<User.RepresentationShortCut> representations = new ArrayList<User.RepresentationShortCut>();
+		representations.add(user.getRepresentationShortCut());
+		representations.add(u2.getRepresentationShortCut());
 		
-		return Response.ok(new GenericEntity<List<UserRepresentation>>(representations){}).build();
+		return Response.ok(new GenericEntity<List<User.RepresentationShortCut>>(representations){}).build();
 	}
 	
 }

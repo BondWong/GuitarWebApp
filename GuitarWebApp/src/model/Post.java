@@ -215,7 +215,9 @@ public class Post {
 		private String publishDate;
 		
 		private int likeNum;
-		private int participentsNum;
+		private Set<String> likerIDs;
+		private int participantsNum;
+		private Set<String> participantIDs;
 		
 		private String ownerAvatarLink;
 		private String ownerNickName;
@@ -277,12 +279,12 @@ public class Post {
 			this.likeNum = likeNum;
 		}
 		
-		public int getParticipentsNum() {
-			return participentsNum;
+		public int getParticipantsNum() {
+			return participantsNum;
 		}
 		
-		public void setParticipentsNum(int participentsNum) {
-			this.participentsNum = participentsNum;
+		public void setParticipantsNum(int participantsNum) {
+			this.participantsNum = participantsNum;
 		}
 
 		public String getOwnerAvatarLink() {
@@ -300,6 +302,28 @@ public class Post {
 		public void setOwnerNickName(String ownerNickName) {
 			this.ownerNickName = ownerNickName;
 		}
+
+		public Set<String> getLikerIDs() {
+			return likerIDs;
+		}
+
+		public void addLikerID(String likerID) {
+			if(this.likerIDs==null){
+				this.likerIDs = new LinkedHashSet<String>();
+			}
+			this.likerIDs.add(likerID);
+		}
+
+		public Set<String> getParticipantIDs() {
+			return participantIDs;
+		}
+
+		public void addParticipantID(String participantID) {
+			if(this.participantIDs==null){
+				this.participantIDs = new LinkedHashSet<String>();
+			}
+			this.participantIDs.add(participantID);
+		}
 		
 	}
 	
@@ -312,10 +336,16 @@ public class Post {
 		psc.setTopic(this.getTopic());
 		psc.setType(this.getType());
 		psc.setLikeNum(this.getLikeNum());
-		psc.setParticipentsNum(this.getParticipantsNum());
+		psc.setParticipantsNum(this.getParticipantsNum());
+		for(User user : likers){
+			psc.addLikerID(user.getID());
+		}
+		for(User user : this.getParticipants()){
+			psc.addParticipantID(user.getID());
+		}
 		psc.setPublishDate(this.getPusblishDate().toString());
-		psc.setOwnerNickName(/*this.getOwner().getNickName()*/"fucker");
-		psc.setOwnerAvatarLink(/*this.getOwner().getAvatarLink()*/"xxx.xxx.x");
+		psc.setOwnerNickName(this.getOwner().getNickName());
+		psc.setOwnerAvatarLink(this.getOwner().getAvatarLink());
 		
 		return psc;
 	}
