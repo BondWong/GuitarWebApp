@@ -20,7 +20,7 @@
 //function fecthPostsBytype
 	function fecthPostsByType(type){
 		$.ajax({
-			url:'../../GuitarWebApp/app/post/fetchByType/'+type+'/0/10',
+			url:'../../GuitarWebApp/app/post/fetchByType/'+type+'/0/5',
 			type:'get',
 			success:function(data){
 				$.each(data,function(index,jsonPostShortCut){
@@ -36,7 +36,7 @@
 	
 	function fetchPostsByUserID(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/post/fetchByUserID/2011052407',// /post/fetchByUserID/'+id
+			url:'../../GuitarWebApp/app/post/fetchByUserID/2011052407/0/5',// /post/fetchByUserID/'+id
 			type:'get',
 			success:function(data){
 				//var jsondata = $.parseJSON(data);
@@ -211,6 +211,30 @@ $(document).ready(function(){
 					type:'put'
 				});
 			}
+		});
+		//function editProfileInfro
+		$('body').on('click','.aEditbtn',function(){
+			$("span[class='Anickname']").html("<input id='focusedInput' class='nicknameE' type='text' value='Winson_Lau' />");
+			$("span[class='Alooking']").html("<input id='focusedInput' type='text' value='Make friends' />");
+			$("span[class='Agender']").html("<select><option value='male'>Male</option><option value='female'>Female</option></select>");
+			$("span[class='Arelationship']").html("<select><option value='single'>single</option><option value='loving'>loving</option></select>");
+			$("span[class='Aaddress']").html("<select><option value='#1'>#1</option><option value='#2'>#2</option></select>");
+			$(this).text("Save");
+			$(this).attr("class","btn btn-primary aSavebtn");
+		});
+		//function saveProfileInfro
+		$('body').on('click','.aSavebtn',function(){
+			var nickName = $('.nicknameE').val();
+			//var gender = $('.nicknameE').val();
+			//var lookingfor = $('.nicknameE').val();
+			var d = new Date();
+        	var publishDateN = d.getFullYear() + "/" +(d.getMonth()+1) + "/" + d.getDate();
+        	var date = new Date(publishDateN);
+        	alert(publishDateN);
+			$.ajax({
+				type:'put',
+				url:'../../GuitarWebApp/app/user/updateProfile/2011052407?nickName=1&gender=1&lookingFor=1&relationship=1&birthday='+publishDateN+''
+			});
 		});
 		
 });

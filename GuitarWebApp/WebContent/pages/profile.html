@@ -64,14 +64,27 @@
         </div>
      	<div class="profile_nav">
         	<ul class="nav nav-tabs profile_navul">
-				<li><a href="#">about</a> </li> 
+				<li><a href="profileAbout.html">about</a> </li> 
 				<li><a href="profile.html">post</a></li>
 				<li><a href="#">photos</a></li> 
 				<li><a href="profileCircle.html">circle</a></li>  
 			</ul>
         </div>
         <div class="pro_body">
-       	  <div class="share post" style="display:none;"></div>
+       	  <div class="share post">
+          <form enctype="multipart/form-data">
+          	<input class="form-control" id="share_txt" type="text" placeholder="share anything you what to share"/>
+            <div class="share_button_group btn-group">
+            
+              <button type="button" class="btn btn-default" id="btn_motion" >表情</button>
+  			  <button type="button" class="btn btn-default" id="btn_pic" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">图片</button>
+  			  <button type="button" class="btn btn-default" id="btn_video">视频</button>
+              <button type="button" class="btn btn-success" id="btn_share" value="upload">分享</button>
+              <input type="file"  name="file"/>
+             
+            </div>
+            </form>
+          </div>
           <div class="post">
           	<div class="post_body">
           	<div class="row">

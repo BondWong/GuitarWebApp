@@ -419,3 +419,72 @@ body {
 	margin-top: -40px;
 }
 
+.post .aboutBlue {
+	background-color: #FFF;
+	width: 100%;
+	height: 300px;
+	border-top-width: 5px;
+	border-right-width: 1px;
+	border-bottom-width: 2px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #76a7fa;
+	border-right-color: #d8d8d8;
+	border-bottom-color: #d8d8d8;
+	border-left-color: #d8d8d8;
+	padding-top: 30px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+}
+.post .aboutRed {
+	background-color: #FFF;
+	width: 100%;
+	height: 300px;
+	border-top-width: 5px;
+	border-right-width: 1px;
+	border-bottom-width: 2px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #e46f61;
+	border-right-color: #d8d8d8;
+	border-bottom-color: #d8d8d8;
+	border-left-color: #d8d8d8;
+	padding-top: 30px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+}
+.aboutBlue .Atitle {
+	display: block;
+	text-align: right;
+	width: 100px;
+	float: left;
+	font-weight: bolder;
+	margin-right: 20px;
+}
+.aboutBlue .aboutTitle {
+	display: block;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #E0E0E0;
+	font-size: 18px;
+	font-weight: bolder;
+	float: left;
+	width: 100%;
+}
+.aboutBlue .aEditbtn {
+	margin-left: 50px;
+}
+.aboutBlue .aSavebtn {
+	margin-left: 50px;
+}
+
