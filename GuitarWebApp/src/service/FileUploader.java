@@ -40,7 +40,6 @@ public class FileUploader extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("FileUploader");
 		try{
 			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 			if(!isMultipart){
@@ -97,12 +96,14 @@ public class FileUploader extends HttpServlet {
 			}
 			
 			String contentType = item.getContentType();
+			if(!contentType.contains("image"))
+				continue;
+			
 			File uploaddedFile = new File(root + "fileDir/" + 
-					userID + System.currentTimeMillis() + "." + 
-					contentType.substring(contentType.indexOf("/")+1, contentType.length()));
-			
+				userID + System.currentTimeMillis() + "." + 
+				contentType.substring(contentType.indexOf("/")+1, contentType.length()));
+		
 			item.write(uploaddedFile);
-			
 			links.add(uploaddedFile.getAbsolutePath());
 		}
 		

@@ -10,6 +10,7 @@ import model.User;
 
 public class UpdateUserProfileTransaction extends DAOTransaction{
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params)
 			throws Exception {
@@ -19,11 +20,13 @@ public class UpdateUserProfileTransaction extends DAOTransaction{
 		String gender = (String) params.get("gender");
 		String lookingFor = (String) params.get("lookingFor");
 		String relationship = (String) params.get("relationship");
-		Date birthday = (Date) params.get("birthday");
+		String year = (String) params.get("year");
+		String month = (String) params.get("month");
+		String date = (String) params.get("date");
 		
 		DAO<User> udao = new DAO<User>(User.class, em);
 		User user = udao.singleResultRead(userID, User.class);
-		user.setBirthday(birthday);
+		user.setBirthday(new Date(Integer.parseInt(year)-1900, Integer.parseInt(month)-1, Integer.parseInt(date)));
 		user.setGender(gender);
 		user.setLookingFor(lookingFor);
 		user.setNickName(nickName);

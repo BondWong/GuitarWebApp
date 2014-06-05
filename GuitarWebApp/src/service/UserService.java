@@ -1,7 +1,6 @@
 package service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,18 +62,22 @@ public class UserService {
 		return Response.ok().build();
 	}
 	
-	@Path("updateProfile/{userID : \\d+}")
+	@Path("updateProfile/{userID : \\d+}/{nickName}/{gender}/{lookingFor}/{relationship}/{year}/{month}/{date}")
 	@PUT
-	public Response updateUserProfile(@PathParam("userID") String userID, @QueryParam("nickName") String nickName,
-			@QueryParam("gender") String gender, @QueryParam("lookingFor") String lookingFor, 
-			@QueryParam("relationship") String relationship, @QueryParam("birthday") Date birthday) throws Exception {
+	public Response updateUserProfile(@PathParam("userID") String userID, @PathParam("nickName") String nickName,
+			@PathParam("gender") String gender, @PathParam("lookingFor") String lookingFor, 
+			@PathParam("relationship") String relationship, @PathParam("year") String year, 
+			@PathParam("month") String month, @PathParam("date") String date) throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("nickName", nickName);
 		params.put("gender", gender);
 		params.put("lookingFor", lookingFor);
 		params.put("relationship", relationship);
-		params.put("birthday", birthday);
+		params.put("year", year);
+		params.put("month", month);
+		params.put("date", date);
+		System.out.println(params);
 		
 		Transaction transaction = new UpdateUserProfileTransaction();
 		transaction.execute(params);
