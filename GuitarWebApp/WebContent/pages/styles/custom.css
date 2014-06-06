@@ -362,9 +362,10 @@ body {
 }
 
 .profile_img {
-
-
-
+	float: left;
+	width: 620px;
+	height: 300px;
+	background-image: url(../images/about2.jpg);
 }
 .profile_user_name {
 	width: 50%;
@@ -461,7 +462,7 @@ body {
 	padding-bottom: 10px;
 	padding-left: 20px;
 }
-.aboutBlue .Atitle {
+.Atitle {
 	display: block;
 	text-align: right;
 	width: 100px;
@@ -469,7 +470,7 @@ body {
 	font-weight: bolder;
 	margin-right: 20px;
 }
-.aboutBlue .aboutTitle {
+ .aboutTitle {
 	display: block;
 	padding-bottom: 5px;
 	margin-bottom: 5px;
@@ -487,4 +488,31 @@ body {
 .aboutBlue .aSavebtn {
 	margin-left: 50px;
 }
+.alertCust{
+	margin-right: auto;
+	margin-left: auto;
+	width: 900px;
+	height : 20px;
+	text-align: center;
+	display : none;
+	padding-top: 0px;
+	cursor: pointer;
+	font-weight: bolder;
+}
 
+.changeBtnGroup{
+	float: right;
+	margin-top: 255px;
+	margin-right: 5px;
+
+}
+.photo{
+	background-color: #FFF;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	float: left;
+	width: 280px;
+	height: 250px;
+}

@@ -32,6 +32,7 @@
 			}
 		});
 	};
+	
 //function fetchPostsByUserID
 	
 	function fetchPostsByUserID(){
@@ -49,6 +50,71 @@
 			}
 		});
 	};
+//function fetchPostsByFollowee
+	function fetchPostByFollowee(){
+		$.ajax({
+			url:'../../GuitarWebApp/app/post/fetchByFollowee/2011052407/0/5',// /post/fetchByUserID/'+id
+			type:'get',
+			success:function(data){
+				//var jsondata = $.parseJSON(data);
+				$.each(data,function(index,jsonPostShortCut){
+					addPost(jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.id,jsonPostShortCut.likeNum);
+					if(index==data.length-1){
+						return true;
+					}
+				});
+			}
+		});
+	}
+	//function fetchPostsByIDs
+	var postIdContainer = [];
+	function fetchPostByIDs(){
+		var Urls = '../../GuitarWebApp/app/post/getByIDs?';
+		$.each(postIdContainer,function(n,value){
+			if(n != postIdContainer.length-1){
+				Urls = Urls +'postIDs='+ value+'&';
+			}
+			else{
+				Urls = Urls +'postIDs='+ value;
+				return true;
+			}
+		});
+		$.ajax({
+			url: Urls,// 
+			type:'get',
+			success:function(data){
+				//var jsondata = $.parseJSON(data);
+				$.each(data,function(index,jsonPostShortCut){
+					addPost(jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.id,jsonPostShortCut.likeNum);
+					if(index==data.length-1){
+						return true;
+					}
+				});
+			}
+		});
+	}
+	//function profileBg
+	$('.profile_img').hover(function(){
+		var changeBtn = "<div class='changeBtnGroup'><form><button class='btn btn-success profileImgBtn'>Change BlackgroundImg</button><input type='file' name='file' class='btn_file' style='display:none'/></form></div>";//<button class='btn btn-success avatarImgBtn'>Change Avatar</button>
+		$('.profile_img').append(changeBtn);
+		$('.changeBtnGroup').hide();
+		$('.changeBtnGroup').fadeIn(300);
+	},function(){
+		$('.changeBtnGroup').fadeOut(300, function(){
+			$(this).remove();
+		});	
+	});
+	//function profileImg 
+	$('.profile_user_img').hover(function(){
+		var changeBtn = "<button class='btn btn-success profileImg' data-toggle='modal' data-target='#myModal'>Change</button>";
+		$(this).append(changeBtn);
+		$('.profileImg').hide();
+		$('.profileImg').fadeIn(300);
+	},function(){
+		$('.profileImg').fadeOut(300, function(){
+			$(this).remove();
+		});	
+	});
 $(document).ready(function(){
 //function userTip
 	(function($){  
@@ -215,27 +281,86 @@ $(document).ready(function(){
 		//function editProfileInfro
 		$('body').on('click','.aEditbtn',function(){
 			$("span[class='Anickname']").html("<input id='focusedInput' class='nicknameE' type='text' value='Winson_Lau' />");
-			$("span[class='Alooking']").html("<input id='focusedInput' type='text' value='Make friends' />");
-			$("span[class='Agender']").html("<select><option value='male'>Male</option><option value='female'>Female</option></select>");
-			$("span[class='Arelationship']").html("<select><option value='single'>single</option><option value='loving'>loving</option></select>");
-			$("span[class='Aaddress']").html("<select><option value='#1'>#1</option><option value='#2'>#2</option></select>");
+			$("span[class='Alooking']").html("<input class='lookingforE' id='focusedInput' type='text' value='Make friends' />");
+			$("span[class='Agender']").html("<select class='genderE'><option value='male'>Male</option><option value='female'>Female</option></select>");
+			$("span[class='Arelationship']").html("<select class='relationshipnE'><option value='single'>single</option><option value='loving'>loving</option></select>");
+			$("span[class='Aaddress']").html("<select class='addressE'><option value='#1'>#1</option><option value='#2'>#2</option></select>");
 			$(this).text("Save");
 			$(this).attr("class","btn btn-primary aSavebtn");
 		});
 		//function saveProfileInfro
 		$('body').on('click','.aSavebtn',function(){
 			var nickName = $('.nicknameE').val();
-			//var gender = $('.nicknameE').val();
+			var gender = $('.genderE').val();
+			var relationship = $('.relationshipnE').val();
+			var lookingfor = $('.lookingforE').val();
 			//var lookingfor = $('.nicknameE').val();
 			var d = new Date();
         	var publishDateN = d.getFullYear() + "/" +(d.getMonth()+1) + "/" + d.getDate();
         	var date = new Date(publishDateN);
-        	alert(publishDateN);
 			$.ajax({
 				type:'put',
-				url:'../../GuitarWebApp/app/user/updateProfile/2011052407?nickName=1&gender=1&lookingFor=1&relationship=1&birthday='+publishDateN+''
+				url:'../../GuitarWebApp/app/user/updateProfile/2011052407/'+nickName+'/'+gender+'/'+lookingfor+'/'+relationship+'/2011/9/7'
 			});
+			$("input[class='nicknameE']").replaceWith("<span class='Anickname'>Winson_Lau</span>");
+			$("input[class='lookingforE']").replaceWith("<span class='Alooking'>make friends</span>");
+			$("select[class='genderE']").replaceWith("<span class='Agender'>boy</span>");
+			$("select[class='relationshipnE']").replaceWith("<span class='Arelationship'>single</span>");
+			$("select[class='addressE']").replaceWith("<span class='Aaddress'>#1</span>");
+			$(this).text("Edit");
+			$(this).attr("class","btn btn-primary aEditbtn");
 		});
-		
+		//function avatarImgBtn
+		$('body').on("click",".avatarImgBtn",function(){
+			var formData = new FormData($('.avatarForm')[0]);
+			$.ajax({
+				type:'POST',
+				url:'../../GuitarWebApp/app/fileUploader',
+				success:function(data){
+					$.ajax({
+						type:'PUT',
+						url:'../../GuitarWebApp/app/user/changeAvatar/2011052407?avatarLink='+data
+					});
+				},
+				// Form data
+		        data: formData,
+		        //Options to tell jQuery not to process data or worry about content-type.
+		        cache: false,
+		        contentType: false,
+		        processData: false
+			});
+			$('#myModal').modal('hide');
+		});
+		//function addPhoto
+		$('body').on("click",".addPhoto",function(){
+			var formData = new FormData($('.photoForm')[0]);
+			$.ajax({
+				type:'POST',
+				url:'../../GuitarWebApp/app/fileUploader',
+				success:function(data){
+					var Urls = '../../GuitarWebApp/app/user/addImages/2011052407?';
+					$.each(data,function(n,photoUrl){
+						if(n != data.length-1){
+							Urls = Urls +'imageLinks='+ photoUrl+'&';
+						}
+						else{
+							Urls = Urls +'imageLinks='+ photoUrl;
+							return true;
+						}
+					});
+					$.ajax({
+						type:'PUT',
+						url: Urls
+					});
+				},
+				// Form data
+		        data: formData,
+		        //Options to tell jQuery not to process data or worry about content-type.
+		        cache: false,
+		        contentType: false,
+		        processData: false
+			});
+			$('#myModal2').modal('hide');
+		});
 });
 

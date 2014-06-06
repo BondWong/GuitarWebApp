@@ -60,13 +60,33 @@
                 <div class="profile_user_name"><strong>Zeonbong Wong</strong></div>
               </div>
             </div>
-            <div class="profile_img"><img src="images/about2.jpg" /></div>
+            <div class="profile_img"></div>
+        	<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">Change Avatar</h4>
+			      </div>
+			      <form class="avatarForm" enctype="multipart/form-data">
+				      <div class="modal-body">
+				        <input type="file"  name="file"/>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        <button type="button" class="btn btn-primary avatarImgBtn" value="upload">Save changes</button>
+				      </div>
+			      </form>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
         </div>
      	<div class="profile_nav">
         	<ul class="nav nav-tabs profile_navul">
 				<li><a href="profileAbout.html">about</a> </li> 
 				<li><a href="profile.html">post</a></li>
-				<li><a href="#">photos</a></li> 
+				<li><a href="profilePhoto.html">photos</a></li> 
 				<li><a href="profileCircle.html">circle</a></li>   
 			</ul>
         </div>
@@ -85,7 +105,7 @@
           </div>
           <div class="post">
           	<div class="aboutRed">
-            
+            	<div><span class="aboutTitle">Function</span></div>
             </div>
           </div>
         </div>
@@ -98,16 +118,7 @@
     <script src="js/function.js"></script>
     <script src="js/EventHandle.js"></script>
     <script type="text/javascript">
-	var container = document.querySelector('.pro_body');
-	var msnry;
-	imagesLoaded( container, function() {
-	msnry = new Masonry( container,{
-  	columnWidth: 435,
-  	itemSelector: '.post',
-	gutter:20
-	});
-});
-
+    Msnry('.pro_body','.post',435);
 </script>   
 </body>
 </html>

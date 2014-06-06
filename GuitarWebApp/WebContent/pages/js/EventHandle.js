@@ -7,7 +7,17 @@ if (!!window.EventSource) {
 		source.addEventListener("ADDPOST",function(event){
 		var jsondata = $.parseJSON(event.data);
 		var jsonPostShortCut = jsondata.postRepresentationShortCut;
-		addPost(jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.ID,jsonPostShortCut.likeNum);
+		postIdContainer.push(jsonPostShortCut.ID);
+		$('.alertCust').css("display","block");
+		$('body').on('click','.alertCust',function(){
+			/*var jsondata = $.parseJSON(event.data);
+			var jsonPostShortCut = jsondata.postRepresentationShortCut;
+			addPost(jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.ID,jsonPostShortCut.likeNum);*/
+			fetchPostByIDs();
+			$(this).css("display","none");
+		});
+		
+		
  });
 		source.addEventListener('deletePostSSE',function(e){});
 		source.addEventListener('LIKEPOST',function(event){
@@ -15,7 +25,6 @@ if (!!window.EventSource) {
 			var postID = jsondata.pcID;
 			var inputID = $("input[value='"+postID+"'][id='likeID']");
 			inputID.next().attr("class","glyphicon glyphicon-heart");
-			alert(inputID.next().text());
 			var like = parseInt(inputID.next().text())+1;
 			inputID.next().text(like); 
 		});
@@ -24,7 +33,6 @@ if (!!window.EventSource) {
 			var postID = jsondata.pcID;
 			var inputID = $("input[value='"+postID+"'][id='likeID']");
 			inputID.next().attr("class","glyphicon glyphicon-heart-empty");
-			alert(inputID.next().text());
 			var like = parseInt(inputID.next().text())-1;
 			inputID.next().text(like);
 		});

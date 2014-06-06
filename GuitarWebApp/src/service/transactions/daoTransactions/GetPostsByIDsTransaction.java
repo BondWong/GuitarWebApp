@@ -11,13 +11,13 @@ import persistence.DAO;
 import model.Post;
 
 public class GetPostsByIDsTransaction extends DAOTransaction{
-	private static String query = "SELECT p FROM Post p WHERE p.ID IN ";
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params)
 			throws Exception {
 		List<Long> postIDs = (List<Long>) params.get("postIDs");
+		String query = "SELECT p FROM Post p WHERE p.ID IN ";
 		query = query + "(";
 		
 		Iterator<Long> iter = postIDs.iterator();
