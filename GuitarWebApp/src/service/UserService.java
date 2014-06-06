@@ -77,7 +77,6 @@ public class UserService {
 		params.put("year", year);
 		params.put("month", month);
 		params.put("date", date);
-		System.out.println(params);
 		
 		Transaction transaction = new UpdateUserProfileTransaction();
 		transaction.execute(params);
