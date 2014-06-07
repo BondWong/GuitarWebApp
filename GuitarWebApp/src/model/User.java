@@ -2,14 +2,16 @@ package model;
 
 import java.util.Date;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,9 +22,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
+import utils.AuthType;
 import model.representation.UserRepresentation;
 
 @Entity
@@ -37,6 +39,8 @@ public class User {
 	private Integer version;
 	
 	private String password;
+	@Enumerated(EnumType.STRING)
+	private AuthType authType;
 	private String avatarLink;
 	private String profileImageLink;
 	private String gender;
@@ -45,9 +49,8 @@ public class User {
 	private String relationship;
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
-	
-	@Transient
-	private Authority auth;
+	@Embedded
+	private Address address;
 	
 	@ElementCollection
 	private Set<String> imageLinks;
@@ -75,13 +78,11 @@ public class User {
 	
 	private boolean active;
 	
-	public User(){
-		auth = new MemberAuth();
-	}
+	public User(){}
 	
 	public User(String ID){
 		this.ID = ID;
-		auth = new MemberAuth();
+		authType = AuthType.MEMBER;
 		imageLinks = new LinkedHashSet<String>();
 		active = true;
 		posts = new LinkedHashSet<Post>();
@@ -89,6 +90,7 @@ public class User {
 		joinedActivities = new LinkedHashSet<Post>();
 		followees = new LinkedHashSet<User>();
 		followers = new LinkedHashSet<User>();
+		address = new Address();
 	}
 	
 	public String getID(){
@@ -103,6 +105,14 @@ public class User {
 		this.password = password;
 	}
 	
+	public AuthType getAuthType() {
+		return authType;
+	}
+
+	public void setAuthType(AuthType authType) {
+		this.authType = authType;
+	}
+
 	public void setAvatarLink(String avatarLink){
 		this.avatarLink = avatarLink;
 	}
@@ -160,33 +170,6 @@ public class User {
 	
 	public void setBirthday(Date birthday){
 		this.birthday = birthday;
-	}
-	
-	public List<String> getAuthority(){
-		return auth.getAuthority();
-	}
-	
-	@Access(AccessType.PROPERTY)
-	public String getAuthType(){
-		return auth.getClass().getName();
-	}
-	
-	public void setAuthType(String authType){
-		if(authType.equals(MemberAuth.class.getName())){
-			auth = new MemberAuth();
-		} else if(authType.equals(PostOwnerAuth.class.getName())){
-			auth = new PostOwnerAuth();
-		} else{
-			auth = new GodAuth();
-		}
-	}
-	
-	public void updateToPostOwner(){
-		auth = new PostOwnerAuth();
-	}
-	
-	public void updateToGod(){
-		auth = new GodAuth();
 	}
 	
 	public void addImageLink(String link){
@@ -289,6 +272,26 @@ public class User {
 		return this.followers;
 	}
 	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	public void setCampus(String campus) {
+		this.address.setCampus(campus);
+	}
+	
+	public void setDorm(String dorm) {
+		this.address.setDorm(dorm);
+	}
+	
+	public void setDormNum(String dormNum) {
+		this.address.setDormNum(dormNum);
+	}
+	
 	public boolean isActive(){
 		return active;
 	}
@@ -388,6 +391,7 @@ public class User {
 		UserRepresentation sc = new UserRepresentation();
 		
 		sc.setID(this.getID());
+		sc.setAuthType(this.getAuthType());
 		sc.setNickName(this.getNickName());
 		sc.setGender(this.getGender());
 		sc.setAvaterLink(this.getAvatarLink());
@@ -398,7 +402,7 @@ public class User {
 		} else{
 			sc.setBirthday(null);
 		}
-		sc.setAuth(this.getAuthority());
+		
 		sc.setImageLinks(this.getImageLins());
 		
 		for(User followee : this.followees){
@@ -412,6 +416,10 @@ public class User {
 		for(Post post : collectedPosts){
 			sc.addCollectedPost(post.getID());
 		}
+		
+		sc.setCampus(this.getAddress().getCampus());
+		sc.setDorm(this.getAddress().getDorm());
+		sc.setDormNum(this.getAddress().getDormNum());
 		
 		return sc;
 	}

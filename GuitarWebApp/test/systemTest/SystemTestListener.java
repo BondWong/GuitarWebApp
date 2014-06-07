@@ -47,7 +47,7 @@ public class SystemTestListener implements ServletContextListener {
      */
     public void contextInitialized(ServletContextEvent arg0) {
         // TODO Auto-generated method stub
-    	User user = new User("2011052405");
+    	User user = new User("2011052407");
     	user.setPassword("1901103390");
     	
     	Account a = new Account();

@@ -22,7 +22,6 @@ import service.transactions.daoTransactions.GetAccountBySeriesNumTransaction;
 /**
  * Servlet Filter implementation class AutoLoginFilter
  */
-@WebFilter("/AutoLoginFilter")
 public class AutoLoginFilter implements Filter {
 
     /**

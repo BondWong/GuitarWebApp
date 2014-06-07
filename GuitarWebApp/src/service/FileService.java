@@ -22,13 +22,13 @@ import com.google.gson.Gson;
 
 
 @WebServlet("/app/fileUploader")
-public class FileUploader extends HttpServlet {
+public class FileService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String root;
 	private DiskFileItemFactory factory;
 	private ServletFileUpload upload;
 	
-    public FileUploader() {
+    public FileService() {
         super();
     }
     

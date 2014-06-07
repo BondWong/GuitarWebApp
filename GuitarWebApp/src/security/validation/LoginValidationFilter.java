@@ -1,7 +1,6 @@
-package security;
+package security.validation;
 
 import java.io.IOException;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.servlet.Filter;
@@ -16,20 +15,16 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.ws.rs.core.MediaType;
 
-import security.validation.CommentRep;
-
-import com.google.gson.Gson;
-
 /**
- * Servlet Filter implementation class CommentRepValidationFilter
+ * Servlet Filter implementation class UserLoginValidationFilter
  */
-//@WebFilter("/app/comment/add/*")
-public class CommentRepValidationFilter implements Filter {
+//@WebFilter("/security/UserLoginServlet")
+public class LoginValidationFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public CommentRepValidationFilter() {
+    public LoginValidationFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -46,14 +41,14 @@ public class CommentRepValidationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-
-		String postRepJson = request.getParameter("post");
-		CommentRep commentRep = new Gson().fromJson(postRepJson, CommentRep.class);
-		
+		System.out.println("UserLoginValidationFilter");
+		String userID = request.getParameter("userID");
+		String password = request.getParameter("password");
+		UserRep uRep = new UserRep();
+		uRep.setID(userID);
+		uRep.setPassword(password);
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-		Set<ConstraintViolation<CommentRep>> violations = new LinkedHashSet<ConstraintViolation<CommentRep>>(); 
-		violations = validator.validate(commentRep);
-		
+		Set<ConstraintViolation<UserRep>> violations = validator.validate(uRep, LoginGroup.class);
 		if(violations.size()==0){
 			// pass the request along the filter chain
 			chain.doFilter(request, response);

@@ -1,6 +1,7 @@
-package security;
+package security.validation;
 
 import java.io.IOException;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.servlet.Filter;
@@ -15,19 +16,18 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.ws.rs.core.MediaType;
 
-import security.validation.LoginGroup;
-import security.validation.UserRep;
+import com.google.gson.Gson;
 
 /**
- * Servlet Filter implementation class UserLoginValidationFilter
+ * Servlet Filter implementation class CommentRepValidationFilter
  */
-//@WebFilter("/security/UserLoginServlet")
-public class LoginValidationFilter implements Filter {
+//@WebFilter("/app/comment/add/*")
+public class CommentRepValidationFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public LoginValidationFilter() {
+    public CommentRepValidationFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -44,14 +44,14 @@ public class LoginValidationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		System.out.println("UserLoginValidationFilter");
-		String userID = request.getParameter("userID");
-		String password = request.getParameter("password");
-		UserRep uRep = new UserRep();
-		uRep.setID(userID);
-		uRep.setPassword(password);
+
+		String postRepJson = request.getParameter("post");
+		CommentRep commentRep = new Gson().fromJson(postRepJson, CommentRep.class);
+		
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-		Set<ConstraintViolation<UserRep>> violations = validator.validate(uRep, LoginGroup.class);
+		Set<ConstraintViolation<CommentRep>> violations = new LinkedHashSet<ConstraintViolation<CommentRep>>(); 
+		violations = validator.validate(commentRep);
+		
 		if(violations.size()==0){
 			// pass the request along the filter chain
 			chain.doFilter(request, response);

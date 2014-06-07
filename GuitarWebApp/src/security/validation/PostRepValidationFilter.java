@@ -1,4 +1,4 @@
-package security;
+package security.validation;
 
 import java.io.IOException;
 import java.util.LinkedHashSet;
@@ -16,9 +16,6 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.ws.rs.core.MediaType;
 
-import security.validation.ActivityGroup;
-import security.validation.NonActivityGroup;
-import security.validation.PostRep;
 import utils.PostType;
 
 import com.google.gson.Gson;

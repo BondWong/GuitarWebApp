@@ -8,7 +8,9 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class HiddenCodeFilter implements Filter {
 
@@ -32,9 +34,15 @@ public class HiddenCodeFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		System.out.println("HiddenCodeFilter");
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		HttpSession session = httpRequest.getSession();
+		
 		String hiddenCode = request.getParameter("hiddenCode");
-		String sessionHiddenCode = request.getParameter("hiddenCode");
+		String sessionHiddenCode = "";
+		synchronized(session){
+			sessionHiddenCode = (String) session.getAttribute("hiddenCode");
+		}
+		
 		if(sessionHiddenCode!=null&&hiddenCode!=null&&hiddenCode.equals(sessionHiddenCode)){
 			// pass the request along the filter chain
 			chain.doFilter(request, response);
