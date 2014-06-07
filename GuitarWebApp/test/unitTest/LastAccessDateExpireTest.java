@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 
-import org.junit.Test;
-
 import model.Account;
+
+import org.junit.Test;
 
 public class LastAccessDateExpireTest {
 	@Test

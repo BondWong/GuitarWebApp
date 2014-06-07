@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import model.Account;
-
 import service.transactions.daoTransactions.DAOTransaction;
 import service.transactions.daoTransactions.GetAccountBySeriesNumTransaction;
 

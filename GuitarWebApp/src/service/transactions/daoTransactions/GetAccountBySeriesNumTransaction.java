@@ -4,8 +4,8 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
-import persistence.DAO;
 import model.Account;
+import persistence.DAO;
 
 public class GetAccountBySeriesNumTransaction extends DAOTransaction{
 
