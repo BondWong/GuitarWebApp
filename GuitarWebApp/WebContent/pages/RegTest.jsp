@@ -9,6 +9,7 @@
 <body>
 	<form method="post" action="../RegServlet">
 		<input type="text" name="userID"/>
+		<input type="password" name="password"/>
 		<img src="../RegServlet"/>
 		<input type="text" name="valCode"/>
 		<input type="submit"/>

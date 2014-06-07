@@ -21,13 +21,13 @@ import security.validation.UserRep;
 /**
  * Servlet Filter implementation class UserLoginValidationFilter
  */
-@WebFilter("/security/UserLoginServlet")
-public class UserLoginValidationFilter implements Filter {
+//@WebFilter("/security/UserLoginServlet")
+public class LoginValidationFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public UserLoginValidationFilter() {
+    public LoginValidationFilter() {
         // TODO Auto-generated constructor stub
     }
 

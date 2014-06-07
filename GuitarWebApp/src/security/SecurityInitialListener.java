@@ -32,7 +32,7 @@ public class SecurityInitialListener implements ServletContextListener {
      */
     public void contextInitialized(ServletContextEvent arg0) {
         // TODO Auto-generated method stub
-    	ProtectedURLManager.addURL("/post/add");
+    	/*ProtectedURLManager.addURL("/post/add");
     	ProtectedURLManager.addURL("/post/delete");
     	ProtectedURLManager.addURL("/post/like");
     	ProtectedURLManager.addURL("/post/cancelLike");
@@ -48,7 +48,7 @@ public class SecurityInitialListener implements ServletContextListener {
     	ProtectedURLManager.addURL("/comment/support");
     	ProtectedURLManager.addURL("/comment/cancelSupport");
     	
-    	ProtectedURLManager.addURL("/fileUploader");
+    	ProtectedURLManager.addURL("/fileUploader");*/
     	
     }
 	

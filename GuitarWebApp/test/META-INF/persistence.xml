@@ -10,6 +10,7 @@ version="2.1">
 		<class>model.Post</class>
 		<class>model.Comment</class>
 		<class>model.Community</class>
+		<class>model.Account</class>
 		<shared-cache-mode>DISABLE_SELECTIVE</shared-cache-mode>
 		<validation-mode>AUTO</validation-mode>
 		

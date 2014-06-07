@@ -1,6 +1,5 @@
 package service.transactions.daoTransactions;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -8,7 +7,7 @@ import javax.persistence.EntityManager;
 import persistence.DAO;
 import model.User;
 
-public class GetUserByIDandPasswordTransaction extends DAOTransaction{
+public class RegisterTransaction extends DAOTransaction{
 
 	@Override
 	protected Object process(EntityManager em, Map<String, Object> params)
@@ -17,14 +16,12 @@ public class GetUserByIDandPasswordTransaction extends DAOTransaction{
 		String userID = (String) params.get("userID");
 		String password = (String) params.get("password");
 		
+		User user = new User(userID);
+		user.setPassword(password);
 		DAO<User> udao = new DAO<User>(User.class, em);
-		List<User> users = (List<User>) udao.collectionRead("User.getByIDandPassword",
-				0, 1, User.class, userID, password);
+		udao.create(user);
 		
-		User user = null;
-		if(users.iterator().hasNext())
-			user = users.iterator().next();
-		return user;
+		return null;
 	}
 
 }
