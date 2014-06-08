@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * Servlet Filter implementation class UserLoginValidationFilter
  */
-//@WebFilter("/security/UserLoginServlet")
+//@WebFilter("/security/LoginServlet")
 public class LoginValidationFilter implements Filter {
 
     /**
@@ -41,14 +41,13 @@ public class LoginValidationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		System.out.println("UserLoginValidationFilter");
 		String userID = request.getParameter("userID");
 		String password = request.getParameter("password");
-		UserRep uRep = new UserRep();
+		AccountRep uRep = new AccountRep();
 		uRep.setID(userID);
 		uRep.setPassword(password);
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-		Set<ConstraintViolation<UserRep>> violations = validator.validate(uRep, LoginGroup.class);
+		Set<ConstraintViolation<AccountRep>> violations = validator.validate(uRep, LoginGroup.class);
 		if(violations.size()==0){
 			// pass the request along the filter chain
 			chain.doFilter(request, response);

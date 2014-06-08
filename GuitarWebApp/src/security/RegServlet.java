@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +40,7 @@ import service.transactions.daoTransactions.RegisterTransaction;
  * Servlet implementation class LoginServlet
  */
 @SuppressWarnings("deprecation")
-@WebServlet("/RegServlet")
+@WebServlet("/security/RegServlet")
 public class RegServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -171,7 +172,12 @@ public class RegServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					response.sendError(500);
+					return;
 				}
+				
+				//RequestDispatcher dispatcher = request.getRequestDispatcher("security/LoginServlet");
+				//dispatcher.forward(request, response);
+				
 			} else{
 				response.sendRedirect("pages/RegTest.jsp?error="+findErrorMessage(httpResponse));
 			}

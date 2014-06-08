@@ -14,7 +14,7 @@ import org.junit.Test;
 import security.validation.ActivityGroup;
 import security.validation.CommentRep;
 import security.validation.PostRep;
-import security.validation.UserRep;
+import security.validation.AccountRep;
 
 public class RepContraintTest {
 	private static Validator validator;
@@ -26,7 +26,7 @@ public class RepContraintTest {
 	@Ignore
 	@Test
 	public void testUserRepConstraint(){
-		UserRep uRep = new UserRep();
+		AccountRep uRep = new AccountRep();
 		uRep.setID("2011052407");
 		uRep.setPassword("1901103390");
 		

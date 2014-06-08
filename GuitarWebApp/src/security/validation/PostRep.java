@@ -33,7 +33,7 @@ public class PostRep {
 	@Size(min=0, max=9,groups={NonActivityGroup.class,ActivityGroup.class})
 	private Set<String> mediaLocation;
 	@NotNull(groups={NonActivityGroup.class,ActivityGroup.class})
-	@Pattern(regexp = "QUESTION|ACTIVITY|DISSCUESSION",groups={NonActivityGroup.class,ActivityGroup.class})
+	@Pattern(regexp = "QUESTION|ACTIVITY|DISCUESSION",groups={NonActivityGroup.class,ActivityGroup.class})
 	private String postType;
 	@NotNull(groups={NonActivityGroup.class,ActivityGroup.class})
 	@Past(groups={NonActivityGroup.class,ActivityGroup.class})

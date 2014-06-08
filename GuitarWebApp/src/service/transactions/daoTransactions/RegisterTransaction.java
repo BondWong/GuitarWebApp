@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 
 import persistence.DAO;
+import model.Account;
 import model.User;
 
 public class RegisterTransaction extends DAOTransaction{
@@ -18,8 +19,15 @@ public class RegisterTransaction extends DAOTransaction{
 		
 		User user = new User(userID);
 		user.setPassword(password);
+		Account account = new Account();
+		account.setUserID(userID);
+		account.setPassword(password);
+		
 		DAO<User> udao = new DAO<User>(User.class, em);
 		udao.create(user);
+		
+		DAO<Account> adao = new DAO<Account>(Account.class, em);
+		adao.create(account);
 		
 		return null;
 	}

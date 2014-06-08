@@ -14,12 +14,15 @@ import javax.servlet.http.HttpSession;
 
 import utils.ProtectedURLManager;
 
-public class HiddenCodeFilter implements Filter {
+/**
+ * Servlet Filter implementation class LoginCheckFilter
+ */
+public class LoginCheckFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public HiddenCodeFilter() {
+    public LoginCheckFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -38,27 +41,24 @@ public class HiddenCodeFilter implements Filter {
 		// place your code here
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String uri = httpRequest.getRequestURI();
-		
-		if(ProtectedURLManager.needHiddenCodeProtection(uri)){
+		if(ProtectedURLManager.needLoginProtection(uri)){
+		// pass the request along the filter chain
 			HttpSession session = httpRequest.getSession();
-			String hiddenCode = request.getParameter("hiddenCode");
-			String sessionHiddenCode = "";
-			
+			String userID = request.getParameter("userID");
+			String sessionUserID = "";
 			synchronized(session){
-				sessionHiddenCode = (String) session.getAttribute("hiddenCode");
-				if(ProtectedURLManager.needDeleteHiddenCodeProtection(uri))
-					session.removeAttribute("hiddenCode");
+				sessionUserID = (String) session.getAttribute("userID");
 			}
-			
-			if(sessionHiddenCode!=null&&hiddenCode!=null&&hiddenCode.equals(sessionHiddenCode)){
-				// pass the request along the filter chain
+			if(userID!=null&&sessionUserID!=null&&userID.equals(sessionUserID)){
 				chain.doFilter(request, response);
 			} else{
+				synchronized(session){
+					session.setAttribute("targetURL", uri);
+				}
 				HttpServletResponse httpResponse = (HttpServletResponse) response;
-				httpResponse.setStatus(403);
+				httpResponse.setStatus(401);
 			}
-		}
-		else {
+		} else{
 			chain.doFilter(request, response);
 		}
 	}

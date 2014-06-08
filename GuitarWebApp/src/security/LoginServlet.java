@@ -21,7 +21,7 @@ import service.transactions.daoTransactions.UpdateAccountTransaction;
 /**
  * Servlet implementation class UserLoginServlet
  */
-@WebServlet("/security/UserLoginServlet")
+@WebServlet("/security/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -69,15 +69,21 @@ public class LoginServlet extends HttpServlet {
 				if (password.equals(account.getPassword())) {
 					HttpSession session = request.getSession();
 					synchronized (session) {
-						session.setAttribute(account.getUserID(),
+						session.setAttribute("userID",
 								account.getUserID());
 						account.setAutoLoginSeriesNum(session.getId());
 						Cookie cookie = new Cookie("ALG", session.getId());
 						cookie.setHttpOnly(true);
 						cookie.setPath("/GuitarWebApp");
 						cookie.setMaxAge(15*24*60*60);
+						String targetURL = "";
+						synchronized(session){
+							targetURL = (String) session.getAttribute("targetURL");
+							if(targetURL==null||targetURL.equals(""))
+								targetURL = "/GuitarWebApp/pages/index.html";
+						}
 						response.addCookie(cookie);
-						response.sendRedirect("/GuitarWebApp/pages/index.html");
+						response.sendRedirect(targetURL);
 					}
 				} else {
 					account.setLastAccessDate(new Date());
