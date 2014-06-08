@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import utils.CommentType;
 
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.NONE)
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class CommentRepresentation{
 	@XmlElement
 	private Long ID;
@@ -25,11 +25,6 @@ public class CommentRepresentation{
 	private Set<UserRepresentation> supportorRepresentations;
 	@XmlElement
 	private UserRepresentation ownerRepresentation;
-	
-	public CommentRepresentation() {
-		this.content = "";
-		this.publishDate = "";
-	}
 	
 	public Long getID() {
 		return ID;

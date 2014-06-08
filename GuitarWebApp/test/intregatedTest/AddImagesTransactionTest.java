@@ -52,6 +52,6 @@ public class AddImagesTransactionTest {
 		DAO<User> udao = new DAO<User>(User.class, em);
 		
 		User user = udao.singleResultRead("2011052407", User.class);
-		assertEquals(2, user.getImageLins().size());
+		assertEquals(2, user.getImageLinks().size());
 	}
 }

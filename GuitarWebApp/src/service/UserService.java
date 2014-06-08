@@ -126,7 +126,7 @@ public class UserService {
 		Transaction transaction = new GetUserByIDTransaction();
 		User user = null;
 		user = (User) transaction.execute(params);
-
+		
 		return Response.ok(new GenericEntity<UserRepresentation>(user.getRepresentation()){}).build();
 	}
 	

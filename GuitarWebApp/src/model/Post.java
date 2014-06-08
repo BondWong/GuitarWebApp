@@ -222,19 +222,6 @@ public class Post {
 		private String ownerAvatarLink;
 		private String ownerNickName;
 		
-		public RepresentationShortCut(){
-			this.mediaLocation = new LinkedHashSet<String>();
-			this.content = "";
-			this.likeNum = 0;
-			this.likerIDs = new LinkedHashSet<String>();
-			this.ownerAvatarLink = "";
-			this.ownerNickName = "";
-			this.participantIDs = new LinkedHashSet<String>();
-			this.participantsNum = 0;
-			this.publishDate = "";
-			this.topic = "";
-		}
-		
 		public Long getID() {
 			return ID;
 		}
@@ -244,6 +231,8 @@ public class Post {
 		}
 
 		public Set<String> getMediaLocation() {
+			if(this.mediaLocation==null)
+				return new LinkedHashSet<String>();
 			return mediaLocation;
 		}
 
@@ -275,7 +264,6 @@ public class Post {
 			this.type = type;
 		}
 		
-
 		public String getPublishDate() {
 			return publishDate;
 		}
@@ -301,6 +289,8 @@ public class Post {
 		}
 
 		public String getOwnerAvatarLink() {
+			if(this.ownerAvatarLink==null)
+				return "";
 			return ownerAvatarLink;
 		}
 
@@ -309,6 +299,8 @@ public class Post {
 		}
 
 		public String getOwnerNickName() {
+			if(this.ownerNickName==null)
+				return "";
 			return ownerNickName;
 		}
 
@@ -317,6 +309,8 @@ public class Post {
 		}
 
 		public Set<String> getLikerIDs() {
+			if(this.likerIDs==null)
+				return new LinkedHashSet<String>();
 			return likerIDs;
 		}
 
@@ -328,6 +322,8 @@ public class Post {
 		}
 
 		public Set<String> getParticipantIDs() {
+			if(this.participantIDs==null)
+				return new LinkedHashSet<String>();
 			return participantIDs;
 		}
 

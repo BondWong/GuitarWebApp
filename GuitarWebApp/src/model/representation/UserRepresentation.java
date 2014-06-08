@@ -11,14 +11,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 import utils.AuthType;
 
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.NONE)
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class UserRepresentation{
 	@XmlElement
 	private String ID;
 	@XmlElement
 	private AuthType authType;
 	@XmlElement
-	private String avaterLink;
+	private String avatarLink;
 	@XmlElement
 	private String gender;
 	@XmlElement
@@ -44,18 +44,6 @@ public class UserRepresentation{
 	@XmlElement
 	private String dormNum;
 	
-	public UserRepresentation() {
-		this.birthday = "";
-		this.campus = "";
-		this.dorm = "";
-		this.dormNum = "";
-		this.gender = "";
-		this.lookingFor = "";
-		this.nickName = "";
-		this.relationship = "";
-	}
-	
-	
 	public String getID() {
 		return ID;
 	}
@@ -72,15 +60,19 @@ public class UserRepresentation{
 		this.authType = authType;
 	}
 
-	public String getAvaterLink() {
-		return avaterLink;
+	public String getAvatarLink() {
+		if(this.avatarLink==null)
+			return "";
+		return avatarLink;
 	}
 
-	public void setAvaterLink(String avaterLink) {
-		this.avaterLink = avaterLink;
+	public void setAvatarLink(String avatarLink) {
+		this.avatarLink = avatarLink;
 	}
 
 	public String getGender() {
+		if(this.gender==null)
+			return "";
 		return gender;
 	}
 
@@ -89,6 +81,8 @@ public class UserRepresentation{
 	}
 
 	public String getNickName() {
+		if(this.nickName==null)
+			return "";
 		return nickName;
 	}
 
@@ -97,6 +91,8 @@ public class UserRepresentation{
 	}
 
 	public String getLookingFor() {
+		if(this.lookingFor==null)
+			return "";
 		return lookingFor;
 	}
 
@@ -105,6 +101,8 @@ public class UserRepresentation{
 	}
 
 	public String getRelationship() {
+		if(this.relationship==null)
+			return "";
 		return relationship;
 	}
 
@@ -113,6 +111,8 @@ public class UserRepresentation{
 	}
 
 	public String getBirthday() {
+		if(this.birthday==null)
+			return "";
 		return birthday;
 	}
 

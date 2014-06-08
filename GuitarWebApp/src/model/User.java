@@ -180,7 +180,7 @@ public class User {
 		imageLinks.remove(link);
 	}
 	
-	public Set<String> getImageLins(){
+	public Set<String> getImageLinks(){
 		return imageLinks;
 	}
 	
@@ -312,17 +312,9 @@ public class User {
 		private String birthday;
 		private Set<String> imgaeLinks;
 		
-		public RepresentationShortCut() {
-			this.nickName = "";
-			this.gender = "";
-			this.avatarLink = "";
-			this.lookingFor = "";
-			this.relationship = "";
-			this.relationship = "";
-			this.imgaeLinks = new LinkedHashSet<String>();
-		}
-		
 		public String getNickName() {
+			if(this.nickName==null)
+				return "";
 			return nickName;
 		}
 		
@@ -331,6 +323,8 @@ public class User {
 		}
 		
 		public String getGender() {
+			if(this.gender==null)
+				return "";
 			return gender;
 		}
 		
@@ -339,6 +333,8 @@ public class User {
 		}
 
 		public String getAvatarLink() {
+			if(this.avatarLink==null)
+				return "";
 			return avatarLink;
 		}
 
@@ -347,6 +343,8 @@ public class User {
 		}
 
 		public String getLookingFor() {
+			if(this.lookingFor==null)
+				return "";
 			return lookingFor;
 		}
 
@@ -355,6 +353,8 @@ public class User {
 		}
 
 		public String getRelationship() {
+			if(this.relationship==null)
+				return "";
 			return relationship;
 		}
 
@@ -363,6 +363,8 @@ public class User {
 		}
 
 		public String getBirthday() {
+			if(this.birthday==null)
+				return "";
 			return birthday;
 		}
 
@@ -371,6 +373,8 @@ public class User {
 		}
 
 		public Set<String> getImgaeLinks() {
+			if(this.imgaeLinks==null)
+				return new LinkedHashSet<String>();
 			return imgaeLinks;
 		}
 
@@ -404,7 +408,7 @@ public class User {
 		sc.setAuthType(this.getAuthType());
 		sc.setNickName(this.getNickName());
 		sc.setGender(this.getGender());
-		sc.setAvaterLink(this.getAvatarLink());
+		sc.setAvatarLink(this.getAvatarLink());
 		sc.setLookingFor(this.getLookingFor());
 		sc.setRelationship(this.getRelationShip());
 		if(this.getBirthday()!=null){
@@ -413,7 +417,7 @@ public class User {
 			sc.setBirthday(null);
 		}
 		
-		sc.setImageLinks(this.getImageLins());
+		sc.setImageLinks(this.getImageLinks());
 		
 		for(User followee : this.followees){
 			sc.addFolloweeID(followee.getID());
