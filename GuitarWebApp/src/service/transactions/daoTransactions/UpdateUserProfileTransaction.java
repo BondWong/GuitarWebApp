@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 
 import persistence.DAO;
+import model.Address;
 import model.User;
 
 public class UpdateUserProfileTransaction extends DAOTransaction{
@@ -23,6 +24,9 @@ public class UpdateUserProfileTransaction extends DAOTransaction{
 		String year = (String) params.get("year");
 		String month = (String) params.get("month");
 		String date = (String) params.get("date");
+		String campus = (String) params.get("campus");
+		String dorm = (String) params.get("dorm");
+		String dormNum = (String) params.get("dormNum");
 		
 		DAO<User> udao = new DAO<User>(User.class, em);
 		User user = udao.singleResultRead(userID, User.class);
@@ -31,6 +35,11 @@ public class UpdateUserProfileTransaction extends DAOTransaction{
 		user.setLookingFor(lookingFor);
 		user.setNickName(nickName);
 		user.setRelationShip(relationship);
+		Address address = new Address();
+		address.setCampus(campus);
+		address.setDorm(dorm);
+		address.setDormNum(dormNum);
+		user.setAddress(address);
 		udao.update(user);
 		return null;
 	}

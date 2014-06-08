@@ -1,7 +1,6 @@
 package model.representation;
 
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -9,13 +8,15 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import utils.AuthType;
+
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class UserRepresentation{
 	@XmlElement
 	private String ID;
 	@XmlElement
-	private List<String> auth;
+	private AuthType authType;
 	@XmlElement
 	private String avaterLink;
 	@XmlElement
@@ -36,6 +37,13 @@ public class UserRepresentation{
 	private Set<String> followeesID;
 	@XmlElement
 	private Set<String> followersID;
+	@XmlElement
+	private String campus;
+	@XmlElement
+	private String dorm;
+	@XmlElement
+	private String dormNum;
+	
 	
 	public String getID() {
 		return ID;
@@ -43,6 +51,14 @@ public class UserRepresentation{
 	
 	public void setID(String iD) {
 		ID = iD;
+	}
+
+	public AuthType getAuthType() {
+		return authType;
+	}
+
+	public void setAuthType(AuthType authType) {
+		this.authType = authType;
 	}
 
 	public String getAvaterLink() {
@@ -83,14 +99,6 @@ public class UserRepresentation{
 
 	public void setRelationship(String relationship) {
 		this.relationship = relationship;
-	}
-
-	public List<String> getAuth() {
-		return auth;
-	}
-
-	public void setAuth(List<String> auth) {
-		this.auth = auth;
 	}
 
 	public String getBirthday() {
@@ -138,6 +146,30 @@ public class UserRepresentation{
 			this.collectedPosts = new LinkedHashSet<Long>();
 		}
 		this.collectedPosts.add(collectedPost);
+	}
+
+	public String getCampus() {
+		return campus;
+	}
+
+	public void setCampus(String campus) {
+		this.campus = campus;
+	}
+
+	public String getDorm() {
+		return dorm;
+	}
+
+	public void setDorm(String dorm) {
+		this.dorm = dorm;
+	}
+
+	public String getDormNum() {
+		return dormNum;
+	}
+
+	public void setDormNum(String dormNum) {
+		this.dormNum = dormNum;
 	}
 	
 }

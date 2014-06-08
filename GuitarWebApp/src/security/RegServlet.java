@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +32,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import service.transactions.Transaction;
+import service.transactions.daoTransactions.RegisterTransaction;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -41,42 +46,63 @@ public class RegServlet extends HttpServlet {
 	private static final String JWCURL = "http://jwc.jnu.edu.cn/web/login.aspx";
 	private static final String VALIDATIONCODE = "http://jwc.jnu.edu.cn/web/ValidateCode.aspx";
     private static final String LOGINURL = "http://jwc.jnu.edu.cn/web/login.aspx";
-	private static final String SUCCESSFLAG = "你输入的用户名与口令不相符合";
-    /**
+    private static final String btnLogin = "登  录";
+	private static final String __EVENTVALIDATION = "/wEWBwKh6Oq+DwKDnbD2DALVp9zJDAKi+6bHDgKC3IeGDAKt86PwBQLv3aq9Bw==";
+	private static final String __VIEWSTATE = "/wEPDwUKMjA1ODgwODUwMg9kFgJmD2QWAgIBDw8WAh4EVGV4dAUk5pqo5Y2X5aSn5a2m57u85ZCI5pWZ5Yqh566h55CG57O757ufZGRk";
+    private static final String VALCODEERROR = "VALCODEERROR";
+    private static final String BSORMMERROR = "IDORPAERROR";
+	
+	private static ResponseHandler<String> responseHandler;
+	/**
      * @see HttpServlet#HttpServlet()
      */
-	private static ResponseHandler<String> responseHandler;
 	
     public RegServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
     
+	/**
+	 * @throws IOException 
+	 * @throws ClientProtocolException 
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
     public void init() {
     	responseHandler = new ResponseHandler<String>(){
             public String handleResponse(final HttpResponse response) throws ClientProtocolException,IOException{
-                HttpEntity entity = response.getEntity();
-                return entity !=null ? EntityUtils.toString(entity) : null;
+                int status = response.getStatusLine().getStatusCode();
+                if ((status >= 200 && status < 300) || status == 302){
+                    HttpEntity entity = response.getEntity();
+                    return entity !=null ? EntityUtils.toString(entity) : null;
+                }else{
+                    throw new ClientProtocolException("Unexpected response status: " + status);
+                }
             }
         };
     }
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		CloseableHttpClient httpClient = new DefaultHttpClient();
-		
+    private CloseableHttpClient prepare() throws ClientProtocolException, IOException{
+    	CloseableHttpClient httpClient = new DefaultHttpClient();
 		HttpGet getPage = new HttpGet(JWCURL);
 		httpClient.execute(getPage);
 		getPage.abort();
+		
+		return httpClient;
+    }
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		CloseableHttpClient httpClient = null;
+		HttpSession session = request.getSession();
+		synchronized(session){
+			httpClient = (CloseableHttpClient) (session.getAttribute("httpClient")==null?
+					prepare():session.getAttribute("httpClient"));
+		}
 		
 		HttpGet getValCode = new HttpGet(VALIDATIONCODE);
 		CloseableHttpResponse valCodeResponse = httpClient.execute(getValCode);
 		
 		try{
-		HttpEntity entity = valCodeResponse.getEntity();
+			HttpEntity entity = valCodeResponse.getEntity();
 	    	if (entity != null) {
 	        	InputStream instream = entity.getContent();
 	        	try {
@@ -113,13 +139,10 @@ public class RegServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String txtFJM = request.getParameter("valCode");
 		String txtYHBS = request.getParameter("userID");
-		String txtYHMM = "we made one up";
-		String btnLogin = "登  录";
-		String __EVENTVALIDATION = "/wEWBwKh6Oq+DwKDnbD2DALVp9zJDAKi+6bHDgKC3IeGDAKt86PwBQLv3aq9Bw==";
-		String __VIEWSTATE = "/wEPDwUKMjA1ODgwODUwMg9kFgJmD2QWAgIBDw8WAh4EVGV4dAUk5pqo5Y2X5aSn5a2m57u85ZCI5pWZ5Yqh566h55CG57O757ufZGRk";
+		String txtYHMM = request.getParameter("password");
 		
-		HttpSession session = request.getSession();
 		CloseableHttpClient httpClient = null;
+		HttpSession session = request.getSession();
 		synchronized(session){
 			httpClient = (CloseableHttpClient) session.getAttribute("httpClient");
 		}
@@ -135,16 +158,41 @@ public class RegServlet extends HttpServlet {
 	    nameValuePairs.add(new BasicNameValuePair("txtYHMM", txtYHMM));
 	    post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 	    
-	    String responsePage = httpClient.execute(post, responseHandler);
-		
-		System.out.println(isOK(responsePage));
-		
+	    CloseableHttpResponse httpResponse = httpClient.execute(post);
+		try{
+			if(isOK(httpResponse)){
+				Map<String, Object> params = new HashMap<String, Object>();
+				params.put("userID", txtYHBS);
+				params.put("password", txtYHMM);
+				Transaction transaction = new RegisterTransaction();
+				try {
+					transaction.execute(params);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					response.sendError(500);
+				}
+			} else{
+				response.sendRedirect("pages/RegTest.jsp?error="+findErrorMessage(httpResponse));
+			}
+		} finally{
+			post.abort();
+			httpResponse.close();
+		}
 	}
 	
-	private boolean isOK(String responsePage) {
-		Pattern p = Pattern.compile(SUCCESSFLAG);
-		Matcher m = p.matcher(responsePage);
-		return m.find();
+	private boolean isOK(HttpResponse response) {
+		return response.containsHeader("Location");
 	}
 
+	private String findErrorMessage(HttpResponse response) throws ClientProtocolException, IOException {
+		String responsePage = responseHandler.handleResponse(response);
+		
+		Pattern p = Pattern.compile("附加码不一致");
+		Matcher m = p.matcher(responsePage);
+		if(m.find())
+			return VALCODEERROR;
+		else
+			return BSORMMERROR;
+	}
 }

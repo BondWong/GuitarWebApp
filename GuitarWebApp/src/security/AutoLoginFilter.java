@@ -1,6 +1,8 @@
 package security;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -9,19 +11,23 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import model.Account;
+import service.transactions.daoTransactions.DAOTransaction;
+import service.transactions.daoTransactions.GetAccountBySeriesNumTransaction;
+
 /**
- * Servlet Filter implementation class HiddenCodeGeneratorFilter
+ * Servlet Filter implementation class AutoLoginFilter
  */
-//@WebFilter("/pages/*")
-public class HiddenCodeGeneratorFilter implements Filter {
+public class AutoLoginFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public HiddenCodeGeneratorFilter() {
+    public AutoLoginFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -38,13 +44,31 @@ public class HiddenCodeGeneratorFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		String hiddenCode = System.currentTimeMillis() + "";
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpSession session = httpRequest.getSession();
-		synchronized(session){
-			session.setAttribute("hiddenCode", hiddenCode);
+		Cookie[] cookies = httpRequest.getCookies();
+		String autoLoginSeriesNum = "";
+		for(int i=0; cookies!=null&&i<cookies.length; i++){
+			if(cookies[i].getName().equals("ALG")){
+				autoLoginSeriesNum = cookies[i].getValue();
+				
+				Map<String, Object> params = new HashMap<String, Object>();
+				params.put("autoLoginSeriesNum", autoLoginSeriesNum);
+				DAOTransaction transation = new GetAccountBySeriesNumTransaction();
+				Account account = new Account();
+				try {
+					account = (Account) transation.execute(params);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				HttpSession session = httpRequest.getSession();
+				synchronized(session){
+					session.setAttribute(account.getUserID(),
+						account.getUserID());
+				}
+			}
 		}
-		System.out.println("HiddenCodeGeneratorFilter:" + hiddenCode);
+		
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}

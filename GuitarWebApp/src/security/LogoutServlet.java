@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.core.MediaType;
 
 /**
  * Servlet implementation class UserLogoutServlet
  */
 @WebServlet("/security/UserLogoutServlet")
-public class UserLogoutServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserLogoutServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,10 +41,10 @@ public class UserLogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		synchronized(session){
 			session.removeAttribute(userID);
+			session.invalidate();
 		}
 		
-		response.setContentType(MediaType.TEXT_PLAIN);
-		response.getWriter().write(userID + " logout");
+		response.sendRedirect("pages/index.jsp");
 	}
 
 }

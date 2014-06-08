@@ -62,12 +62,15 @@ public class UserService {
 		return Response.ok().build();
 	}
 	
-	@Path("updateProfile/{userID : \\d+}/{nickName}/{gender}/{lookingFor}/{relationship}/{year}/{month}/{date}")
+	@Path("updateProfile/{userID : \\d+}/{nickName}/{gender}/{lookingFor}/{relationship}/{year}/{month}/{date}"
+			+ "/{campus}/{dorm}/{dormNum}")
 	@PUT
 	public Response updateUserProfile(@PathParam("userID") String userID, @PathParam("nickName") String nickName,
 			@PathParam("gender") String gender, @PathParam("lookingFor") String lookingFor, 
 			@PathParam("relationship") String relationship, @PathParam("year") String year, 
-			@PathParam("month") String month, @PathParam("date") String date) throws Exception {
+			@PathParam("month") String month, @PathParam("date") String date,
+			@PathParam("campus") String campus, @PathParam("dorm") String dorm,
+			@PathParam("dormNum") String dormNum) throws Exception {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
 		params.put("nickName", nickName);
@@ -77,7 +80,9 @@ public class UserService {
 		params.put("year", year);
 		params.put("month", month);
 		params.put("date", date);
-		System.out.println(params);
+		params.put("campus", campus);
+		params.put("dorm", dorm);
+		params.put("dormNum", dormNum);
 		
 		Transaction transaction = new UpdateUserProfileTransaction();
 		transaction.execute(params);

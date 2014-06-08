@@ -14,6 +14,7 @@ import utils.CommentType;
 import utils.EntityManagerFactoryCreator;
 import utils.ParamGenerator;
 import utils.PostType;
+import model.Account;
 import model.Comment;
 import model.Community;
 import model.Post;
@@ -49,11 +50,29 @@ public class SystemTestListener implements ServletContextListener {
     	User user = new User("2011052407");
     	user.setPassword("1901103390");
     	
+    	Account a = new Account();
+    	a.setUserID(user.getID());
+    	a.setPassword(user.getPassword());
+    	
     	User u2 = new User("2011052406");
     	u2.setPassword("BM1003mb");
     	
+    	Account a2 = new Account();
+    	a2.setUserID(u2.getID());
+    	a2.setPassword(u2.getPassword());
+    	
     	EntityManagerFactory emf = EntityManagerFactoryCreator.getInstance().getEntityManagerFactory();
     	EntityManager em = emf.createEntityManager();
+    	DAO<Account> adao = null;
+    	try {
+			adao = new DAO<Account>(Account.class, em);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	adao.create(a);
+    	adao.create(a2);
+    	
     	DAO<User> udao = null;
     	try {
 			udao = new DAO<User>(User.class, em);
