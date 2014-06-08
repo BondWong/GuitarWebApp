@@ -42,6 +42,8 @@ import utils.PostType;
 		private Set<UserRepresentation> participantRepresentations;
 		
 		public Long getID() {
+			if(ID==null)
+				return null;
 			return ID;
 		}
 		
@@ -50,6 +52,8 @@ import utils.PostType;
 		}
 
 		public Set<String> getMediaLocation() {
+			if(mediaLocation==null)
+				return null;
 			return mediaLocation;
 		}
 
@@ -58,6 +62,8 @@ import utils.PostType;
 		}
 
 		public String getTopic() {
+			if(topic==null)
+				return null;
 			return topic;
 		}
 
@@ -66,6 +72,8 @@ import utils.PostType;
 		}
 
 		public String getContent() {
+			if(content==null)
+				return null;
 			return content;
 		}
 
@@ -74,6 +82,8 @@ import utils.PostType;
 		}
 
 		public PostType getType() {
+			if(type==null)
+				return null;
 			return type;
 		}
 
@@ -82,6 +92,8 @@ import utils.PostType;
 		}
 
 		public String getPublishDate() {
+			if(publishDate==null)
+				return null;
 			return publishDate;
 		}
 
@@ -98,6 +110,8 @@ import utils.PostType;
 		}
 		
 		public Set<CommentRepresentation> getCommentRepresentations() {
+			if(commentRepresentations==null)
+				return null;
 			return commentRepresentations;
 		}
 
@@ -111,6 +125,8 @@ import utils.PostType;
 		}
 
 		public UserRepresentation getOwnerRepresentation() {
+			if(ownerRepresentation==null)
+				return null;
 			return ownerRepresentation;
 		}
 
@@ -119,6 +135,8 @@ import utils.PostType;
 		}
 
 		public Set<UserRepresentation> getLikerRepresentations() {
+			if(likerRepresentations==null)
+				return null;
 			return likerRepresentations;
 		}
 
@@ -132,6 +150,8 @@ import utils.PostType;
 		}
 
 		public String getStartDate() {
+			if(startDate==null)
+				return null;
 			return startDate;
 		}
 
@@ -140,6 +160,8 @@ import utils.PostType;
 		}
 
 		public Set<UserRepresentation> getParticipantRepresentations() {
+			if(participantRepresentations==null)
+				return null;
 			return participantRepresentations;
 		}
 

@@ -313,6 +313,8 @@ public class User {
 		private Set<String> imgaeLinks;
 		
 		public String getNickName() {
+			if(nickName==null)
+				return null;
 			return nickName;
 		}
 		
@@ -321,6 +323,8 @@ public class User {
 		}
 		
 		public String getGender() {
+			if(gender==null)
+				return null;
 			return gender;
 		}
 		
@@ -329,6 +333,8 @@ public class User {
 		}
 
 		public String getAvatarLink() {
+			if(avatarLink==null)
+				return null;
 			return avatarLink;
 		}
 
@@ -337,6 +343,8 @@ public class User {
 		}
 
 		public String getLookingFor() {
+			if(lookingFor==null)
+				return null;
 			return lookingFor;
 		}
 
@@ -345,6 +353,8 @@ public class User {
 		}
 
 		public String getRelationship() {
+			if(relationship==null)
+				return null;
 			return relationship;
 		}
 
@@ -353,6 +363,8 @@ public class User {
 		}
 
 		public String getBirthday() {
+			if(birthday==null)
+				return null;
 			return birthday;
 		}
 
@@ -361,6 +373,8 @@ public class User {
 		}
 
 		public Set<String> getImgaeLinks() {
+			if(imageLinks==null)
+				return null;
 			return imgaeLinks;
 		}
 

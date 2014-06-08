@@ -46,6 +46,8 @@ public class UserRepresentation{
 	
 	
 	public String getID() {
+		if(ID==null)
+			return null;
 		return ID;
 	}
 	
@@ -54,6 +56,8 @@ public class UserRepresentation{
 	}
 
 	public AuthType getAuthType() {
+		if(authType==null)
+			return null;
 		return authType;
 	}
 
@@ -62,6 +66,8 @@ public class UserRepresentation{
 	}
 
 	public String getAvaterLink() {
+		if(avaterLink==null)
+			return null;
 		return avaterLink;
 	}
 
@@ -70,6 +76,8 @@ public class UserRepresentation{
 	}
 
 	public String getGender() {
+		if(gender==null)
+			return null;
 		return gender;
 	}
 
@@ -78,6 +86,8 @@ public class UserRepresentation{
 	}
 
 	public String getNickName() {
+		if(nickName==null)
+			return null;
 		return nickName;
 	}
 
@@ -86,6 +96,8 @@ public class UserRepresentation{
 	}
 
 	public String getLookingFor() {
+		if(lookingFor==null)
+			return null;
 		return lookingFor;
 	}
 
@@ -94,6 +106,8 @@ public class UserRepresentation{
 	}
 
 	public String getRelationship() {
+		if(relationship==null)
+			return null;
 		return relationship;
 	}
 
@@ -102,6 +116,8 @@ public class UserRepresentation{
 	}
 
 	public String getBirthday() {
+		if(birthday==null)
+			return null;
 		return birthday;
 	}
 
@@ -110,6 +126,8 @@ public class UserRepresentation{
 	}
 
 	public Set<String> getImageLinks() {
+		if(imageLinks==null)
+			return null;
 		return imageLinks;
 	}
 
@@ -118,6 +136,8 @@ public class UserRepresentation{
 	}
 
 	public Set<String> getFolloweesID() {
+		if(followeesID==null)
+			return null;
 		return followeesID;
 	}
 
@@ -128,6 +148,8 @@ public class UserRepresentation{
 	}
 
 	public Set<String> getFollowersID() {
+		if(followersID==null)
+			return null;
 		return followersID;
 	}
 
@@ -138,6 +160,8 @@ public class UserRepresentation{
 	}
 
 	public Set<Long> getCollectedPosts() {
+		if(collectedPosts==null)
+			return null;
 		return collectedPosts;
 	}
 	
@@ -149,6 +173,8 @@ public class UserRepresentation{
 	}
 
 	public String getCampus() {
+		if(campus==null)
+			return null;
 		return campus;
 	}
 
@@ -157,6 +183,8 @@ public class UserRepresentation{
 	}
 
 	public String getDorm() {
+		if(dorm==null)
+			return null;
 		return dorm;
 	}
 
@@ -165,6 +193,8 @@ public class UserRepresentation{
 	}
 
 	public String getDormNum() {
+		if(dormNum==null)
+			return null;
 		return dormNum;
 	}
 

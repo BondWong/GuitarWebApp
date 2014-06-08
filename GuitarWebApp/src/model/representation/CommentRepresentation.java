@@ -26,6 +26,8 @@ public class CommentRepresentation{
 	private UserRepresentation ownerRepresentation;
 	
 	public Long getID() {
+		if(ID==null)
+			return null;
 		return ID;
 	}
 	
@@ -34,6 +36,8 @@ public class CommentRepresentation{
 	}
 
 	public String getContent() {
+		if(content==null)
+			return null;
 		return content;
 	}
 
@@ -42,6 +46,8 @@ public class CommentRepresentation{
 	}
 
 	public CommentType getType() {
+		if(type==null)
+			return null;
 		return type;
 	}
 
@@ -50,6 +56,8 @@ public class CommentRepresentation{
 	}
 
 	public String getPublishDate() {
+		if(publishDate==null)
+			return null;
 		return publishDate;
 	}
 
@@ -58,6 +66,8 @@ public class CommentRepresentation{
 	}
 
 	public Set<UserRepresentation> getSupportorRepresentations() {
+		if(supportorRepresentations==null)
+			return null;
 		return supportorRepresentations;
 	}
 
@@ -66,6 +76,8 @@ public class CommentRepresentation{
 	}
 
 	public UserRepresentation getOwnerRepresentation() {
+		if(ownerRepresentation==null)
+			return null;
 		return ownerRepresentation;
 	}
 
