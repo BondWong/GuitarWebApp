@@ -1,5 +1,6 @@
 package model.representation;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -25,9 +26,12 @@ public class CommentRepresentation{
 	@XmlElement
 	private UserRepresentation ownerRepresentation;
 	
+	public CommentRepresentation() {
+		this.content = "";
+		this.publishDate = "";
+	}
+	
 	public Long getID() {
-		if(ID==null)
-			return null;
 		return ID;
 	}
 	
@@ -36,8 +40,6 @@ public class CommentRepresentation{
 	}
 
 	public String getContent() {
-		if(content==null)
-			return null;
 		return content;
 	}
 
@@ -46,8 +48,6 @@ public class CommentRepresentation{
 	}
 
 	public CommentType getType() {
-		if(type==null)
-			return null;
 		return type;
 	}
 
@@ -56,8 +56,6 @@ public class CommentRepresentation{
 	}
 
 	public String getPublishDate() {
-		if(publishDate==null)
-			return null;
 		return publishDate;
 	}
 
@@ -67,17 +65,17 @@ public class CommentRepresentation{
 
 	public Set<UserRepresentation> getSupportorRepresentations() {
 		if(supportorRepresentations==null)
-			return null;
+			return new LinkedHashSet<UserRepresentation>();
 		return supportorRepresentations;
 	}
 
 	public void addSupportorShortCuts(UserRepresentation supportorRepresentation) {
+		if(supportorRepresentations==null)
+			this.supportorRepresentations = new LinkedHashSet<UserRepresentation>();
 		this.supportorRepresentations.add(supportorRepresentation);
 	}
 
 	public UserRepresentation getOwnerRepresentation() {
-		if(ownerRepresentation==null)
-			return null;
 		return ownerRepresentation;
 	}
 
