@@ -93,6 +93,22 @@
 			}
 		});
 	}
+	//function getUserRepresentation
+	function getUserRepresentation(){
+		$.ajax({
+			url:'../../GuitarWebApp/app/user/getRepresentation/2011052407',
+			type:'get',
+			success:function(data){
+				$('.Anickname').html(data.nickName);
+				$('.Agender').html(data.gender);
+				$('.Abirth').html(data.birthday);
+				$('.Arelationship').html(data.relationship);
+				$('.Acampus').html(data.campus);
+				$('.Aaddress').html("#"+data.dorm+" "+data.dormNum);
+				$('.Alooking').html(data.lookingFor);
+			}
+		});
+	}
 	//function profileBg
 	$('.profile_img').hover(function(){
 		var changeBtn = "<div class='changeBtnGroup'><form><button class='btn btn-success profileImgBtn'>Change BlackgroundImg</button><input type='file' name='file' class='btn_file' style='display:none'/></form></div>";//<button class='btn btn-success avatarImgBtn'>Change Avatar</button>
@@ -119,37 +135,39 @@ $(document).ready(function(){
 //function userTip
 	(function($){  
 		$.fn.userTips = function () {
-
-			var tipFrame = '<div class="popTip"><div class="content"><div class="urserBgShort"><img src="images/urseBgShort.jpg" /></div><div class="urserInfShort"><img src="images/user_img4.jpg" /><p><h1>Bond</h1></p><p> a good guy</p><button id="followBtn">Follow</button></div></div></div>';
-			
 			// Speed of the animations in milliseconds - 1000 = 1 second.
-			var animSpeed = 300;
-							
-			// Global tinyTip variables;
-			var tinyTip;				
-			// When we hover over the element that we want the tooltip applied to
-			$(this).hover(function() {		
-				$('body').append(tipFrame);
-				var divTip = 'div.popTip';
-				tinyTip = $(divTip);
-				tinyTip.hide();
-				// Grab the coordinates for the element with the tooltip and make a new copy
+			var animSpeed = 300;			
+			var tinyTip;		
+			// When we hover over the element that we want the tooltip applied to	
+			$(this).hover(function() {	
 				var pos = $(this).offset();
 				var nPos = pos;
-				
-				// Add the offsets to the tooltip position
 				nPos.top = pos.top + 20;
 				nPos.left = pos.left + 40;
-				// Make sure that the tooltip has absolute positioning and a high z-index, 
-				// then place it at the correct spot and fade it in.
-				tinyTip.css('position', 'absolute').css('z-index', '1000');
-				tinyTip.css(nPos).fadeIn(animSpeed);
-				tinyTip.hover(function(){
-					clearTimeout(window.timer);
-				},function(){
-					tinyTip.fadeOut(animSpeed, function() {
-						$(this).remove();
-					});
+				
+				$.ajax({
+					url:'../../GuitarWebApp/app/user/getRepresentationShortCut/2011052407',
+					type:'get',
+					success:function(data){
+						var tipFrame = '<div class="popTip"><div class="content"><div class="urserBgShort"><img src="images/urseBgShort.jpg" /></div><div class="urserInfShort"><img src="images/user_img4.jpg" /><p><h1>Bond</h1></p><p> a good guy</p><button id="followBtn">Follow</button></div></div></div>';
+						//var tipFrame = '<div class="popTip"><div class="content"><div class="urserBgShort"><img src="images/urseBgShort.jpg" /></div><div class="urserInfShort"><img src='+data.avatarLink+' /><p><h1>'+data.nickName+'</h1></p><p>'+data.lookingFor+'</p><button id="followBtn">Follow</button></div></div></div>';
+						$('body').append(tipFrame);
+						var divTip = 'div.popTip';
+						tinyTip = $(divTip);
+						tinyTip.hide();
+						
+						// Make sure that the tooltip has absolute positioning and a high z-index, 
+						// then place it at the correct spot and fade it in.
+						tinyTip.css('position', 'absolute').css('z-index', '1000');
+						tinyTip.css(nPos).fadeIn(animSpeed);
+						tinyTip.hover(function(){
+							clearTimeout(window.timer);
+						},function(){
+							tinyTip.fadeOut(animSpeed, function() {
+								$(this).remove();
+							});
+						});
+					},
 				});
 			}, function() {
 				// Fade the tooltip out once the mouse moves away and then remove it from the DOM.	
@@ -284,7 +302,8 @@ $(document).ready(function(){
 			$("span[class='Alooking']").html("<input class='lookingforE' id='focusedInput' type='text' value='Make friends' />");
 			$("span[class='Agender']").html("<select class='genderE'><option value='male'>Male</option><option value='female'>Female</option></select>");
 			$("span[class='Arelationship']").html("<select class='relationshipnE'><option value='single'>single</option><option value='loving'>loving</option></select>");
-			$("span[class='Aaddress']").html("<select class='addressE'><option value='#1'>#1</option><option value='#2'>#2</option></select>");
+			$("span[class='Aaddress']").html("<select class='addressE'><option value='1'>#1</option><option value='2'>#2</option></select><input class='dormNumE' id='focusedInput' type='text' value='1509'></input>");
+			$("span[class='Acampus']").html("<select class='campusE'><option value='JNU'>JNU</option><option value='MNU'>MNU</option></select>");
 			$(this).text("Save");
 			$(this).attr("class","btn btn-primary aSavebtn");
 		});
@@ -294,19 +313,18 @@ $(document).ready(function(){
 			var gender = $('.genderE').val();
 			var relationship = $('.relationshipnE').val();
 			var lookingfor = $('.lookingforE').val();
+			var campus = $('.campusE').val();
+			var dorm = $('.addressE').val();
+			var dormNum = $('.dormNumE').val();
 			//var lookingfor = $('.nicknameE').val();
 			var d = new Date();
         	var publishDateN = d.getFullYear() + "/" +(d.getMonth()+1) + "/" + d.getDate();
         	var date = new Date(publishDateN);
 			$.ajax({
 				type:'put',
-				url:'../../GuitarWebApp/app/user/updateProfile/2011052407/'+nickName+'/'+gender+'/'+lookingfor+'/'+relationship+'/2011/9/7'
+				url:'../../GuitarWebApp/app/user/updateProfile/2011052407/'+nickName+'/'+gender+'/'+lookingfor+'/'+relationship+'/'+'2011/09/07'+'/'+campus+'/'+dorm+'/'+dormNum,
 			});
-			$("input[class='nicknameE']").replaceWith("<span class='Anickname'>Winson_Lau</span>");
-			$("input[class='lookingforE']").replaceWith("<span class='Alooking'>make friends</span>");
-			$("select[class='genderE']").replaceWith("<span class='Agender'>boy</span>");
-			$("select[class='relationshipnE']").replaceWith("<span class='Arelationship'>single</span>");
-			$("select[class='addressE']").replaceWith("<span class='Aaddress'>#1</span>");
+			getUserRepresentation();
 			$(this).text("Edit");
 			$(this).attr("class","btn btn-primary aEditbtn");
 		});
