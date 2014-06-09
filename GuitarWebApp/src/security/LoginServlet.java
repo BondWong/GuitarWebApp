@@ -78,7 +78,7 @@ public class LoginServlet extends HttpServlet {
 					synchronized (session) {
 						targetURL = (String) session.getAttribute("targetURL");
 						if (targetURL == null || targetURL.equals(""))
-							targetURL = "/GuitarWebApp/pages/index.html";
+							targetURL = "/GuitarWebApp/pages/circle.jsp";
 					}
 					response.addCookie(cookie);
 					response.sendRedirect(targetURL);
@@ -86,7 +86,7 @@ public class LoginServlet extends HttpServlet {
 			} else {
 				account.setLastAccessDate(new Date());
 				account.setChance((short) (account.getChance() - 1));
-				response.sendRedirect("/GuitarWebApp/pages/signIn.html?invalid=true");
+				response.sendRedirect("/GuitarWebApp/pages/signIn.jsp?invalid=true");
 			}
 
 			params.clear();
@@ -102,7 +102,7 @@ public class LoginServlet extends HttpServlet {
 			}
 
 		} else {
-			response.sendRedirect("/GuitarWebApp/pages/signIn.html?invalid=true");
+			response.sendRedirect("/GuitarWebApp/pages/signIn.jsp?invalid=true");
 		}
 
 	}

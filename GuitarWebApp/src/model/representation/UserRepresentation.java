@@ -168,6 +168,8 @@ public class UserRepresentation{
 	}
 
 	public String getCampus() {
+		if(campus == null)
+			return "";
 		return campus;
 	}
 
@@ -176,6 +178,8 @@ public class UserRepresentation{
 	}
 
 	public String getDorm() {
+		if(dorm == null)
+			return "";
 		return dorm;
 	}
 
@@ -184,6 +188,8 @@ public class UserRepresentation{
 	}
 
 	public String getDormNum() {
+		if(dormNum == null)
+			return "";
 		return dormNum;
 	}
 

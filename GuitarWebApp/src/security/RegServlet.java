@@ -174,10 +174,10 @@ public class RegServlet extends HttpServlet {
 					return;
 				}
 				
-				response.sendRedirect("../pages/reg.html?ok=true");
+				response.sendRedirect("../pages/reg.jsp?ok=true");
 				
 			} else{
-				response.sendRedirect("../pages/reg.html?error="+findErrorMessage(httpResponse));
+				response.sendRedirect("../pages/reg.jsp?error="+findErrorMessage(httpResponse));
 			}
 		} finally{
 			post.abort();
