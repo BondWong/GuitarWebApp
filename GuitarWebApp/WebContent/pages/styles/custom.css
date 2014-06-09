@@ -482,6 +482,12 @@ body {
 	float: left;
 	width: 100%;
 }
+.aboutBlue .InforItem {
+	width: 300px;
+	float: left;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
 .aboutBlue .aEditbtn {
 	margin-left: 50px;
 }

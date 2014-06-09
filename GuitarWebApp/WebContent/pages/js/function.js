@@ -37,7 +37,7 @@
 	
 	function fetchPostsByUserID(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/post/fetchByUserID/2011052407/0/5',// /post/fetchByUserID/'+id
+			url:'../../GuitarWebApp/app/post/fetchByUserID/2011052405/0/5',// /post/fetchByUserID/'+id
 			type:'get',
 			success:function(data){
 				//var jsondata = $.parseJSON(data);
@@ -53,7 +53,7 @@
 //function fetchPostsByFollowee
 	function fetchPostByFollowee(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/post/fetchByFollowee/2011052407/0/5',// /post/fetchByUserID/'+id
+			url:'../../GuitarWebApp/app/post/fetchByFollowee/2011052405/0/5',// /post/fetchByUserID/'+id
 			type:'get',
 			success:function(data){
 				//var jsondata = $.parseJSON(data);
@@ -96,7 +96,7 @@
 	//function getUserRepresentation
 	function getUserRepresentation(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/user/getRepresentation/2011052407',
+			url:'../../GuitarWebApp/app/user/getRepresentation/2011052405',
 			type:'get',
 			success:function(data){
 				$('.Anickname').html(data.nickName);
@@ -111,7 +111,7 @@
 	}
 	/*function getUserRepresentation(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/user/getRepresentation/2011052407',
+			url:'../../GuitarWebApp/app/user/getRepresentation/2011052405',
 			type:'get',
 			success:function(data){
 				UserID = data.ID;
@@ -165,7 +165,7 @@
 //show followees
 	function showFollowees(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/user/getRepresentation/2011052407',
+			url:'../../GuitarWebApp/app/user/getRepresentation/2011052405',
 			type:'get',
 			success: function(data){
 				var followeesIDs = data.followeesID;
@@ -185,7 +185,7 @@
 //show photos
 	function showPhotos(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/user/getRepresentation/2011052407',
+			url:'../../GuitarWebApp/app/user/getRepresentation/2011052405',
 			type:'get',
 			success: function(data){
 				$.each(data.imageLinks,function(index,imageLink){
@@ -210,7 +210,7 @@ $(document).ready(function(){
 				nPos.left = pos.left + 40;
 				
 				$.ajax({
-					url:'../../GuitarWebApp/app/user/getRepresentationShortCut/2011052407',
+					url:'../../GuitarWebApp/app/user/getRepresentationShortCut/2011052405',
 					type:'get',
 					success:function(data){
 						var tipFrame = '<div class="popTip"><div class="content"><div class="urserBgShort"><img src="images/urseBgShort.jpg" /></div><div class="urserInfShort"><img src="images/user_img4.jpg" /><p><h1>Bond</h1></p><p> a good guy</p><button id="followBtn">Follow</button></div></div></div>';
@@ -266,7 +266,7 @@ $(document).ready(function(){
 	    		var jsonData = $.toJSON(jsonString);
 	    		$.ajax({
 	    			type:"POST",
-	    			url:'../../GuitarWebApp/app/post/add/2011052407',
+	    			url:'../../GuitarWebApp/app/post/add/2011052405',
 	    			data:jsonData,
 	    			contentType: "application/json"
 	    		});
@@ -286,14 +286,14 @@ $(document).ready(function(){
 			if(this.lastChild.lastChild.getAttribute("class") == "glyphicon glyphicon-star-empty"){
 				var id = this.firstChild.firstChild.getAttribute("value");
 				$.ajax({
-					url:'../../GuitarWebApp/app/post/collect/2011052407/'+id,//'../../GuitarWebApp/app/post/collect/2011052407/'+id
+					url:'../../GuitarWebApp/app/post/collect/2011052405/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
 					type:'put'
 				});
 			}
 			if(this.lastChild.lastChild.getAttribute("class") == "glyphicon glyphicon-star"){
 				var id = this.firstChild.firstChild.getAttribute("value");
 				$.ajax({
-					url:'../../GuitarWebApp/app/post/cancelCollect/2011052407/'+id,//'../../GuitarWebApp/app/post/collect/2011052407/'+id
+					url:'../../GuitarWebApp/app/post/cancelCollect/2011052405/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
 					type:'put'
 				});
 			}
@@ -303,14 +303,14 @@ $(document).ready(function(){
 			if(this.lastChild.lastChild.getAttribute("class") == "glyphicon glyphicon-heart-empty"){
 				var id = this.firstChild.firstChild.getAttribute("value");
 				$.ajax({
-					url:'../../GuitarWebApp/app/post/like/2011052407/'+id,//'../../GuitarWebApp/app/post/collect/2011052407/'+id
+					url:'../../GuitarWebApp/app/post/like/2011052405/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
 					type:'put'
 				});
 			}
 			if(this.lastChild.lastChild.getAttribute("class") == "glyphicon glyphicon-heart"){
 				var id = this.firstChild.firstChild.getAttribute("value");
 				$.ajax({
-					url:'../../GuitarWebApp/app/post/cancelLike/2011052407/'+id,//'../../GuitarWebApp/app/post/collect/2011052407/'+id
+					url:'../../GuitarWebApp/app/post/cancelLike/2011052405/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
 					type:'put'
 				});
 			}
@@ -319,7 +319,7 @@ $(document).ready(function(){
 		$('body').on('click','#activityJoin',function(){
 			var id = this.firstChild.firstChild.getAttribute("value");
 			$.ajax({
-				url:'../../GuitarWebApp/app/post/join/2011052407/1',//'../../GuitarWebApp/app/post/collect/2011052407/'+id
+				url:'../../GuitarWebApp/app/post/join/2011052405/1',//'../../GuitarWebApp/app/post/collect/2011052405/'+id
 				type:'put'
 			});
 		});
@@ -339,7 +339,7 @@ $(document).ready(function(){
 			
 			$.ajax({
     			type:"POST",
-    			url:'../../GuitarWebApp/app/comment/add/2011052407/'+id,//'../../GuitarWebApp/app/comment/add/2011052407/'+id
+    			url:'../../GuitarWebApp/app/comment/add/2011052405/'+id,//'../../GuitarWebApp/app/comment/add/2011052405/'+id
     			data:jsonData,
     			contentType: "application/json"
     		});
@@ -349,13 +349,13 @@ $(document).ready(function(){
 			//get post owner
 			if($(this).text()=="Follow"){
 				$.ajax({
-					url:'../../GuitarWebApp/app/user/follow/2011052407/2011052406',//'../../GuitarWebApp/app/user/follow/2011052407/'+id
+					url:'../../GuitarWebApp/app/user/follow/2011052405/2011052406',//'../../GuitarWebApp/app/user/follow/2011052405/'+id
 					type:'put'
 				});
 			}
 			if($(this).text()=="Following"){
 				$.ajax({
-					url:'../../GuitarWebApp/app/user/cancelFollow/2011052407/2011052406',//'../../GuitarWebApp/app/user/follow/2011052407/'+id
+					url:'../../GuitarWebApp/app/user/cancelFollow/2011052405/2011052406',//'../../GuitarWebApp/app/user/follow/2011052405/'+id
 					type:'put'
 				});
 			}
@@ -386,7 +386,7 @@ $(document).ready(function(){
         	var date = new Date(publishDateN);
 			$.ajax({
 				type:'put',
-				url:'../../GuitarWebApp/app/user/updateProfile/2011052407/'+nickName+'/'+gender+'/'+lookingfor+'/'+relationship+'/'+'2011/09/07'+'/'+campus+'/'+dorm+'/'+dormNum,
+				url:'../../GuitarWebApp/app/user/updateProfile/2011052405/'+nickName+'/'+gender+'/'+lookingfor+'/'+relationship+'/'+'2011/09/07'+'/'+campus+'/'+dorm+'/'+dormNum,
 				success:function(){
 					getUserRepresentation();
 				}
@@ -403,7 +403,7 @@ $(document).ready(function(){
 				success:function(data){
 					$.ajax({
 						type:'PUT',
-						url:'../../GuitarWebApp/app/user/changeAvatar/2011052407?avatarLink='+data
+						url:'../../GuitarWebApp/app/user/changeAvatar/2011052405?avatarLink='+data
 					});
 				},
 				// Form data
@@ -422,7 +422,7 @@ $(document).ready(function(){
 				type:'POST',
 				url:'../../GuitarWebApp/app/fileUploader',
 				success:function(data){
-					var Urls = '../../GuitarWebApp/app/user/addImages/2011052407?';
+					var Urls = '../../GuitarWebApp/app/user/addImages/2011052405?';
 					$.each(data,function(n,photoUrl){
 						if(n != data.length-1){
 							Urls = Urls +'imageLinks='+ photoUrl+'&';

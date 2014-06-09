@@ -37,26 +37,33 @@
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-large">社区</span><b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-large">Community</span><b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="index.html"><span class="glyphicon glyphicon-home">主页</span></a></li>
-                    <li><a href="activities.html"><span class="glyphicon glyphicon-th">活动区</span></a></li>
-                    <li><a href="circle.html"><span class="glyphicon glyphicon-comment">讨论区</span></a></li>
-                    <li><a href="activities.html"><span class="glyphicon glyphicon glyphicon-check">悬赏区</span></a></li>
+                    <li><a href="index.html"><span class="glyphicon glyphicon-home">&nbsp;Home</span></a></li>
+                    <li><a href="activities.html"><span class="glyphicon glyphicon-th">&nbsp;Activities</span></a></li>
+                    <li><a href="circle.html"><span class="glyphicon glyphicon-comment">&nbsp;Chat</span></a></li>
+                    <li><a href="Q&A.html"><span class="glyphicon glyphicon glyphicon-check">&nbsp;Q&A</span></a></li>
                   </ul>
                 </li>
               </ul>
-              <ul class="nav navbar-nav" style="float:right;margin-right:20px;">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="">User Management</span><b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="signIn.html"><span class="glyphicon glyphicon-home">sign in</span></a></li>
-                    <li><a href="reg.html"><span class="glyphicon glyphicon-th">sign up</span></a></li>
-                    <li><a href="signIn.html"><span class="glyphicon glyphicon-home">profile</span></a></li>
-                    <li><a href=""><span class="glyphicon glyphicon-comment">sign out</span></a></li>
-                  </ul>
-                </li>
-              </ul>
+            <form class="navbar-form navbar-costom" role="form"  method="post" action="../security/LoginServlet">
+            <div class="form-group">
+              <input type="text" placeholder="UesrID" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control" required>
+            </div>
+            <button class="btn btn-success" type="submit">Sign in</button>
+             </form>
+             <!-- when sign in-->
+             <!--
+             <ul class="nav navbar-nav nav_cust">
+          	<li><a href="profile.html"><span class="glyphicon glyphicon-user"> User</span></a></li>
+            <li><a><span class="glyphicon glyphicon-bell" style="font-size:18px"></span></a></li>
+          	<li><button type="button" class="btn btn-success btn_cust">分享</button></li>
+            <li><img src="images/1.jpg" class="img-circle img_cust"></li>  -->
+             
+          </ul>
             </div>
           </div>
         </div>
