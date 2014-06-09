@@ -64,32 +64,29 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 
-		if (account != null) {
-			if (!account.isProtected(new Date())) {
-				if (password.equals(account.getPassword())) {
-					HttpSession session = request.getSession();
+		if (account != null && !account.isProtected(new Date())) {
+			if (password.equals(account.getPassword())) {
+				HttpSession session = request.getSession();
+				synchronized (session) {
+					session.setAttribute("userID", account.getUserID());
+					account.setAutoLoginSeriesNum(session.getId());
+					Cookie cookie = new Cookie("ALG", session.getId());
+					cookie.setHttpOnly(true);
+					cookie.setPath("/GuitarWebApp");
+					cookie.setMaxAge(15 * 24 * 60 * 60);
+					String targetURL = "";
 					synchronized (session) {
-						session.setAttribute("userID",
-								account.getUserID());
-						account.setAutoLoginSeriesNum(session.getId());
-						Cookie cookie = new Cookie("ALG", session.getId());
-						cookie.setHttpOnly(true);
-						cookie.setPath("/GuitarWebApp");
-						cookie.setMaxAge(15*24*60*60);
-						String targetURL = "";
-						synchronized(session){
-							targetURL = (String) session.getAttribute("targetURL");
-							if(targetURL==null||targetURL.equals(""))
-								targetURL = "/GuitarWebApp/pages/index.html";
-						}
-						response.addCookie(cookie);
-						response.sendRedirect(targetURL);
+						targetURL = (String) session.getAttribute("targetURL");
+						if (targetURL == null || targetURL.equals(""))
+							targetURL = "/GuitarWebApp/pages/index.html";
 					}
-				} else {
-					account.setLastAccessDate(new Date());
-					account.setChance((short) (account.getChance() - 1));
-					response.sendRedirect("/GuitarWebApp/pages/login.jsp?invalid=true");
+					response.addCookie(cookie);
+					response.sendRedirect(targetURL);
 				}
+			} else {
+				account.setLastAccessDate(new Date());
+				account.setChance((short) (account.getChance() - 1));
+				response.sendRedirect("/GuitarWebApp/pages/signIn.html?invalid=true");
 			}
 
 			params.clear();
@@ -105,7 +102,7 @@ public class LoginServlet extends HttpServlet {
 			}
 
 		} else {
-			response.sendRedirect("/GuitarWebApp/pages/login.jsp?invalid=true");
+			response.sendRedirect("/GuitarWebApp/pages/signIn.html?invalid=true");
 		}
 
 	}

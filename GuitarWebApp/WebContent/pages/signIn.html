@@ -64,30 +64,29 @@
 
       </div>
     </div>
-	<div class="containerReg" style="display:block">
+	<!--<div class="containerReg" style="display:none">
 
-      <form class="form-signin" role="form" method="post" action="../security/RegServlet">
+      <form class="form-signin" role="form">
         <h2 class="form-signin-heading">Sign up</h2>
-        <p><input type="text" class="form-control" placeholder="UesrID" name="userID" required autofocus></p>
-        <p><input type="password" class="form-control" placeholder="Password" name="password" required></p>
-        <p><input type="text"  class="form-control form-control-cust"  placeholder="validation Code" name="valCode" required/><img src="../security/RegServlet"/></p>
+        <p><input type="text" class="form-control" placeholder="Username" required autofocus></p>
+        <p><input type="password" class="form-control" placeholder="Password" required></p>
         <button class="btn btn-lg btn-success btn-block" type="submit">Sign up</button>
         <h4>Have a account?<span class="btn signIn" >Sign in</span></h4>
       </form>
-
+	-->
     </div> <!-- /container -->
-    <!--<div class="containerSign" style="display:none">
+    <div class="containerSign" style="display:block">
 
-      <form class="form-signin" role="form">
+      <form class="form-signin" role="form" method="post" action="../security/LoginServlet">
         <h2 class="form-signin-heading">Sign in</h2>
-        <p><input type="text" class="form-control" placeholder="Username" required autofocus></p>
-        <p><input type="password" class="form-control" placeholder="Password" required></p>
-        <p><input type="text"  class="form-control form-control-cust"  placeholder="code" required/><img src="images/test.jpg" alt="" /></p>
+        <p><input type="text" class="form-control" placeholder="ID of academic affairs system" name="userID" required autofocus></p>
+        <p><input type="password" class="form-control" placeholder="Password of academic affairs system" name="password" required></p>
+        
         <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
         <h4>Have no account?<span class="btn signUp" >Sign up</span></h4>
         
       </form>
-	-->
+
     </div> <!-- /container -->
 
     <!-- Bootstrap core JavaScript

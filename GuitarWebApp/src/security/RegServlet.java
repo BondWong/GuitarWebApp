@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -175,11 +174,10 @@ public class RegServlet extends HttpServlet {
 					return;
 				}
 				
-				//RequestDispatcher dispatcher = request.getRequestDispatcher("security/LoginServlet");
-				//dispatcher.forward(request, response);
+				response.sendRedirect("../pages/reg.html?ok=true");
 				
 			} else{
-				response.sendRedirect("pages/RegTest.jsp?error="+findErrorMessage(httpResponse));
+				response.sendRedirect("../pages/reg.html?error="+findErrorMessage(httpResponse));
 			}
 		} finally{
 			post.abort();

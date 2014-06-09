@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="../RegServlet">
+	<form method="post" action="../security/RegServlet">
 		<input type="text" name="userID"/>
 		<input type="password" name="password"/>
-		<img src="../RegServlet"/>
+		<img src="../security/RegServlet"/>
 		<input type="text" name="valCode"/>
 		<input type="submit"/>
 	</form>
