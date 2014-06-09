@@ -513,6 +513,21 @@ body {
 	margin-bottom: 20px;
 	margin-left: 0px;
 	float: left;
-	width: 280px;
-	height: 250px;
+	
+}
+.containerReg {
+	width: 25%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 100px;
+}
+.containerSign{
+	width: 25%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 100px;
+}
+.form-control-cust{
+	width:50%;
+	
 }

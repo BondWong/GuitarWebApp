@@ -109,7 +109,38 @@
 			}
 		});
 	}
-	//function profileBg
+	/*function getUserRepresentation(){
+		$.ajax({
+			url:'../../GuitarWebApp/app/user/getRepresentation/2011052407',
+			type:'get',
+			success:function(data){
+				UserID = data.ID;
+				AuthType = data.authType;
+				ImageLinks = data.imageLinks;
+				FolloweesID = data.followeesID;
+				Nickname = data.nickName;
+				Gender = data.gender;
+				Birth = data.birthday;
+				Relationship = data.relationship;
+				Campus = data.campus;
+				Dorm = data.dorm;
+				DormNum = data.dormNum;
+				LookingFor = data.lookingFor;	
+				alert(Nickname);
+			}
+		});
+	}
+	//funtion aboutUpdata
+	function aboutUpdata(){
+		$('.Anickname').html(Nickname);
+		$('.Agender').html(Gender);
+		$('.Abirth').html(Birth);
+		$('.Arelationship').html(Relationship);
+		$('.Acampus').html(Campus);
+		$('.Aaddress').html("#"+Dorm+" "+DormNum);
+		$('.Alooking').html(LookingFor);
+	}*/
+//function profileBg
 	$('.profile_img').hover(function(){
 		var changeBtn = "<div class='changeBtnGroup'><form><button class='btn btn-success profileImgBtn'>Change BlackgroundImg</button><input type='file' name='file' class='btn_file' style='display:none'/></form></div>";//<button class='btn btn-success avatarImgBtn'>Change Avatar</button>
 		$('.profile_img').append(changeBtn);
@@ -120,7 +151,7 @@
 			$(this).remove();
 		});	
 	});
-	//function profileImg 
+//function profileImg 
 	$('.profile_user_img').hover(function(){
 		var changeBtn = "<button class='btn btn-success profileImg' data-toggle='modal' data-target='#myModal'>Change</button>";
 		$(this).append(changeBtn);
@@ -131,6 +162,39 @@
 			$(this).remove();
 		});	
 	});
+//show followees
+	function showFollowees(){
+		$.ajax({
+			url:'../../GuitarWebApp/app/user/getRepresentation/2011052407',
+			type:'get',
+			success: function(data){
+				var followeesIDs = data.followeesID;
+				$.each(followeesIDs,function(index,followeesID){
+					$.ajax({
+						url:'../../GuitarWebApp/app/user/getRepresentationShortCut/'+followeesID,
+						type:'get',
+						success: function(followeesShortCut){
+							var followee="<img src='"+followeesShortCut.avatarLink+"'></img>";
+							$('.followeeShow').append(followee);
+						}
+					});
+				});
+			}
+		});
+	}
+//show photos
+	function showPhotos(){
+		$.ajax({
+			url:'../../GuitarWebApp/app/user/getRepresentation/2011052407',
+			type:'get',
+			success: function(data){
+				$.each(data.imageLinks,function(index,imageLink){
+					var photoContainer="<div class='photo'><img src='"+imageLink+"' /></div>";
+					$('.photoAddBtn').after(photoContainer);
+				});
+			}
+		});
+	}
 $(document).ready(function(){
 //function userTip
 	(function($){  
@@ -323,8 +387,10 @@ $(document).ready(function(){
 			$.ajax({
 				type:'put',
 				url:'../../GuitarWebApp/app/user/updateProfile/2011052407/'+nickName+'/'+gender+'/'+lookingfor+'/'+relationship+'/'+'2011/09/07'+'/'+campus+'/'+dorm+'/'+dormNum,
+				success:function(){
+					getUserRepresentation();
+				}
 			});
-			getUserRepresentation();
 			$(this).text("Edit");
 			$(this).attr("class","btn btn-primary aEditbtn");
 		});
@@ -368,7 +434,10 @@ $(document).ready(function(){
 					});
 					$.ajax({
 						type:'PUT',
-						url: Urls
+						url: Urls,
+						success: function(){
+							showPhotos();
+						}
 					});
 				},
 				// Form data
@@ -379,6 +448,17 @@ $(document).ready(function(){
 		        processData: false
 			});
 			$('#myModal2').modal('hide');
+		});
+		//show reghtml
+		$('body').on("click",".signIn",function(){
+			$('.containerReg').fadeOut(300);
+			$('.containerReg').attr("style","display:none");
+			$('.containerSign').fadeIn(300);
+		});
+		$('body').on("click",".signUp",function(){
+			$('.containerSign').fadeOut(300);
+			$('.containerSign').attr("style","display:none");
+			$('.containerReg').fadeIn(300);
 		});
 });
 
