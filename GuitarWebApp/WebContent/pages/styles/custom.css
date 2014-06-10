@@ -197,10 +197,12 @@ body {
 	font-size: 16px;
 }
 .share {
-	height: 180px;
 	width: 440px;
 	background-color: #FFFFFF;
 	float: left;
+	padding-bottom:10px;
+	padding-left:10px;
+	padding-right:10px;
 }
 .pro_body {
 	margin-right: auto;
@@ -398,6 +400,11 @@ body {
 	margin-right: auto;
 	margin-left: auto;
 }
+.btn-group {
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+}
 .share_button_group {
 	width: 90%;
 	margin-right: auto;
@@ -536,4 +543,7 @@ body {
 .form-control-cust{
 	width:50%;
 	
+}
+.img-circle2 {
+  border-radius: 25%;
 }
