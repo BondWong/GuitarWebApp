@@ -41,6 +41,7 @@ public class PostRep {
 	@NotNull(groups=ActivityGroup.class)
 	@Future(groups=ActivityGroup.class)
 	private Date startDate;
+	private String information;
 
 	public String getTopic() {
 		return topic;
@@ -88,6 +89,14 @@ public class PostRep {
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+	}
+
+	public String getInformation() {
+		return information;
+	}
+
+	public void setInformation(String information) {
+		this.information = information;
 	}
 	
 }

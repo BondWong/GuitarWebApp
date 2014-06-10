@@ -40,7 +40,9 @@ public class PostRepresentation {
 	private String startDate;
 	@XmlElement
 	private Set<UserRepresentation> participantRepresentations;
-
+	@XmlElement
+	private String information;
+	
 	public Long getID() {
 		return ID;
 	}
@@ -161,6 +163,16 @@ public class PostRepresentation {
 			this.participantRepresentations
 					.add(participant.getRepresentation());
 		}
+	}
+
+	public String getInformation() {
+		if(this.information==null)
+			return "";
+		return information;
+	}
+
+	public void setInformation(String information) {
+		this.information = information;
 	}
 
 }

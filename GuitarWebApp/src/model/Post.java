@@ -47,6 +47,8 @@ public class Post {
 	
 	private String topic;
 	private String content;
+	
+	private String information;
 	@ElementCollection
 	private Set<String> mediaLocation;
 	@Transient
@@ -97,6 +99,17 @@ public class Post {
 	
 	public String getContent(){
 		return content;
+	}
+	
+	public String getInformation() {
+		if(this.information == null){
+			return "";
+		}
+		return information;
+	}
+
+	public void setInformation(String information) {
+		this.information = information;
 	}
 	
 	public Set<String> getMediaLocation(){
@@ -372,6 +385,7 @@ public class Post {
 		representation.setOwner(this.getOwner().getRepresentation());
 		representation.addCommentRepresentations(this.comments);
 		representation.addLikerRepresentation(this.likers);
+		representation.setInformation(this.getInformation());
 		
 		representation.setStartDate(this.getStartDate().toString());
 		representation.addParticipantRepresentations(this.getParticipants());
