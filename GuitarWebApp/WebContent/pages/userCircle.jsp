@@ -29,13 +29,13 @@
 						placeholder="share anything you what to share" />
 					<div class="share_button_group btn-group">
 
-						<button type="button" class="btn btn-default" id="btn_motion">表情</button>
+						<button type="button" class="btn btn-default" id="btn_motion">Motion</button>
 						<button type="button" class="btn btn-default" id="btn_pic"
 							data-toggle="popover" data-placement="bottom"
-							data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">图片</button>
-						<button type="button" class="btn btn-default" id="btn_video">视频</button>
+							data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Pictures</button>
+						<button type="button" class="btn btn-default" id="btn_video">Video</button>
 						<button type="button" class="btn btn-success" id="btn_share"
-							value="upload">分享</button>
+							value="upload">Share</button>
 						<input type="file" name="file" />
 
 					</div>
