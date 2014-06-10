@@ -70,6 +70,7 @@
 
 		</form>
 	</div>
+	<%@ include file="parts/securityCode.jsp"%>
 	<!-- /container -->
 
 	<!-- Bootstrap core JavaScript

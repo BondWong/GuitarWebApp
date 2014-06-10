@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ProtectedURLManager {
 	private static List<String> protectedURLs;
+	private static List<String> hiddenCodeGeneratorURLs;
 	private static List<String> hiddenCodeProtectionURLs;
 	private static List<String> deleteHiddenCodeProtectionURLs;
 	private static List<String> loginProtectionURLs;
@@ -15,6 +16,17 @@ public class ProtectedURLManager {
 		protectedURLs = new ArrayList<String>();
 		protectedURLs.add("app");
 		protectedURLs.add("security");
+		
+		hiddenCodeGeneratorURLs = new ArrayList<String>();
+		hiddenCodeGeneratorURLs.add("activities.jsp");
+		hiddenCodeGeneratorURLs.add("circle.jsp");
+		hiddenCodeGeneratorURLs.add("home.jsp");
+		hiddenCodeGeneratorURLs.add("profile.jsp");
+		hiddenCodeGeneratorURLs.add("Q&A.jsp");
+		hiddenCodeGeneratorURLs.add("reg.jsp");
+		hiddenCodeGeneratorURLs.add("show.jsp");
+		hiddenCodeGeneratorURLs.add("signIn.jsp");
+		hiddenCodeGeneratorURLs.add("userCircle.jsp");
 		
 		hiddenCodeProtectionURLs = new ArrayList<String>();
 		hiddenCodeProtectionURLs.add("post");
@@ -110,6 +122,15 @@ public class ProtectedURLManager {
 				return true;
 		}
 		
+		return false;
+	}
+
+	public static boolean needHiddenCodeGeneration(String url) {
+		// TODO Auto-generated method stub
+		for(String u : hiddenCodeGeneratorURLs) {
+			if(url.contains(u))
+				return true;
+		}
 		return false;
 	}
 	

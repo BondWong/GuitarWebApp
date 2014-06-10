@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:choose>
-	<c:when test="${sessionScope.userID eq null }">
+	<c:when test="${sessionScope.userID eq null or sessionScope.userID eq ''}">
 		<form class="navbar-form navbar-costom" role="form" method="post"
 			action="../security/LoginServlet">
 			<div class="form-group">

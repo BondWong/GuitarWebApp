@@ -315,6 +315,7 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="parts/securityCode.jsp"%>
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery.json.min.js"></script>
 	<script src="styles/bootstrap-3.0.3-dist/dist/js/bootstrap.min.js"></script>

@@ -227,6 +227,7 @@
 	</div>
 	</c:otherwise>
 	</c:choose>
+	<%@ include file="parts/securityCode.jsp"%>
 	<%@ include file="parts/profileJavaScript.jsp"%>
 
 </body>
