@@ -62,12 +62,17 @@
 				<input type="password" class="form-control" placeholder="Password"
 					required>
 			</p>
-			<button class="btn btn-lg btn-success btn-block" type="submit">Sign
+			<button class="btn btn-lg btn-success btn-block signInBtn" type="submit">Sign
 				in</button>
 			<h4>
 				Have no account?<span class="btn signUp">Sign up</span>
 			</h4>
-
+			<script>
+				$('body').on("click",".signInBtn",function(){
+					var pass = md5($("input[name='password']").val());
+					$("input[name='password']").val(pass);
+				});
+			</script>
 		</form>
 	</div>
 	<%@ include file="parts/securityCode.jsp"%>
@@ -80,5 +85,6 @@
 	<script src="styles/bootstrap-3.0.3-dist/dist/js/bootstrap.min.js"></script>
 	<script src="http://cdn.bootcss.com/holder/2.0/holder.min.js"></script>
 	<script src="js/function.js"></script>
+	<script src="js/MD5.js"></script>
 </body>
 </html>

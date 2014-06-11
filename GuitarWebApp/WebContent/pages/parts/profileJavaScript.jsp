@@ -9,6 +9,7 @@
 <script src="js/imagesloaded.pkgd.min.js"></script>
 <script src="js/function.js"></script>
 <script src="js/EventHandle.js"></script>
+<script src="js/MD5.js"></script>
 <c:choose>
 	<c:when test="${param.nav eq 'about' }">
 		<script type="text/javascript">
