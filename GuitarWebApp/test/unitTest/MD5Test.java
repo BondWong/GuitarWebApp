@@ -12,11 +12,11 @@ import utils.ByteToString;
 public class MD5Test {
 	@Test
 	public void testMD5() throws NoSuchAlgorithmException {
-		String data = "1901103390";
+		String data = "hello";
 		MessageDigest digest = MessageDigest.getInstance("MD5");
 		digest.update(data.getBytes());
 		byte[] hash = digest.digest();
 		String result = ByteToString.bytesToHexString(hash);
-		assertEquals("7899a51c8e25f5ca31ea775c93d52ec4", result);
+		assertEquals("5d41402abc4b2a76b9719d911017c592", result);
 	}
 }

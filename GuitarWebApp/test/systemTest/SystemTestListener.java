@@ -1,5 +1,7 @@
 package systemTest;
 
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletContextEvent;
@@ -12,6 +14,7 @@ import service.factory.Factory;
 import service.factory.PostFactory;
 import utils.CommentType;
 import utils.EntityManagerFactoryCreator;
+import utils.MD5;
 import utils.ParamGenerator;
 import utils.PostType;
 import model.Account;
@@ -48,14 +51,24 @@ public class SystemTestListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent arg0) {
         // TODO Auto-generated method stub
     	User user = new User("2011052405");
-    	user.setPassword("1901103390");
+    	try {
+			user.setPassword(MD5.toMD5Code("1901103390"));
+		} catch (NoSuchAlgorithmException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
     	
     	Account a = new Account();
     	a.setUserID(user.getID());
     	a.setPassword(user.getPassword());
     	
     	User u2 = new User("2011052406");
-    	u2.setPassword("BM1003mb");
+    	try {
+			u2.setPassword(MD5.toMD5Code("BM1003mb"));
+		} catch (NoSuchAlgorithmException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
     	
     	Account a2 = new Account();
     	a2.setUserID(u2.getID());

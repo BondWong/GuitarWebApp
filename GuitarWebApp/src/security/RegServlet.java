@@ -186,10 +186,10 @@ public class RegServlet extends HttpServlet {
 					return;
 				}
 				
-				response.sendRedirect("../pages/reg.jsp?ok=true");
+				response.sendRedirect("/GuitarWebApp/pages/regAndLogin.jsp?ok=true");
 				
 			} else{
-				response.sendRedirect("../pages/reg.jsp?error="+findErrorMessage(httpResponse));
+				response.sendRedirect("/GuitarWebApp/pages/regAndLogin.jsp?error="+findErrorMessage(httpResponse));
 			}
 		} finally{
 			httpResponse.close();

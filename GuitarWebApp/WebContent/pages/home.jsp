@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 
 <%@ include file="parts/head.jsp"%>
 
@@ -35,8 +35,7 @@
 				<img src="images/guitar_top_3.jpg" />
 					<div class="container">
 						<div class="carousel-caption">
-							<h1>注册账号</h1>
-							<p>还没注册账号？？？？太OUT了！！！！</p>
+							
 							<p>
 								<a class="btn btn-lg btn-success" href="reg.jsp" role="button">Sign
 									up today</a>
@@ -48,8 +47,7 @@
 				<img src="images/guitar_top_1.jpg" />
 					<div class="container">
 						<div class="carousel-caption">
-							<h1>论坛视频展示</h1>
-							<p>很多音乐达人，快来吧！！！！！！！！！！！！</p>
+							
 							<p>
 								<a class="btn btn-lg btn-success" href="#" role="button">Learn
 									more</a>
@@ -61,8 +59,7 @@
 				<img src="images/guitar_top_2.jpg" />
 					<div class="container">
 						<div class="carousel-caption">
-							<h1>论坛活动</h1>
-							<p>志同道合的人等着你！！！！</p>
+							
 							<p>
 								<a class="btn btn-lg btn-success" href="#" role="button">Browse
 									gallery</a>
@@ -192,11 +189,12 @@
 							<a href="#">Back to top</a>
 						</p>
 						<p>
-							&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a>
+							&copy; 2014 11软工, Bond and Winson. &middot; <a href="#">Privacy</a>
 							&middot; <a href="#">Terms</a>
 						</p>
 						</footer>
 	</div>
+	<%@ include file="parts/securityCode.jsp"%>
 	<!-- /.container -->
 
 	<!-- Bootstrap core JavaScript

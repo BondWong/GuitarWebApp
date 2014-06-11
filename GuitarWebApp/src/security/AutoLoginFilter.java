@@ -10,7 +10,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -44,6 +43,7 @@ public class AutoLoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
+		System.out.println("autoLogin");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		Cookie[] cookies = httpRequest.getCookies();
 		String autoLoginSeriesNum = "";
@@ -54,17 +54,19 @@ public class AutoLoginFilter implements Filter {
 				Map<String, Object> params = new HashMap<String, Object>();
 				params.put("autoLoginSeriesNum", autoLoginSeriesNum);
 				DAOTransaction transation = new GetAccountBySeriesNumTransaction();
-				Account account = new Account();
+				Account account = null;
 				try {
 					account = (Account) transation.execute(params);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				HttpSession session = httpRequest.getSession();
-				synchronized(session){
-					session.setAttribute(account.getUserID(),
-						account.getUserID());
+				if(account!=null){
+					HttpSession session = httpRequest.getSession();
+					synchronized(session){
+						session.setAttribute(account.getUserID(),
+							account.getUserID());
+					}
 				}
 			}
 		}

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 
 <%@ include file="parts/head.jsp"%>
-
+<!-- Generic page styles -->
 <body>
 	<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 		<div class="container">
@@ -25,7 +25,7 @@
 		<div class="pro_body">
 			<div class="share post">
 				<form enctype="multipart/form-data">
-					<input class="form-control" id="share_txt" type="text" placeholder="share anything you what to share" />
+					<input class="form-control share_txt" type="text" placeholder="share anything you what to share" />
 					<div class="shareBtnGroup">
 						<div role="button" class="Btnshare btnMotion" data-toggle='modal' data-target='#addPostModal'><div class="Iconshare" style="background-image:url(images/motion.png);"></div><div>Motion</div></div>
 						<div role="button" class="Btnshare btnMotion" data-toggle='modal' data-target='#addPostModal'><div class="Iconshare" style="background-image:url(images/photo.png);"></div><div>Photos</div></div>
@@ -45,9 +45,28 @@
 								<h4 class="modal-title" id="myModalLabel">Share Post</h4>
 							</div>
 							<form class="photoForm" enctype="multipart/form-data">
-								<div class="modal-body">
-									<input class="form-control" id="share_txt" type="text" placeholder="share anything you what to share" />
-									<input type="file" name="file" />
+								<div class="modal-body modalBody">
+									<input class="form-control share_txt2"  id="share_txt2" type="text" placeholder="share anything you what to share" />
+									<br>
+									    <!-- The fileinput-button span is used to style the file input field as button -->
+									    <span class="btn btn-success fileinput-button">
+									        <i class="glyphicon glyphicon-plus"></i>
+									        <span>Add files...</span>
+									        <!-- The file input field used as target for the file upload widget -->
+									        <input id="fileupload" type="file" name="files[]" multiple>
+									    </span>
+									    <br>
+									    <br>
+									    
+									    <!-- The container for the uploaded files -->
+									    <div id="files" class="files">
+									    	<div id="#filesMy"></div>
+									    </div>
+									    <!-- The global progress bar -->
+									    <div id="progress" class="progress progressCust">
+									        <div class="progress-bar progress-bar-success"></div>
+									    </div>
+									    <br>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default"
@@ -342,6 +361,23 @@
 	<script src="styles/bootstrap-3.0.3-dist/dist/js/bootstrap.min.js"></script>
 	<script src="js/masonry.pkgd.min.js"></script>
 	<script src="js/imagesloaded.pkgd.min.js"></script>
+	<script src="js/jquery.ui.widget.js"></script>
+	<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+	<script src="js/load-image.min.js"></script>
+	<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+	<script src="js/canvas-to-blob.min.js"></script>
+	<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+	<script src="js/jquery.iframe-transport.js"></script>
+	<!-- The basic File Upload plugin -->
+	<script src="js/jquery.fileupload.js"></script>
+	<!-- The File Upload processing plugin -->
+	<script src="js/jquery.fileupload-process.js"></script>
+	<!-- The File Upload image preview & resize plugin -->
+	<script src="js/jquery.fileupload-image.js"></script>
+	<!-- The File Upload video preview plugin -->
+	<script src="js/jquery.fileupload-video.js"></script>
+	<!-- The File Upload validation plugin -->
+	<script src="js/jquery.fileupload-validate.js"></script>
 	<script src="js/function.js"></script>
 	<script src="js/EventHandle.js"></script>
 	<script type="text/javascript">
