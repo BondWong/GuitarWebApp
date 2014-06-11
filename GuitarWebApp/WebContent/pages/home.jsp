@@ -35,8 +35,7 @@
 				<img src="images/guitar_top_3.jpg" />
 					<div class="container">
 						<div class="carousel-caption">
-							<h1>注册账号</h1>
-							<p>还没注册账号？？？？太OUT了！！！！</p>
+							
 							<p>
 								<a class="btn btn-lg btn-success" href="reg.jsp" role="button">Sign
 									up today</a>
@@ -48,8 +47,7 @@
 				<img src="images/guitar_top_1.jpg" />
 					<div class="container">
 						<div class="carousel-caption">
-							<h1>论坛视频展示</h1>
-							<p>很多音乐达人，快来吧！！！！！！！！！！！！</p>
+							
 							<p>
 								<a class="btn btn-lg btn-success" href="#" role="button">Learn
 									more</a>
@@ -61,8 +59,7 @@
 				<img src="images/guitar_top_2.jpg" />
 					<div class="container">
 						<div class="carousel-caption">
-							<h1>论坛活动</h1>
-							<p>志同道合的人等着你！！！！</p>
+							
 							<p>
 								<a class="btn btn-lg btn-success" href="#" role="button">Browse
 									gallery</a>

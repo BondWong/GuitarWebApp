@@ -23,6 +23,25 @@
 
 		</div>
 	</div>
+	<div class="containerReg" style="display: none">
+
+		<form class="form-signin" role="form">
+			<h2 class="form-signin-heading">Sign up</h2>
+			<p>
+				<input type="text" class="form-control" placeholder="Username"
+					required autofocus>
+			</p>
+			<p>
+				<input type="password" class="form-control" placeholder="Password"
+					required>
+			</p>
+			<button class="btn btn-lg btn-success btn-block" type="submit">Sign
+				up</button>
+			<h4>
+				Have a account?<span class="btn signIn">Sign in</span>
+			</h4>
+		</form>
+	</div>
 	<!-- /container -->
 	<div class="containerSign" style="display: block">
 
@@ -43,7 +62,7 @@
 			<button class="btn btn-lg btn-success btn-block signInBtn" type="submit">Sign
 				in</button>
 			<h4>
-				Have no account?<a href="reg.jsp"><span class="btn signUp">Sign up</span></a>
+				Have no account?<span class="btn signUp">Sign up</span>
 			</h4>
 			<script src="js/jquery-1.10.2.js"></script>
 			<script src="js/MD5.js"></script>
