@@ -18,8 +18,10 @@
 			<script src="js/MD5.js"></script>
 			<script>
 				$('body').on("click",".signInBtn",function(){
-					var pass = md5($("input[name='password']").val());
-					$("input[name='password']").val(pass);
+					var pass=$("input[name='password']").val();	
+					if(pass.length >0){
+						$("input[name='password']").val(md5(pass));
+					}
 				});
 			</script>
 			<button class="btn btn-success signInBtn" type="submit">Sign in</button>

@@ -258,7 +258,7 @@ $(document).ready(function(){
 		        	var publishDateN = d.getFullYear() + "/" +(d.getMonth()+1) + "/" + d.getDate();
 		        	var date = new Date(publishDateN);
 		        	var jtopic = $("#topic").val();
-		    		var jcontent = $("#share_txt").val();
+		    		var jcontent = $("#share_txt2").val();
 		    		var jtype = $("#type").val();
 		    		var jpublishDate = $("#publishDate").val();
 		    		var jstartDate = $("#startDate").val();

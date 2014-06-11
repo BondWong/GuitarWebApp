@@ -66,12 +66,12 @@
 			</h4>
 			<script src="js/jquery-1.10.2.js"></script>
 			<script src="js/MD5.js"></script>
-			<script src="js/jquery-1.10.2.js"></script>
-			<script src="js/MD5.js"></script>
 			<script>
 				$('body').on("click",".signInBtn",function(){
-					var pass = md5($("input[name='password']").val());
-					$("input[name='password']").val(pass);
+					var pass=$("input[name='password']").val();	
+					if(pass.length >0){
+						$("input[name='password']").val(md5(pass));
+					}
 				});
 			</script>
 		</form>

@@ -394,7 +394,7 @@ body {
 	background-color: #FFF;
 	height: 150px;
 }
-#share_txt {
+.share_txt {
 	height: 90px;
 	width: 90%;
 	margin-top: 20px;

@@ -18,4 +18,16 @@
 
     <!-- Custom styles for this template -->
     <link href="styles/custom.css"rel="stylesheet">
+    
+	<!-- blueimp Gallery styles -->
+	<link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+	<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+	<link rel="stylesheet" href="styles/jquery.fileupload.css">
+	<link rel="stylesheet" href="styles/jquery.fileupload-ui.css">
+	<style>
+/* Hide Angular JS elements before initializing */
+.ng-cloak {
+    display: none;
+}
+</style>
 </head>
