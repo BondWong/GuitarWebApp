@@ -67,6 +67,8 @@
 			<h4>
 				Have no account?<span class="btn signUp">Sign up</span>
 			</h4>
+			<script src="js/jquery-1.10.2.js"></script>
+			<script src="js/MD5.js"></script>
 			<script>
 				$('body').on("click",".signInBtn",function(){
 					var pass = md5($("input[name='password']").val());
@@ -85,6 +87,5 @@
 	<script src="styles/bootstrap-3.0.3-dist/dist/js/bootstrap.min.js"></script>
 	<script src="http://cdn.bootcss.com/holder/2.0/holder.min.js"></script>
 	<script src="js/function.js"></script>
-	<script src="js/MD5.js"></script>
 </body>
 </html>
