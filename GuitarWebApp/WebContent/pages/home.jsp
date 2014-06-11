@@ -32,8 +32,7 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item active">
-				<img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide"
-					alt="First slide">
+				<img src="images/guitar_top_3.jpg" />
 					<div class="container">
 						<div class="carousel-caption">
 							<h1>注册账号</h1>
@@ -46,9 +45,7 @@
 					</div>
 			</div>
 			<div class="item">
-				<img
-					data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide"
-					alt="Second slide">
+				<img src="images/guitar_top_1.jpg" />
 					<div class="container">
 						<div class="carousel-caption">
 							<h1>论坛视频展示</h1>
@@ -61,8 +58,7 @@
 					</div>
 			</div>
 			<div class="item">
-				<img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide"
-					alt="Third slide">
+				<img src="images/guitar_top_2.jpg" />
 					<div class="container">
 						<div class="carousel-caption">
 							<h1>论坛活动</h1>
@@ -90,8 +86,7 @@
 		<!-- Three columns of text below the carousel -->
 		<div class="row">
 			<div class="col-lg-4">
-				<img class="img-circle" data-src="holder.js/140x140"
-					alt="Generic placeholder image">
+				<img class="img-circle" src="images/guitar_s1.jpg" />
 					<h2>Heading</h2>
 					<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis
 						euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
@@ -104,8 +99,7 @@
 			</div>
 			<!-- /.col-lg-4 -->
 			<div class="col-lg-4">
-				<img class="img-circle" data-src="holder.js/140x140"
-					alt="Generic placeholder image">
+				<img class="img-circle" src="images/guitar_s2.jpg" />
 					<h2>Heading</h2>
 					<p>Duis mollis, est non commodo luctus, nisi erat porttitor
 						ligula, eget lacinia odio sem nec elit. Cras mattis consectetur
@@ -118,8 +112,7 @@
 			</div>
 			<!-- /.col-lg-4 -->
 			<div class="col-lg-4">
-				<img class="img-circle" data-src="holder.js/140x140"
-					alt="Generic placeholder image">
+				<img class="img-circle" src="images/guitar_s3.jpeg" />
 					<h2>Heading</h2>
 					<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis
 						in, egestas eget quam. Vestibulum id ligula porta felis euismod
@@ -149,8 +142,7 @@
 						Fusce dapibus, tellus ac cursus commodo.</p>
 				</div>
 				<div class="col-md-5">
-					<img class="featurette-image img-responsive"
-						data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+					<img class="img-circle2" src="images/guitar_low_1.jpg" />
 				</div>
 			</div>
 
@@ -158,8 +150,7 @@
 
 				<div class="row featurette">
 					<div class="col-md-5">
-						<img class="featurette-image img-responsive"
-							data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+						<img class="img-circle2" src="images/guitar_low_2.jpg" />
 					</div>
 					<div class="col-md-7">
 						<h2 class="featurette-heading">
@@ -186,9 +177,7 @@
 								Fusce dapibus, tellus ac cursus commodo.</p>
 						</div>
 						<div class="col-md-5">
-							<img class="featurette-image img-responsive"
-								data-src="holder.js/500x500/auto"
-								alt="Generic placeholder image">
+							<img class="img-circle2" src="images/guitar_low_2.jpg" />
 						</div>
 					</div>
 

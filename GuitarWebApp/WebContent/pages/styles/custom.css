@@ -401,18 +401,13 @@ body {
 	margin-right: auto;
 	margin-left: auto;
 }
-.btn-group {
-	width: 90%;
-	margin-right: auto;
-	margin-left: auto;
-}
-.share_button_group {
-	width: 90%;
-	margin-right: auto;
-	margin-left: auto;
+.shareBtnGroup {
+	width:350px;
 	margin-top: 20px;
-	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
 }
+
 
 .popTip {
 	width: 240px;
@@ -547,4 +542,20 @@ body {
 }
 .img-circle2 {
   border-radius: 25%;
+}
+.Btnshare{
+	float:left;
+	width:50px;
+	cursor: pointer;
+	text-align:center;
+	margin-left:30px;
+}
+.Iconshare{
+	width:32px;
+	height:32px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.Fontshare{
+	font-weight:bolder;
 }
