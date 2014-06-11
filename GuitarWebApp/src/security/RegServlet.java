@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +41,7 @@ import service.transactions.daoTransactions.RegisterTransaction;
  * Servlet implementation class LoginServlet
  */
 @SuppressWarnings("deprecation")
-@WebServlet("/security/RegServlet")
+@WebServlet(urlPatterns = "/security/RegServlet", asyncSupported = true)
 public class RegServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -161,6 +163,16 @@ public class RegServlet extends HttpServlet {
 	    CloseableHttpResponse httpResponse = httpClient.execute(post);
 		try{
 			if(isOK(httpResponse)){
+				
+				post.abort();
+				request.setAttribute("responseHandler", responseHandler);
+				request.setAttribute("httpClient", httpClient);
+				AsyncContext asyncCtx = request.startAsync();
+				asyncCtx.setTimeout(10000);
+				ThreadPoolExecutor executor = (ThreadPoolExecutor) request 
+		                .getServletContext().getAttribute("executor");
+				executor.execute(new UserInfoCrawler(asyncCtx));
+				
 				Map<String, Object> params = new HashMap<String, Object>();
 				params.put("userID", txtYHBS);
 				params.put("password", txtYHMM);
@@ -180,7 +192,6 @@ public class RegServlet extends HttpServlet {
 				response.sendRedirect("../pages/reg.jsp?error="+findErrorMessage(httpResponse));
 			}
 		} finally{
-			post.abort();
 			httpResponse.close();
 		}
 	}

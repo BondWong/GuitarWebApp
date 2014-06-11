@@ -28,7 +28,19 @@ public class UserRepresentation{
 	@XmlElement
 	private String relationship;
 	@XmlElement
+	private String institution;
+	@XmlElement
+	private String major;
+	@XmlElement
+	private String telnum;
+	@XmlElement
+	private String email;
+	@XmlElement
 	private String birthday;
+	@XmlElement
+	private String campus;
+	@XmlElement
+	private String dorm;
 	@XmlElement
 	private Set<String> imageLinks;
 	@XmlElement
@@ -37,12 +49,6 @@ public class UserRepresentation{
 	private Set<String> followeesID;
 	@XmlElement
 	private Set<String> followersID;
-	@XmlElement
-	private String campus;
-	@XmlElement
-	private String dorm;
-	@XmlElement
-	private String dormNum;
 	
 	public String getID() {
 		return ID;
@@ -108,6 +114,46 @@ public class UserRepresentation{
 
 	public void setRelationship(String relationship) {
 		this.relationship = relationship;
+	}
+
+	public String getInstitution() {
+		if(this.institution == null)
+			return "";
+		return institution;
+	}
+
+	public void setInstitution(String institution) {
+		this.institution = institution;
+	}
+
+	public String getMajor() {
+		if(this.major == null)
+			return "";
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public String getTelnum() {
+		if(this.telnum == null)
+			return "";
+		return telnum;
+	}
+
+	public void setTelnum(String telnum) {
+		this.telnum = telnum;
+	}
+
+	public String getEmail() {
+		if(this.email == null)
+			return "";
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getBirthday() {
@@ -185,16 +231,6 @@ public class UserRepresentation{
 
 	public void setDorm(String dorm) {
 		this.dorm = dorm;
-	}
-
-	public String getDormNum() {
-		if(dormNum == null)
-			return "";
-		return dormNum;
-	}
-
-	public void setDormNum(String dormNum) {
-		this.dormNum = dormNum;
 	}
 	
 }

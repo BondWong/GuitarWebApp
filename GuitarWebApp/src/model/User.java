@@ -47,6 +47,10 @@ public class User {
 	private String nickName;
 	private String lookingFor;
 	private String relationship;
+	private String institution;
+	private String major;
+	private String telnum;
+	private String email;
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
 	@Embedded
@@ -164,6 +168,38 @@ public class User {
 		this.relationship = relationship;
 	}
 	
+	public String getInstitution() {
+		return institution;
+	}
+
+	public void setInstitution(String institution) {
+		this.institution = institution;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public String getTelnum() {
+		return telnum;
+	}
+
+	public void setTelnum(String telnum) {
+		this.telnum = telnum;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public Date getBirthday(){
 		return birthday;
 	}
@@ -273,23 +309,27 @@ public class User {
 	}
 	
 	public Address getAddress() {
+		if(this.address == null)
+			return new Address();
 		return address;
 	}
 
 	public void setAddress(Address address) {
+		if(this.address == null)
+			this.address = new Address();
 		this.address = address;
 	}
 	
 	public void setCampus(String campus) {
+		if(this.address == null)
+			this.address = new Address();
 		this.address.setCampus(campus);
 	}
 	
 	public void setDorm(String dorm) {
+		if(this.address == null)
+			this.address = new Address();
 		this.address.setDorm(dorm);
-	}
-	
-	public void setDormNum(String dormNum) {
-		this.address.setDormNum(dormNum);
 	}
 	
 	public boolean isActive(){
@@ -309,7 +349,7 @@ public class User {
 		private String avatarLink;
 		private String lookingFor;
 		private String relationship;
-		private String birthday;
+		
 		private Set<String> imgaeLinks;
 		
 		public String getNickName() {
@@ -362,16 +402,6 @@ public class User {
 			this.relationship = relationship;
 		}
 
-		public String getBirthday() {
-			if(this.birthday==null)
-				return "";
-			return birthday;
-		}
-
-		public void setBirthday(String birthday) {
-			this.birthday = birthday;
-		}
-
 		public Set<String> getImgaeLinks() {
 			if(this.imgaeLinks==null)
 				return new LinkedHashSet<String>();
@@ -389,11 +419,6 @@ public class User {
 		
 		rsc.setNickName(this.getNickName());
 		rsc.setGender(this.getGender());
-		if(this.getBirthday()!=null){
-			rsc.setBirthday(this.getBirthday().toString());
-		} else{
-			rsc.setBirthday(null);
-		}
 		rsc.setLookingFor(this.getLookingFor());
 		rsc.setRelationship(this.getRelationShip());
 		rsc.setAvatarLink(this.getAvatarLink());
@@ -433,7 +458,10 @@ public class User {
 		
 		sc.setCampus(this.getAddress().getCampus());
 		sc.setDorm(this.getAddress().getDorm());
-		sc.setDormNum(this.getAddress().getDormNum());
+		sc.setEmail(this.getEmail());
+		sc.setInstitution(this.getInstitution());
+		sc.setMajor(this.getMajor());
+		sc.setTelnum(this.getTelnum());
 		
 		return sc;
 	}
