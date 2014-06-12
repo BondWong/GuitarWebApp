@@ -221,6 +221,7 @@ public class Post {
 	
 	public class RepresentationShortCut{
 		private Long ID;
+		private String ownerID;
 		private Set<String>mediaLocation;
 		private String topic;
 		private String content;
@@ -241,6 +242,14 @@ public class Post {
 		
 		public void setID(Long iD) {
 			ID = iD;
+		}
+
+		public String getOwnerID() {
+			return ownerID;
+		}
+
+		public void setOwnerID(String ownerID) {
+			this.ownerID = ownerID;
 		}
 
 		public Set<String> getMediaLocation() {
@@ -353,6 +362,7 @@ public class Post {
 		RepresentationShortCut psc = new RepresentationShortCut();
 		
 		psc.setID(this.getID());
+		psc.setOwnerID(this.getOwner().getID());
 		psc.setMediaLocation(this.getMediaLocation());
 		psc.setContent(this.getContent());
 		psc.setTopic(this.getTopic());
