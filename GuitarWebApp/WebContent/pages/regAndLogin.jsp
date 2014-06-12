@@ -81,7 +81,7 @@
 		</c:when>
 		<c:when test="${ param.error !=null}">
 			<script type="text/javascript">
-			alert(${param.error});
+			alert("${param.error}");
 		</script>
 		</c:when>
 	</c:choose>
@@ -99,7 +99,9 @@
 	<script>
 		$('body').on("click", ".signInBtn", function() {
 			var p = $("#md5Password").val();
-			$("#md5Password").val(md5(p));
+			if(p.length>0){
+				$("#md5Password").val(md5(p));
+			}
 		});
 	</script>
 </body>
