@@ -21,6 +21,7 @@ public class GuitarWebApp extends Application{
 		classes.add(PostService.class);
 		classes.add(CommentService.class);
 		classes.add(UserService.class);
+		classes.add(DormInfoService.class);
 		classes.add(JacksonFeature.class);
 		classes.add(MultiPartFeature.class);
 		System.out.println(classes);

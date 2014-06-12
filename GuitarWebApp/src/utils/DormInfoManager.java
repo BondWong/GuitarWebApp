@@ -52,6 +52,11 @@ public class DormInfoManager {
 		HuawenCampus.add("敬慎");
 		HuawenCampus.add("篤行");
 		
+		ShenzhenCampus.add("一栋");
+		ShenzhenCampus.add("二栋");
+		ShenzhenCampus.add("三栋");
+		ShenzhenCampus.add("四栋");
+		
 		dormInfo.put("ZhuhaiCampus", ZhuhaiCampus);
 		dormInfo.put("GuangzhouCampus", GuangzhouCampus);
 		dormInfo.put("HuawenCampus", HuawenCampus);

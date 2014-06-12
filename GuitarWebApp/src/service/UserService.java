@@ -127,6 +127,7 @@ public class UserService {
 	
 	@Path("getRepresentationShortCut/{userID : \\d+}")
 	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUserRepresentationShortCut(@PathParam("userID") String userID) throws Exception{
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userID", userID);
