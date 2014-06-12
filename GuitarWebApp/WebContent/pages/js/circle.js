@@ -115,7 +115,8 @@
 				type:'get',
 				success:function(data){
 					//var jsondata = $.parseJSON(data);
-					$.each(data,function(index,jsonPostShortCut){
+					var dataR = data.reverse();
+					$.each(dataR,function(index,jsonPostShortCut){
 						addPost(jsonPostShortCut.ownerID,jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.id,jsonPostShortCut.likeNum);
 					});
 				}
