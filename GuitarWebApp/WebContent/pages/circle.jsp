@@ -25,12 +25,12 @@
 		<div class="pro_body">
 			<div class="share post">
 				<form enctype="multipart/form-data">
-					<input class="form-control share_txt" type="text" placeholder="share anything you what to share" />
+					<input class="form-control share_txt" type="text" placeholder="share anything you what to share" data-toggle='modal' data-target='#addPostModal' />
 					<div class="shareBtnGroup">
 						<div role="button" class="Btnshare btnMotion" data-toggle='modal' data-target='#addPostModal'><div class="Iconshare" style="background-image:url(images/motion.png);"></div><div>Motion</div></div>
-						<div role="button" class="Btnshare btnMotion" data-toggle='modal' data-target='#addPostModal'><div class="Iconshare" style="background-image:url(images/photo.png);"></div><div>Photos</div></div>
-						<div role="button" class="Btnshare btnMotion" data-toggle='modal' data-target='#addPostModal'><div class="Iconshare" style="background-image:url(images/video.png);"></div><div>Videos</div></div>
-						<div role="button" class="Btnshare btnMotion" data-toggle='modal' data-target='#addPostModal'><div class="Iconshare" style="background-image:url(images/share.png);"></div><div class="Fontshare">Share</div></div>
+						<div role="button" class="Btnshare btnPhoto" data-toggle='modal' data-target='#addPostModal'><div class="Iconshare" style="background-image:url(images/photo.png);"></div><div>Photos</div></div>
+						<div role="button" class="Btnshare btnVideo" data-toggle='modal' data-target='#addPostModal'><div class="Iconshare" style="background-image:url(images/video.png);"></div><div>Videos</div></div>
+						<div role="button" class="Btnshare btnShare" data-toggle='modal' data-target='#addPostModal'><div class="Iconshare" style="background-image:url(images/share.png);"></div><div class="Fontshare">Share</div></div>
 					
 					</div>
 				</form>
@@ -378,6 +378,7 @@
 	<!-- The File Upload validation plugin -->
 	<script src="js/jquery.fileupload-validate.js"></script>
 	<script src="js/function.js"></script>
+	<script src="js/circle.js"></script>
 	<script src="js/EventHandle.js"></script>
 	<script type="text/javascript">
 		Msnry('.pro_body', '.post', 435);

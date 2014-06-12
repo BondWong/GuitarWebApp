@@ -10,6 +10,8 @@
 			});
 		});
 	}
+//global userID
+	var userID = $("input[name='userID']").val();
 //function addDiv
 	function addPost(ownerNickName,publishDate,content,ID,likeNum){
 		 var boarddiv = "<div class='post'><div class='post_body'><div class='row'><div class='col-md-2'><div class='user_img'><img class='userImg' src='images/user_img.jpg' /></div></div><div class='col-md-6'><div class='user_name'><strong>"+ownerNickName+"</strong></div><div class='user_info'>"+publishDate+"</div></div> </div><div class='post_info'>"+content+"<div class='post_more'><a>read more...</a></div></div><div class='post_img'><img src='images/9.jpg' /></div><div class='row'><div class='col-md-1'><div class='post_like' style='cursor:pointer'><a><input id='likeID' type='hidden' value="+ID+"><span class='glyphicon glyphicon-heart-empty' style='font-size:20px'>"+likeNum+"</span></a></div></div><div class='col-md-1'><div class='post_collect' style='cursor:pointer'><a><input id='collectID' type='hidden' value="+ID+"><span class='glyphicon glyphicon-star-empty' style='font-size:20px'></span></a></div></div><div class='col-md-1'><div class='post_share' style='cursor:pointer'><a><span class='glyphicon glyphicon-share-alt' style='font-size:20px'></span></a></div></div></div><div class='media_comm'><div class='row addCommentBtn'><div class='col-lg-8'><div class='form-group'><input type='text' placeholder='Add a comment' class='form-control' id='commentText"+ID+"'></div></div><div class='col-lg-4'><button type='submit' class='btn btn-success' id='addComment' value="+ID+">Submit</button></div></div><div class='act_content'><div class='row'><div class='col-lg-1'><img src='images/user_img2.jpg' /></div><div class='col-lg-11'><div class='ures_name'><strong>Winson_Lau</strong></div><div class='user_info'>Yesterday 21:23pm</div></div></div><div class='act_comment'>There's an extension that whenever you choose something that has a shortcut it has a toast popup that tells you what the shortcut would have been. I used it briefly a long time ago. But it turned out to be really annoying. Still it was a great idea.﻿</div></div><div class='act_content'><div class='row'><div class='col-lg-1'><img src='images/user_img3.jpg' /></div><div class='col-lg-11'><div class='ures_name'><strong>Thackoor Singh</strong></div><div class='user_info'>Yesterday 21:23pm</div></div></div><div class='act_comment'>free!</div></div></div></div></div>";
@@ -37,7 +39,7 @@
 	
 	function fetchPostsByUserID(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/post/fetchByUserID/2011052405/0/5',// /post/fetchByUserID/'+id
+			url:'../../GuitarWebApp/app/post/fetchByUserID/'+userID+'/0/5',// /post/fetchByUserID/'+id
 			type:'get',
 			success:function(data){
 				//var jsondata = $.parseJSON(data);
@@ -53,7 +55,7 @@
 //function fetchPostsByFollowee
 	function fetchPostByFollowee(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/post/fetchByFollowee/2011052405/0/5',// /post/fetchByUserID/'+id
+			url:'../../GuitarWebApp/app/post/fetchByFollowee/'+userID+'/0/5',// /post/fetchByUserID/'+id
 			type:'get',
 			success:function(data){
 				//var jsondata = $.parseJSON(data);
@@ -66,46 +68,33 @@
 			}
 		});
 	}
-	//function fetchPostsByIDs
-	var postIdContainer = [];
-	function fetchPostByIDs(){
-		var Urls = '../../GuitarWebApp/app/post/getByIDs?';
-		$.each(postIdContainer,function(n,value){
-			if(n != postIdContainer.length-1){
-				Urls = Urls +'postIDs='+ value+'&';
-			}
-			else{
-				Urls = Urls +'postIDs='+ value;
-				return true;
-			}
-		});
-		$.ajax({
-			url: Urls,// 
-			type:'get',
-			success:function(data){
-				//var jsondata = $.parseJSON(data);
-				$.each(data,function(index,jsonPostShortCut){
-					addPost(jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.id,jsonPostShortCut.likeNum);
-					if(index==data.length-1){
-						return true;
-					}
-				});
-			}
-		});
-	}
+	
 	//function getUserRepresentation
 	function getUserRepresentation(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/user/getRepresentation/2011052405',
+			url:'../../GuitarWebApp/app/user/getRepresentation/'+userID,
 			type:'get',
 			success:function(data){
 				$('.Anickname').html(data.nickName);
-				$('.Agender').html(data.gender);
-				$('.Abirth').html(data.birthday);
+				$('.Aemail').html(data.email);
 				$('.Arelationship').html(data.relationship);
-				$('.Acampus').html(data.campus);
-				$('.Aaddress').html("#"+data.dorm+" "+data.dormNum);
+				$('.Atelenum').html(data.telnum);
+				$('.Aaddress').html(data.dorm);
 				$('.Alooking').html(data.lookingFor);
+			}
+		});
+	}
+	function getUserInfor(){
+		$.ajax({
+			url:'../../GuitarWebApp/app/user/getRepresentation/2011052395',
+			type:'get',
+			success:function(data){
+				$('.Agender').html(data.gender);
+				$('.Ainstitution').html(data.institution);
+				$('.Amajor').html(data.major);
+				var d = new Date(data.birthday);
+				$('.Abirth').html(d.getFullYear() + "/" +(d.getMonth()+1) + "/" + d.getDate());
+				$('.Acampus').html(data.campus);
 			}
 		});
 	}
@@ -165,7 +154,7 @@
 //show followees
 	function showFollowees(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/user/getRepresentation/2011052405',
+			url:'../../GuitarWebApp/app/user/getRepresentation/'+userID,
 			type:'get',
 			success: function(data){
 				var followeesIDs = data.followeesID;
@@ -185,7 +174,7 @@
 //show photos
 	function showPhotos(){
 		$.ajax({
-			url:'../../GuitarWebApp/app/user/getRepresentation/2011052405',
+			url:'../../GuitarWebApp/app/user/getRepresentation/'+userID,
 			type:'get',
 			success: function(data){
 				$.each(data.imageLinks,function(index,imageLink){
@@ -210,7 +199,7 @@ $(document).ready(function(){
 				nPos.left = pos.left + 40;
 				
 				$.ajax({
-					url:'../../GuitarWebApp/app/user/getRepresentationShortCut/2011052405',
+					url:'../../GuitarWebApp/app/user/getRepresentationShortCut/'+userID,
 					type:'get',
 					success:function(data){
 						var tipFrame = '<div class="popTip"><div class="content"><div class="urserBgShort"><img src="images/urseBgShort.jpg" /></div><div class="urserInfShort"><img src="images/user_img4.jpg" /><p><h1>Bond</h1></p><p> a good guy</p><button id="followBtn">Follow</button></div></div></div>';
@@ -245,116 +234,20 @@ $(document).ready(function(){
 		};
 	})(jQuery);
 	$('img.userImg').userTips();
-//funtion fileupload
-	var fileDri = [];
-	$('#fileupload').fileupload({
-		url:'../../GuitarWebApp/app/fileUploader',
-	    success:function(data){
-	    	for(var i=0;i<data.length;i++){
-	    		var dataString=data[i];
-	    		fileDri.push(dataString);
-	    		}
-	    	}
-	}).on('fileuploadadd', function (e, data) {
-        data.context = $('<div/>')
-        				.appendTo('#files')
-        				.addClass('myfileItem');
-        $.each(data.files, function (index, file) {
-            var node = $('<p/>')
-                    .append($('<span/>').text(file.name));
-            if (!index) {
-                node
-                    .append('<br>');
-            }
-            node.appendTo(data.context);
-        });
-    }).on('fileuploadprocessalways', function (e, data) {
-        var index = data.index,
-            file = data.files[index],
-            node = $(data.context.children()[index]);
-        if (file.preview) {
-            node
-                .prepend('<br>')
-                .prepend(file.preview);
-        }
-        if (file.error) {
-            node
-                .append('<br>')
-                .append($('<span class="text-danger"/>').text(file.error));
-        }
-        if (index + 1 === data.files.length) {
-            data.context.find('button')
-                .text('Upload')
-                .prop('disabled', !!data.files.error);
-        }
-    }).on('fileuploadprogressall', function (e, data) {
-    	$('#progress .progress-bar').css('width','0%');
-        var progress = parseInt(data.loaded / data.total * 100, 10);
-        $('#progress .progress-bar').css(
-            'width',
-            progress + '%'
-        );
-    }).on('fileuploadfail', function (e, data) {
-        $.each(data.files, function (index, file) {
-            var error = $('<span class="text-danger"/>').text('File upload failed.');
-            $(data.context.children()[index])
-                .append('<br>')
-                .append(error);
-        });
-    }).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');	
-/*.on('fileuploaddone', function (e, data) {
-        $.each(data.result.files, function (index, file) {
-            if (file.url) {
-                var link = $('<a>')
-                    .attr('target', '_blank')
-                    .prop('href', file.url);
-                $(data.context.children()[index])
-                    .wrap(link);
-            } else if (file.error) {
-                var error = $('<span class="text-danger"/>').text(file.error);
-                $(data.context.children()[index])
-                    .append('<br>')
-                    .append(error);
-            }
-        });
-    })*/
-//function addPost
-		$('body').on("click","#btn_share",function(){
-			//get urls
-		   var d = new Date();
-		   var publishDateN = d.getFullYear() + "/" +(d.getMonth()+1) + "/" + d.getDate();
-		   var date = new Date(publishDateN);
-		   var jtopic = $("#topic").val();
-		   var jcontent = $("#share_txt2").val();
-		   var jtype = $("#type").val();
-		   var jpublishDate = $("#publishDate").val();
-		   var jstartDate = $("#startDate").val();
-		   
-		   var jsonString = {mediaLocation:fileDri,topic:jtopic,content:jcontent,postType:"DISCUSSION",publishDate:date,startDate:date};
-		   var jsonData = $.toJSON(jsonString);
-		   $.ajax({
-		    	type:"POST",
-		    	url:'../../GuitarWebApp/app/post/add/2011052405',
-		    	data:jsonData,
-		    	contentType: "application/json"
-		    });
-		    $('#addPostModal').modal('hide');
-		});
-		
+
 //function collectPost and cancelCollcet
 		$('body').on('click','.post_collect',function() {
 			if($(this).find("span").attr("class") == "glyphicon glyphicon-star-empty"){
 				var id = $(this).find("input").attr("value");
 				$.ajax({
-					url:'../../GuitarWebApp/app/post/collect/2011052405/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
+					url:'../../GuitarWebApp/app/post/collect/'+userID+'/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
 					type:'put'
 				});
 			}
 			if($(this).find("span").attr("class") == "glyphicon glyphicon-star"){
 				var id = $(this).find("input").attr("value");
 				$.ajax({
-					url:'../../GuitarWebApp/app/post/cancelCollect/2011052405/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
+					url:'../../GuitarWebApp/app/post/cancelCollect/'+userID+'/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
 					type:'put'
 				});
 			}
@@ -365,14 +258,14 @@ $(document).ready(function(){
 				
 				var id = $(this).find("input").val();
 				$.ajax({
-					url:'../../GuitarWebApp/app/post/like/2011052405/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
+					url:'../../GuitarWebApp/app/post/like/'+userID+'/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
 					type:'put'
 				});
 			}
 			if($(this).find("span").attr("class") == "glyphicon glyphicon-heart"){
 				var id = $(this).find("input").val();
 				$.ajax({
-					url:'../../GuitarWebApp/app/post/cancelLike/2011052405/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
+					url:'../../GuitarWebApp/app/post/cancelLike/'+userID+'/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
 					type:'put'
 				});
 			}
@@ -381,7 +274,7 @@ $(document).ready(function(){
 		$('body').on('click','#activityJoin',function(){
 			var id = $(this).find("input").val();
 			$.ajax({
-				url:'../../GuitarWebApp/app/post/join/2011052405/1',//'../../GuitarWebApp/app/post/collect/2011052405/'+id
+				url:'../../GuitarWebApp/app/post/join/'+userID+'/1',//'../../GuitarWebApp/app/post/collect/2011052405/'+id
 				type:'put'
 			});
 		});
@@ -401,7 +294,7 @@ $(document).ready(function(){
 			
 			$.ajax({
     			type:"POST",
-    			url:'../../GuitarWebApp/app/comment/add/2011052405/'+id,//'../../GuitarWebApp/app/comment/add/2011052405/'+id
+    			url:'../../GuitarWebApp/app/comment/add/'+userID+'/'+id,//'../../GuitarWebApp/app/comment/add/2011052405/'+id
     			data:jsonData,
     			contentType: "application/json"
     		});
@@ -411,106 +304,16 @@ $(document).ready(function(){
 			//get post owner
 			if($(this).text()=="Follow"){
 				$.ajax({
-					url:'../../GuitarWebApp/app/user/follow/2011052405/2011052406',//'../../GuitarWebApp/app/user/follow/2011052405/'+id
+					url:'../../GuitarWebApp/app/user/follow/'+userID+'/2011052406',//'../../GuitarWebApp/app/user/follow/2011052405/'+id
 					type:'put'
 				});
 			}
 			if($(this).text()=="Following"){
 				$.ajax({
-					url:'../../GuitarWebApp/app/user/cancelFollow/2011052405/2011052406',//'../../GuitarWebApp/app/user/follow/2011052405/'+id
+					url:'../../GuitarWebApp/app/user/cancelFollow/'+userID+'/2011052406',//'../../GuitarWebApp/app/user/follow/2011052405/'+id
 					type:'put'
 				});
 			}
-		});
-		//function editProfileInfro
-		$('body').on('click','.aEditbtn',function(){
-			$("span[class='Anickname']").html("<input id='focusedInput' class='nicknameE' type='text' value='Winson_Lau' />");
-			$("span[class='Alooking']").html("<input class='lookingforE' id='focusedInput' type='text' value='Make friends' />");
-			$("span[class='Agender']").html("<select class='genderE'><option value='male'>Male</option><option value='female'>Female</option></select>");
-			$("span[class='Arelationship']").html("<select class='relationshipnE'><option value='single'>single</option><option value='loving'>loving</option></select>");
-			$("span[class='Aaddress']").html("<select class='addressE'><option value='1'>#1</option><option value='2'>#2</option></select><input class='dormNumE' id='focusedInput' type='text' value='1509'></input>");
-			$("span[class='Acampus']").html("<select class='campusE'><option value='JNU'>JNU</option><option value='MNU'>MNU</option></select>");
-			$(this).text("Save");
-			$(this).attr("class","btn btn-primary aSavebtn");
-		});
-		//function saveProfileInfro
-		$('body').on('click','.aSavebtn',function(){
-			var nickName = $('.nicknameE').val();
-			var gender = $('.genderE').val();
-			var relationship = $('.relationshipnE').val();
-			var lookingfor = $('.lookingforE').val();
-			var campus = $('.campusE').val();
-			var dorm = $('.addressE').val();
-			var dormNum = $('.dormNumE').val();
-			//var lookingfor = $('.nicknameE').val();
-			var d = new Date();
-        	var publishDateN = d.getFullYear() + "/" +(d.getMonth()+1) + "/" + d.getDate();
-        	var date = new Date(publishDateN);
-			$.ajax({
-				type:'put',
-				url:'../../GuitarWebApp/app/user/updateProfile/2011052405/'+nickName+'/'+gender+'/'+lookingfor+'/'+relationship+'/'+'2011/09/07'+'/'+campus+'/'+dorm+'/'+dormNum,
-				success:function(){
-					getUserRepresentation();
-				}
-			});
-			$(this).text("Edit");
-			$(this).attr("class","btn btn-primary aEditbtn");
-		});
-		//function avatarImgBtn
-		$('body').on("click",".avatarImgBtn",function(){
-			var formData = new FormData($('.avatarForm')[0]);
-			$.ajax({
-				type:'POST',
-				url:'../../GuitarWebApp/app/fileUploader',
-				success:function(data){
-					$.ajax({
-						type:'PUT',
-						url:'../../GuitarWebApp/app/user/changeAvatar/2011052405?avatarLink='+data
-					});
-				},
-				// Form data
-		        data: formData,
-		        //Options to tell jQuery not to process data or worry about content-type.
-		        cache: false,
-		        contentType: false,
-		        processData: false
-			});
-			$('#myModal').modal('hide');
-		});
-		//function addPhoto
-		$('body').on("click",".addPhoto",function(){
-			var formData = new FormData($('.photoForm')[0]);
-			$.ajax({
-				type:'POST',
-				url:'../../GuitarWebApp/app/fileUploader',
-				success:function(data){
-					var Urls = '../../GuitarWebApp/app/user/addImages/2011052405?';
-					$.each(data,function(n,photoUrl){
-						if(n != data.length-1){
-							Urls = Urls +'imageLinks='+ photoUrl+'&';
-						}
-						else{
-							Urls = Urls +'imageLinks='+ photoUrl;
-							return true;
-						}
-					});
-					$.ajax({
-						type:'PUT',
-						url: Urls,
-						success: function(){
-							showPhotos();
-						}
-					});
-				},
-				// Form data
-		        data: formData,
-		        //Options to tell jQuery not to process data or worry about content-type.
-		        cache: false,
-		        contentType: false,
-		        processData: false
-			});
-			$('#myModal2').modal('hide');
-		});
-		
+		});		
 });
 

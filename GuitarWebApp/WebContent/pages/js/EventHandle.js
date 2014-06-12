@@ -9,15 +9,7 @@ if (!!window.EventSource) {
 		var jsonPostShortCut = jsondata.postRepresentationShortCut;
 		postIdContainer.push(jsonPostShortCut.ID);
 		$('.alertCust').css("display","block");
-		$('body').on('click','.alertCust',function(){
-			/*var jsondata = $.parseJSON(event.data);
-			var jsonPostShortCut = jsondata.postRepresentationShortCut;
-			addPost(jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.ID,jsonPostShortCut.likeNum);*/
-			fetchPostByIDs();
-			$(this).css("display","none");
-		});
-		
-		
+	
  });
 		source.addEventListener('deletePostSSE',function(e){});
 		source.addEventListener('LIKEPOST',function(event){

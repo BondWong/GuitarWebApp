@@ -5,43 +5,51 @@
 			<div class="post">
 				<div class="aboutBlue">
 					<div>
-						<span class="aboutTitle">Information</span>
+						<span class="aboutTitle">Basic Information</span>
 					</div>
 					<div class="InforItem">
-						<span class="Atitle">Nickname</span><span class="Anickname">Winson_Lau</span>
+							<span class="Atitle">Gender</span><span class="Agender"></span>
 					</div>
 					<div class="InforItem">
-						<span class="Atitle">Gender</span><span class="Agender">boy</span>
+							<span class="Atitle">Institution</span><span class="Ainstitution"></span>
 					</div>
 					<div class="InforItem">
-						<span class="Atitle">Birthday</span><span class="Abirth">1991-09-07</span>
+							<span class="Atitle">Major</span><span class="Amajor"></span>
 					</div>
 					<div class="InforItem">
-						<span class="Atitle">Relationship</span><span
-							class="Arelationship">single</span>
+							<span class="Atitle">Birthday</span><span class="Abirth"></span>
 					</div>
 					<div class="InforItem">
-						<span class="Atitle">Campus</span><span class="Acampus">JNU</span>
+							<span class="Atitle">Campus</span><span class="Acampus">a</span>
 					</div>
-					<div class="InforItem">
-						<span class="Atitle">Address</span><span class="Aaddress">#1
-							1509</span>
-					</div>
-					<div class="InforItem">
-						<span class="Atitle">Looking for</span><span class="Alooking">make
-							friends</span>
-					</div>
-					<div class="InforItem">
-						<button class="btn btn-primary aEditbtn">Edit</button>
-						</p>
-					</div>
+				  </div>
 				</div>
-				<div class="post">
+			<div class="post">
 					<div class="aboutRed">
 						<div>
-							<span class="aboutTitle">Function</span>
+							<span class="aboutTitle">Profile</span>
+						</div>
+						<div class="InforItem">
+							<span class="Atitle">Nickname</span><span class="Anickname"></span>
+						</div>
+						<div class="InforItem">
+							<span class="Atitle">Relationship</span><span class="Arelationship"></span>
+						</div>
+						<div class="InforItem">
+							<span class="Atitle">Address</span><span class="Aaddress"></span>
+						</div>
+						<div class="InforItem">
+							<span class="Atitle">TeleNum</span><span class="Atelenum"></span>
+						</div>
+						<div class="InforItem">
+							<span class="Atitle">Email</span><span class="Aemail"></span>
+						</div>
+						<div class="InforItem">
+							<span class="Atitle">Looking for</span><span class="Alooking"></span>
+						</div>
+						<div class="InforItem">
+							<button class="btn btn-primary aEditbtn">Edit</button>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>

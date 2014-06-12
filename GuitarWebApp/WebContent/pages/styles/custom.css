@@ -430,7 +430,7 @@ body {
 .post .aboutBlue {
 	background-color: #FFF;
 	width: 100%;
-	height: 340px;
+	height: 300px;
 	border-top-width: 5px;
 	border-right-width: 1px;
 	border-bottom-width: 2px;
@@ -489,16 +489,16 @@ body {
 	float: left;
 	width: 100%;
 }
-.aboutBlue .InforItem {
+.InforItem {
 	width: 300px;
 	float: left;
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
-.aboutBlue .aEditbtn {
+.aEditbtn {
 	margin-left: 50px;
 }
-.aboutBlue .aSavebtn {
+.aSavebtn {
 	margin-left: 50px;
 }
 .alertCust{
@@ -573,11 +573,9 @@ body {
 	width: 90%;
 }
 .myfileItem {
-	display:block;
 	float:left;
 	margin-right:10px;
 }
 .files {
-	margin-bottom:20px;
-	display:block;
+	height:100px;
 }

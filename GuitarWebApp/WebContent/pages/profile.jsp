@@ -48,7 +48,7 @@
 									data-toggle="popover" data-placement="bottom"
 									data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">图片</button>
 								<button type="button" class="btn btn-default" id="btn_video">视频</button>
-								<button type="button" class="btn btn-success" id="btn_share"
+								<button type="button" class="btn btn-success" 
 									value="upload">分享</button>
 								<input type="file" name="file" />
 
@@ -229,6 +229,9 @@
 	</c:choose>
 	<%@ include file="parts/securityCode.jsp"%>
 	<%@ include file="parts/profileJavaScript.jsp"%>
-
+	<script src="js/about.js"></script>
+	<script>
+		getUserInfor();
+	</script>
 </body>
 </html>
