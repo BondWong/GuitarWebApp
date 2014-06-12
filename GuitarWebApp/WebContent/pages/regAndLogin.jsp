@@ -39,9 +39,11 @@
 					required />
 			</p>
 			<p>
+				<div class="form-cust">
 				<input type="text" class="form-control form-control-cust"
-					placeholder="validation Code" name="valCode" required /><img
-					src="../security/RegServlet" />
+					placeholder="validation Code" name="valCode" required />
+					<div class="form-cust-img"><img src="../security/RegServlet" /></div>
+				</div>
 			</p>
 			<button class="btn btn-lg btn-success btn-block" type="submit">Sign
 				up</button>

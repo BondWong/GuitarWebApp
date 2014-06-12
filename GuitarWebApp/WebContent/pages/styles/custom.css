@@ -542,7 +542,18 @@ body {
 }
 .form-control-cust{
 	width:50%;
+	float: left;
 	
+}
+.form-cust{
+	height:40px;
+}
+.form-cust-img{
+	height:40px;
+	text-align:center;
+	padding-top:5px;
+	float: left;
+	margin-left: 10px;
 }
 .img-circle2 {
   border-radius: 25%;
