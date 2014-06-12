@@ -98,9 +98,9 @@
 	<script src="js/md5.js"></script>
 	<script>
 		$('body').on("click",".signInBtn",function(){
-			var pass = $("#mad5Password").val();
+			var pass = $("#md5Password").val();
 			if(pass.length >0){
-				$("#mad5Password").val(md5(pass));
+				$("#md5Password").val(md5(pass));
 			}
 		});
 	</script>
