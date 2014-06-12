@@ -394,12 +394,16 @@ body {
 	background-color: #FFF;
 	height: 150px;
 }
-#share_txt {
+.share_txt {
 	height: 90px;
 	width: 90%;
 	margin-top: 20px;
 	margin-right: auto;
 	margin-left: auto;
+}
+.share_txt2 {
+	height: 90px;
+	width: 90%;
 }
 .shareBtnGroup {
 	width:350px;
@@ -558,4 +562,19 @@ body {
 }
 .Fontshare{
 	font-weight:bolder;
+}
+.modalBody{
+	width:90%;
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.progressCust{
+	width: 90%;
+}
+.myfileItem {
+	float:left;
+}
+.files {
+	margin-bottom:20px;
 }

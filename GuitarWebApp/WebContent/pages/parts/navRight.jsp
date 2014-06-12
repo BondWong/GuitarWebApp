@@ -19,8 +19,9 @@
 			<script src="js/md5.js"></script>
 			<script>
 				$('body').on("click",".signInBtn",function(){
-					alert(md5($("#mad5Password").val()));
-					$("#mad5Password").val(md5($("#mad5Password").val()));
+					if(pass.length >0){
+						$("#mad5Password").val(md5($("#mad5Password").val()));
+					}
 				});
 			</script>
 		</form>
