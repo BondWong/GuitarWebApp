@@ -573,6 +573,7 @@ body {
 	width: 90%;
 }
 .myfileItem {
+	display:block;
 	float:left;
 	margin-right:10px;
 }
