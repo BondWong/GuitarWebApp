@@ -253,7 +253,7 @@ $(document).ready(function(){
 	    	for(var i=0;i<data.length;i++){
 	    		var dataString=data[i];
 	    		fileDri.push(dataString);
-	    	}
+	    		}
 	    	}
 	}).on('fileuploadadd', function (e, data) {
         data.context = $('<div/>')
@@ -511,16 +511,6 @@ $(document).ready(function(){
 			});
 			$('#myModal2').modal('hide');
 		});
-		//show reghtml
-		$('body').on("click",".signIn",function(){
-			$('.containerReg').fadeOut(300);
-			$('.containerReg').attr("style","display:none");
-			$('.containerSign').fadeIn(300);
-		});
-		$('body').on("click",".signUp",function(){
-			$('.containerSign').fadeOut(300);
-			$('.containerSign').attr("style","display:none");
-			$('.containerReg').fadeIn(300);
-		});
+		
 });
 

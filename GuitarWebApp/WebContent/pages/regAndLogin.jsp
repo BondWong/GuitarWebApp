@@ -94,13 +94,13 @@
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="styles/bootstrap-3.0.3-dist/dist/js/bootstrap.min.js"></script>
 	<script src="http://cdn.bootcss.com/holder/2.0/holder.min.js"></script>
-	<script src="js/function.js"></script>
+	<script src="js/regAndLogin.js"></script>
 	<script src="js/md5.js"></script>
 	<script>
-		$('body').on("click", ".signInBtn", function() {
-			var p = $("#md5Password").val();
-			if(p.length>0){
-				$("#md5Password").val(md5(p));
+		$('body').on("click",".signInBtn",function(){
+			var pass = $("#mad5Password").val();
+			if(pass.length >0){
+				$("#mad5Password").val(md5(pass));
 			}
 		});
 	</script>
