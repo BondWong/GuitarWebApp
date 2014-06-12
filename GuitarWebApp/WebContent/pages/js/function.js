@@ -25,7 +25,8 @@
 			url:'../../GuitarWebApp/app/post/fetchByType/'+type+'/0/5',
 			type:'get',
 			success:function(data){
-				$.each(data,function(index,jsonPostShortCut){
+				var dataR = data.reverse();
+				$.each(dataR,function(index,jsonPostShortCut){
 					if(index==0){
 						return true;
 					}
@@ -43,7 +44,8 @@
 			type:'get',
 			success:function(data){
 				//var jsondata = $.parseJSON(data);
-				$.each(data,function(index,jsonPostShortCut){
+				var dataR = data.reverse();
+				$.each(dataR,function(index,jsonPostShortCut){
 					if(index==0){
 						return true;
 					}
@@ -59,7 +61,8 @@
 			type:'get',
 			success:function(data){
 				//var jsondata = $.parseJSON(data);
-				$.each(data,function(index,jsonPostShortCut){
+				var dataR = data.reverse();
+				$.each(dataR,function(index,jsonPostShortCut){
 					addPost(jsonPostShortCut.ownerID,jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.id,jsonPostShortCut.likeNum);
 					if(index==data.length-1){
 						return true;
