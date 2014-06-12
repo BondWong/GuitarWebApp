@@ -574,7 +574,9 @@ body {
 }
 .myfileItem {
 	float:left;
+	margin-right:10px;
 }
 .files {
 	margin-bottom:20px;
+	display:block;
 }
