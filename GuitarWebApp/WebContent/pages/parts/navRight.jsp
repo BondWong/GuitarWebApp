@@ -12,17 +12,17 @@
 			</div>
 			<div class="form-group">
 				<input type="password" placeholder="Password" class="form-control"
-					name="password" required>
+					name="password" id="mad5Password" required>
 			</div>
+			<button class="btn btn-success signInBtn" type="submit">Sign in</button>
 			<script src="js/jquery-1.10.2.js"></script>
-			<script src="js/MD5.js"></script>
+			<script src="js/md5.js"></script>
 			<script>
 				$('body').on("click",".signInBtn",function(){
-					var pass = md5($("input[name='password']").val());
-					$("input[name='password']").val(pass);
+					alert(md5($("#mad5Password").val()));
+					$("#mad5Password").val(md5($("#mad5Password").val()));
 				});
 			</script>
-			<button class="btn btn-success signInBtn" type="submit">Sign in</button>
 		</form>
 	</c:when>
 

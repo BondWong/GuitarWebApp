@@ -47,26 +47,25 @@
 							<form class="photoForm" enctype="multipart/form-data">
 								<div class="modal-body modalBody">
 									<input class="form-control share_txt2"  id="share_txt2" type="text" placeholder="share anything you what to share" />
-									<br>
+									  <br>
 									    <!-- The fileinput-button span is used to style the file input field as button -->
 									    <span class="btn btn-success fileinput-button">
 									        <i class="glyphicon glyphicon-plus"></i>
-									        <span>Add files...</span>
+									        <span>Add photos...</span>
 									        <!-- The file input field used as target for the file upload widget -->
 									        <input id="fileupload" type="file" name="files[]" multiple>
 									    </span>
 									    <br>
 									    <br>
-									    
-									    <!-- The container for the uploaded files -->
-									    <div id="files" class="files">
-									    	<div id="#filesMy"></div>
-									    </div>
 									    <!-- The global progress bar -->
 									    <div id="progress" class="progress progressCust">
 									        <div class="progress-bar progress-bar-success"></div>
 									    </div>
-									    <br>
+									    <!-- The container for the uploaded files -->
+									    <div id="files" class="files">
+									    	<div id="#filesMy"></div>
+									    </div>
+									  <br>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default"

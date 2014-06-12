@@ -32,7 +32,7 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="images/guitar_top_3.jpg" />
+				<img src="images/guitar_top_1.jpg" />
 					<div class="container">
 						<div class="carousel-caption">
 							
@@ -44,7 +44,7 @@
 					</div>
 			</div>
 			<div class="item">
-				<img src="images/guitar_top_1.jpg" />
+				<img src="images/guitar_top_3.jpg" />
 					<div class="container">
 						<div class="carousel-caption">
 							
@@ -96,7 +96,7 @@
 			</div>
 			<!-- /.col-lg-4 -->
 			<div class="col-lg-4">
-				<img class="img-circle" src="images/guitar_s2.jpg" />
+				<img class="img-circle" src="images/guitar_s4.jpg" />
 					<h2>Heading</h2>
 					<p>Duis mollis, est non commodo luctus, nisi erat porttitor
 						ligula, eget lacinia odio sem nec elit. Cras mattis consectetur
@@ -109,7 +109,7 @@
 			</div>
 			<!-- /.col-lg-4 -->
 			<div class="col-lg-4">
-				<img class="img-circle" src="images/guitar_s3.jpeg" />
+				<img class="img-circle" src="images/guitar_s6.jpg" />
 					<h2>Heading</h2>
 					<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis
 						in, egestas eget quam. Vestibulum id ligula porta felis euismod
@@ -147,7 +147,7 @@
 
 				<div class="row featurette">
 					<div class="col-md-5">
-						<img class="img-circle2" src="images/guitar_low_2.jpg" />
+						<img class="img-circle2" src="images/guitar_low_3.jpg" />
 					</div>
 					<div class="col-md-7">
 						<h2 class="featurette-heading">
