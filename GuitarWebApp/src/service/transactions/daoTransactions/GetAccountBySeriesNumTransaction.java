@@ -1,5 +1,6 @@
 package service.transactions.daoTransactions;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -15,7 +16,10 @@ public class GetAccountBySeriesNumTransaction extends DAOTransaction{
 		// TODO Auto-generated method stub
 		String seriesNum = (String) params.get("autoLoginSeriesNum");
 		DAO<Account> adao = new DAO<Account>(Account.class, em);
-		return adao.collectionRead("Account.getBySeriesNum", 0, 1, Account.class, seriesNum);
+		List<Account> result = adao.collectionRead("Account.getBySeriesNum", 0, 1, Account.class, seriesNum);
+		if(result==null||result.size()==0)
+			return null;
+		return result.get(0);
 	}
 
 }

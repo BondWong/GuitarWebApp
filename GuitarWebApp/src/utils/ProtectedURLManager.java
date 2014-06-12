@@ -23,9 +23,8 @@ public class ProtectedURLManager {
 		hiddenCodeGeneratorURLs.add("home.jsp");
 		hiddenCodeGeneratorURLs.add("profile.jsp");
 		hiddenCodeGeneratorURLs.add("Q&A.jsp");
-		hiddenCodeGeneratorURLs.add("reg.jsp");
+		hiddenCodeGeneratorURLs.add("regAndLogin.jsp");
 		hiddenCodeGeneratorURLs.add("show.jsp");
-		hiddenCodeGeneratorURLs.add("signIn.jsp");
 		hiddenCodeGeneratorURLs.add("userCircle.jsp");
 		
 		hiddenCodeProtectionURLs = new ArrayList<String>();

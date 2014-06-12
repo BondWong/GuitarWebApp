@@ -86,7 +86,7 @@ public class LoginServlet extends HttpServlet {
 			} else {
 				account.setLastAccessDate(new Date());
 				account.setChance((short) (account.getChance() - 1));
-				response.sendRedirect("/GuitarWebApp/pages/signIn.jsp?invalid=true");
+				response.sendRedirect("/GuitarWebApp/pages/regAndLogin.jsp?invalid=true");
 			}
 
 			params.clear();
@@ -102,7 +102,7 @@ public class LoginServlet extends HttpServlet {
 			}
 
 		} else {
-			response.sendRedirect("/GuitarWebApp/pages/signIn.jsp?invalid=true");
+			response.sendRedirect("/GuitarWebApp/pages/regAndLogin.jsp?invalid=true");
 		}
 
 	}
