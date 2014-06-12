@@ -8,8 +8,8 @@
 		<ul class="dropdown-menu">
 			<li><a href="profile.jsp"><span
 					class="glyphicon glyphicon-home">&nbsp;profile</span></a></li>
-			<li><a href=""><span
-					class="glyphicon glyphicon-th">&nbsp;Log out</span></a></li>
+			<li><a href="../security/UserLogoutServlet"><span
+					class="glyphicon glyphicon-th">&nbsp;Logout</span></a></li>
 		</ul></li>
 	<li><a><span class="glyphicon glyphicon-bell"
 			style="font-size: 18px"></span></a></li>

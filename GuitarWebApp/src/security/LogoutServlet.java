@@ -29,13 +29,6 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String userID = request.getParameter("userID");
 		
 		HttpSession session = request.getSession();
@@ -44,7 +37,14 @@ public class LogoutServlet extends HttpServlet {
 			session.invalidate();
 		}
 		
-		response.sendRedirect("pages/index.jsp");
+		response.sendRedirect("/GuitarWebApp/pages/home.jsp");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 	}
 
 }

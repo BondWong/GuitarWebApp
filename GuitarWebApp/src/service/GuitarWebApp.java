@@ -9,8 +9,6 @@ import javax.ws.rs.core.Application;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
-
-
 @ApplicationPath("/app")
 public class GuitarWebApp extends Application{
 	public Set<Class<?>> getClasses(){
