@@ -57,21 +57,20 @@
 									    </span>
 									    <br>
 									    <br>
-									    
-									    <!-- The container for the uploaded files -->
-									    <div id="files" class="files">
-									    	<div id="#filesMy"></div>
-									    </div>
 									    <!-- The global progress bar -->
 									    <div id="progress" class="progress progressCust">
 									        <div class="progress-bar progress-bar-success"></div>
+									    </div>
+									    <!-- The container for the uploaded files -->
+									    <div id="files" class="files">
+									    	<div id="#filesMy"></div>
 									    </div>
 									  <br>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default"
 										data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-primary" id="btn_share" value="upload">Share</button>
+									<button type="button" class="btn btn-primary" id="btn_share" value="upload">Share</button>
 								</div>
 							</form>
 						</div>
