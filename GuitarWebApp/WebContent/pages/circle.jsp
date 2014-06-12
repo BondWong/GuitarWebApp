@@ -63,7 +63,7 @@
 									    </div>
 									    <!-- The container for the uploaded files -->
 									    <div id="files" class="files">
-									    	<div id="#filesMy"></div>
+									    	
 									    </div>
 									  <br>
 								</div>

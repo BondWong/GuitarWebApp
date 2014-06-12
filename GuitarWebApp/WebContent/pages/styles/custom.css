@@ -572,3 +572,9 @@ body {
 .progressCust{
 	width: 90%;
 }
+.myfileItem {
+	float:left;
+}
+.files {
+	margin-bottom:20px;
+}

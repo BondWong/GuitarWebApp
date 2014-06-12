@@ -256,7 +256,9 @@ $(document).ready(function(){
 	    	}
 	    	}
 	}).on('fileuploadadd', function (e, data) {
-        data.context = $('<div/>').appendTo('#files');
+        data.context = $('<div/>')
+        				.appendTo('#files')
+        				.addClass('myfileItem');
         $.each(data.files, function (index, file) {
             var node = $('<p/>')
                     .append($('<span/>').text(file.name));
