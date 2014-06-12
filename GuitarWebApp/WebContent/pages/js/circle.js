@@ -116,7 +116,7 @@
 				success:function(data){
 					//var jsondata = $.parseJSON(data);
 					$.each(data,function(index,jsonPostShortCut){
-						addPost(jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.id,jsonPostShortCut.likeNum);
+						addPost(jsonPostShortCut.ownerID,jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.id,jsonPostShortCut.likeNum);
 					});
 				}
 			});
