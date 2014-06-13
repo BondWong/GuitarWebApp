@@ -241,14 +241,22 @@ $(document).ready(function(){
 				var id = $(this).find("input").attr("value");
 				$.ajax({
 					url:'../../GuitarWebApp/app/post/collect/'+userID+'/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
-					type:'put'
+					type:'put',
+					success:function(){
+						var inputID = $("input[value='"+id+"'][id='collectID']");
+						inputID.next().attr("class","glyphicon glyphicon-star");
+					}
 				});
 			}
 			if($(this).find("span").attr("class") == "glyphicon glyphicon-star"){
 				var id = $(this).find("input").attr("value");
 				$.ajax({
 					url:'../../GuitarWebApp/app/post/cancelCollect/'+userID+'/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
-					type:'put'
+					type:'put',
+					success:function(){
+						var inputID = $("input[value='"+id+"'][id='collectID']");
+						inputID.next().attr("class","glyphicon glyphicon-star-empty");
+					}
 				});
 			}
 		});
@@ -259,14 +267,22 @@ $(document).ready(function(){
 				var id = $(this).find("input").val();
 				$.ajax({
 					url:'../../GuitarWebApp/app/post/like/'+userID+'/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
-					type:'put'
+					type:'put',
+					success:function(){
+						var inputID = $("input[value='"+id+"'][id='likeID']");
+						inputID.next().attr("class","glyphicon glyphicon-heart");
+					}
 				});
 			}
 			if($(this).find("span").attr("class") == "glyphicon glyphicon-heart"){
 				var id = $(this).find("input").val();
 				$.ajax({
 					url:'../../GuitarWebApp/app/post/cancelLike/'+userID+'/'+id,//'../../GuitarWebApp/app/post/collect/2011052405/'+id
-					type:'put'
+					type:'put',
+					success:function(){
+						var inputID = $("input[value='"+id+"'][id='likeID']");
+						inputID.next().attr("class","glyphicon glyphicon-heart-empty");
+					}
 				});
 			}
 		});

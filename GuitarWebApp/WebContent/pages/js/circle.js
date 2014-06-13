@@ -92,7 +92,7 @@
 		    	type:"POST",
 		    	url:'../../GuitarWebApp/app/post/add/'+userID,
 		    	data:jsonData,
-		    	contentType: "application/json"
+		    	contentType: "application/json",
 		    });
 		    $('#addPostModal').modal('hide');
 		});
@@ -117,7 +117,7 @@
 					//var jsondata = $.parseJSON(data);
 					var dataR = data.reverse();
 					$.each(dataR,function(index,jsonPostShortCut){
-						addPost(jsonPostShortCut.ownerID,jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.id,jsonPostShortCut.likeNum);
+						addPost(jsonPostShortCut.ownerID,jsonPostShortCut.ownerNickName,jsonPostShortCut.publishDate,jsonPostShortCut.content,jsonPostShortCut.id,jsonPostShortCut.likeNum);			
 					});
 				}
 			});

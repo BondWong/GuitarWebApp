@@ -8,7 +8,13 @@ if (!!window.EventSource) {
 		var jsondata = $.parseJSON(event.data);
 		var jsonPostShortCut = jsondata.postRepresentationShortCut;
 		postIdContainer.push(jsonPostShortCut.ID);
-		$('.alertCust').css("display","block");
+		if(jsondata.userID==userID){
+			fetchPostByIDs();
+			postIdContainer = [];
+		}
+		if(jsondata.userID!=userID){
+			$('.alertCust').css("display","block");
+		}
 	
  });
 		source.addEventListener('deletePostSSE',function(e){});
@@ -16,7 +22,6 @@ if (!!window.EventSource) {
 			var jsondata = $.parseJSON(event.data);
 			var postID = jsondata.pcID;
 			var inputID = $("input[value='"+postID+"'][id='likeID']");
-			inputID.next().attr("class","glyphicon glyphicon-heart");
 			var like = parseInt(inputID.next().text())+1;
 			inputID.next().text(like); 
 		});
@@ -24,21 +29,18 @@ if (!!window.EventSource) {
 			var jsondata = $.parseJSON(event.data);
 			var postID = jsondata.pcID;
 			var inputID = $("input[value='"+postID+"'][id='likeID']");
-			inputID.next().attr("class","glyphicon glyphicon-heart-empty");
 			var like = parseInt(inputID.next().text())-1;
 			inputID.next().text(like);
 		});
 		source.addEventListener('COLLECTPOST',function(event){
 			var jsondata = $.parseJSON(event.data);
 			var postID = jsondata.pcID;
-			var inputID = $("input[value='"+postID+"'][id='collectID']");
-			inputID.next().attr("class","glyphicon glyphicon-star");
+			
 		});
 		source.addEventListener('CANCELCOLLECT',function(event){
 			var jsondata = $.parseJSON(event.data);
 			var postID = jsondata.pcID;
-			var inputID = $("input[value='"+postID+"'][id='collectID']");
-			inputID.next().attr("class","glyphicon glyphicon-star-empty");
+			
 		});
 		source.addEventListener('JOINACTIVITY',function(e){
 			alert("success!");
