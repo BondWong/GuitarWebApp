@@ -17,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -68,6 +69,9 @@ public class Post {
 		inverseJoinColumns=@JoinColumn(name="LIKER_ID"))
 	private Set<User> likers;
 	
+	@ManyToMany(fetch=FetchType.LAZY)
+	private Set<User> collectors;
+	
 	private boolean active;
 	@Transient
 	@XmlTransient
@@ -84,6 +88,7 @@ public class Post {
 		this.publishDate = new Date();
 		
 		this.likers = new LinkedHashSet<User>();
+		this.collectors = new LinkedHashSet<User>();
 		comments = new LinkedHashSet<Comment>();
 		
 		this.active = true;
@@ -149,6 +154,22 @@ public class Post {
 	
 	public Set<User> getLikers(){
 		return likers;
+	}
+	
+	public int getCollectorNum(){
+		return collectors.size();
+	}
+	
+	public Set<User> getCollectors() {
+		return collectors;
+	}
+	
+	public void clickCollect(User user){
+		this.collectors.add(user);
+	}
+	
+	public void cancelCollect(User user){
+		this.collectors.remove(user);
 	}
 	
 	public User getOwner() {
@@ -230,6 +251,8 @@ public class Post {
 		
 		private int likeNum;
 		private Set<String> likerIDs;
+		private int collectNum;
+		private Set<String> collectorIDs;
 		private int participantsNum;
 		private Set<String> participantIDs;
 		
@@ -302,6 +325,14 @@ public class Post {
 			this.likeNum = likeNum;
 		}
 		
+		public int getCollectNum() {
+			return collectNum;
+		}
+
+		public void setCollectNum(int collectNum) {
+			this.collectNum = collectNum;
+		}
+
 		public int getParticipantsNum() {
 			return participantsNum;
 		}
@@ -343,6 +374,17 @@ public class Post {
 			this.likerIDs.add(likerID);
 		}
 
+		public Set<String> getCollectorIDs() {
+			return collectorIDs;
+		}
+
+		public void addCollectorID(String collectorID) {
+			if(this.collectorIDs==null){
+				this.collectorIDs = new LinkedHashSet<String>();
+			}
+			this.collectorIDs.add(collectorID);
+		}
+
 		public Set<String> getParticipantIDs() {
 			if(this.participantIDs==null)
 				return new LinkedHashSet<String>();
@@ -368,9 +410,13 @@ public class Post {
 		psc.setTopic(this.getTopic());
 		psc.setType(this.getType());
 		psc.setLikeNum(this.getLikeNum());
+		psc.setCollectNum(this.getCollectorNum());
 		psc.setParticipantsNum(this.getParticipantsNum());
 		for(User user : likers){
 			psc.addLikerID(user.getID());
+		}
+		for(User user : collectors){
+			psc.addCollectorID(user.getID());
 		}
 		for(User user : this.getParticipants()){
 			psc.addParticipantID(user.getID());
@@ -395,6 +441,7 @@ public class Post {
 		representation.setOwner(this.getOwner().getRepresentation());
 		representation.addCommentRepresentations(this.comments);
 		representation.addLikerRepresentation(this.likers);
+		representation.addCollectorRepresentation(this.collectors);
 		representation.setInformation(this.getInformation());
 		
 		representation.setStartDate(this.getStartDate().toString());

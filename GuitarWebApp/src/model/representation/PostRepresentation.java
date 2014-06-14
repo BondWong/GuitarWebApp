@@ -37,6 +37,8 @@ public class PostRepresentation {
 	@XmlElement
 	private Set<UserRepresentation> likerRepresentations;
 	@XmlElement
+	private Set<UserRepresentation> collectorRepresentations;
+	@XmlElement
 	private String startDate;
 	@XmlElement
 	private Set<UserRepresentation> participantRepresentations;
@@ -138,6 +140,21 @@ public class PostRepresentation {
 			this.likerRepresentations.add(liker.getRepresentation());
 		}
 	}
+
+	public Set<UserRepresentation> getCollectorRepresentations() {
+		if(collectorRepresentations == null)
+			return new LinkedHashSet<UserRepresentation>();
+		return collectorRepresentations;
+	}
+	public void addCollectorRepresentation(Set<User> collectors) {
+		if(this.collectorRepresentations == null) {
+			this.collectorRepresentations = new LinkedHashSet<UserRepresentation>();
+		}
+		for (User collector : collectors) {
+			this.collectorRepresentations.add(collector.getRepresentation());
+		}
+	}
+	
 
 	public String getStartDate() {
 		if (this.startDate == null)

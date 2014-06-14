@@ -62,10 +62,7 @@ public class User {
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.MERGE
 			,mappedBy="owner")
 	private Set<Post> posts;
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
-	@JoinTable(name="USER_COLLECTEDPOSTS",
-		joinColumns=@JoinColumn(name="USER_ID"),
-		inverseJoinColumns=@JoinColumn(name="COLLECTEDPOST_ID"))
+	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.MERGE,mappedBy="collectors")
 	private Set<Post> collectedPosts;
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
 	@JoinTable(name="USER_JOINEDACTIVITIES",
@@ -263,10 +260,12 @@ public class User {
 	
 	public void collectPost(Post post){
 		collectedPosts.add(post);
+		post.clickCollect(this);
 	}
 	
 	public void cancelCollect(Post post){
 		collectedPosts.remove(post);
+		post.cancelCollect(this);
 	}
 	
 	public Set<Post> getCollectedPosts(){
