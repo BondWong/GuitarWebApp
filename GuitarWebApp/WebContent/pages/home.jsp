@@ -130,7 +130,7 @@
 			<div class="row featurette">
 				<div class="col-md-7">
 					<h2 class="featurette-heading">
-						First featurette heading. <span class="text-muted">It'll
+						Who we are? <span class="text-muted">It'll
 							blow your mind.</span>
 					</h2>
 					<p class="lead">Donec ullamcorper nulla non metus auctor
@@ -151,7 +151,7 @@
 					</div>
 					<div class="col-md-7">
 						<h2 class="featurette-heading">
-							Oh yeah, it's that good. <span class="text-muted">See for
+							Great WebApp is what we do. <span class="text-muted">See for
 								yourself.</span>
 						</h2>
 						<p class="lead">Donec ullamcorper nulla non metus auctor
@@ -202,6 +202,5 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="styles/bootstrap-3.0.3-dist/dist/js/bootstrap.min.js"></script>
-	<script src="http://cdn.bootcss.com/holder/2.0/holder.min.js"></script>
 </body>
 </html>

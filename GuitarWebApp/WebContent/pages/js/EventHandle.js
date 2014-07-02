@@ -43,7 +43,7 @@ if (!!window.EventSource) {
 			
 		});
 		source.addEventListener('JOINACTIVITY',function(e){
-			alert("success!");
+			
 		});
 		source.addEventListener('ADDCOMMENT',function(event){
 			var jsondata = $.parseJSON(event.data);

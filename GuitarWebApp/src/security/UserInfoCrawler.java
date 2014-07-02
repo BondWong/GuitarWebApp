@@ -15,7 +15,7 @@ import service.transactions.GetUserBasicInfoTransaction;
 import service.transactions.Transaction;
 
 public class UserInfoCrawler implements Runnable{
-	private static String URL = "http://jwc.jnu.edu.cn/web/Secure/Xjgl/Xjgl_Xsxxgl_Xjxxxg_XS.aspx";
+	private static String URL = "http://202.116.0.176/Secure/Xjgl/Xjgl_Xsxxgl_Xjxxxg_XS.aspx";
 	private static String CAMPUSPATTERN = "name=\"txtXQ\" type=\"text\" value=\"(.+)\" readonly=\"readonly\"";
 	private static String INSTITUTIONPATTERN = "name=\"txtXY_X\" type=\"text\" value=\"(.+)\" readonly=\"readonly\"";
 	private static String NAMEPATTERN = "name=\"txtXM_X\" type=\"text\" value=\"(.+)\" readonly=\"readonly\"";

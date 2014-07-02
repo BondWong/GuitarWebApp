@@ -100,3 +100,73 @@
 			});
 			$('#myModal2').modal('hide');
 		});
+		//function profileBg
+		$('.profile_img').hover(function(){
+			var changeBtn = "<div class='changeBtnGroup'><form><button class='btn btn-success profileImgBtn'>Change BlackgroundImg</button><input type='file' name='file' class='btn_file' style='display:none'/></form></div>";//<button class='btn btn-success avatarImgBtn'>Change Avatar</button>
+			$('.profile_img').append(changeBtn);
+			$('.changeBtnGroup').hide();
+			$('.changeBtnGroup').fadeIn(300);
+		},function(){
+			$('.changeBtnGroup').fadeOut(300, function(){
+				$(this).remove();
+			});	
+		});
+	//function profileImg 
+		$('.profile_user_img').hover(function(){
+			var changeBtn = "<button class='btn btn-success profileImg' data-toggle='modal' data-target='#myModal'>Change</button>";
+			$(this).append(changeBtn);
+			$('.profileImg').hide();
+			$('.profileImg').fadeIn(300);
+		},function(){
+			$('.profileImg').fadeOut(300, function(){
+				$(this).remove();
+			});	
+		});
+	//show followees
+		function showFollowees(){
+			$.ajax({
+				url:'../../GuitarWebApp/app/user/getRepresentation/'+userID,
+				type:'get',
+				success: function(data){
+					var followeesIDs = data.followeesID;
+					$.each(followeesIDs,function(index,followeesID){
+						$.ajax({
+							url:'../../GuitarWebApp/app/user/getRepresentationShortCut/'+followeesID,
+							type:'get',
+							success: function(followeesShortCut){
+								var followee="<img src='"+followeesShortCut.avatarLink+"'></img>";
+								$('.followeeShow').append(followee);
+							}
+						});
+					});
+				}
+			});
+		}
+	//show photos
+		function showPhotos(){
+			$.ajax({
+				url:'../../GuitarWebApp/app/user/getRepresentation/'+userID,
+				type:'get',
+				success: function(data){
+					$.each(data.imageLinks,function(index,imageLink){
+						var photoContainer="<div class='photo'><img src='"+imageLink+"' /></div>";
+						$('.photoAddBtn').after(photoContainer);
+					});
+				}
+			});
+		}
+		//function getUserInfor
+		function getUserInfo(){
+			$.ajax({
+				url:'../../GuitarWebApp/app/user/getRepresentation/2011052395',
+				type:'get',
+				success:function(data){
+					$('.Agender').html(data.gender);
+					$('.Ainstitution').html(data.institution);
+					$('.Amajor').html(data.major);
+					var d = new Date(data.birthday);
+					$('.Abirth').html(d.getFullYear() + "/" +(d.getMonth()+1) + "/" + d.getDate());
+					$('.Acampus').html(data.campus);
+				}
+			});
+		}

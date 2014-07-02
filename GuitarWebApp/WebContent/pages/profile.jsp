@@ -231,7 +231,7 @@
 	<%@ include file="parts/profileJavaScript.jsp"%>
 	<script src="js/about.js"></script>
 	<script>
-		getUserInfor();
+		getUserInfo();
 	</script>
 </body>
 </html>
